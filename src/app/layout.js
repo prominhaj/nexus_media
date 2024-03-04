@@ -1,8 +1,12 @@
-import { Inter } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
-<link rel='icon' href='./favicon.svg' type='image/svg' sizes='32x32' />;
+import NextProvider from '@/Providers/NextProvider';
 
-const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({
+    weight: ['200', '400', '500', '600', '700', '800'],
+    subsets: ['latin'],
+    display: 'swap'
+});
 
 export const metadata = {
     title: 'Nexus Media',
@@ -12,7 +16,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang='en'>
-            <body className={inter.className}>{children}</body>
+            <body className={`${poppins.className}`}>
+                <NextProvider>{children}</NextProvider>
+            </body>
         </html>
     );
 }

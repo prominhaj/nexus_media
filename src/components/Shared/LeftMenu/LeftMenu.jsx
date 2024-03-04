@@ -1,10 +1,30 @@
-import React from 'react';
+
+
+// Left Menu Items
+const leftMenuItems = [
+    {
+        name: 'Home',
+        path: '/'
+    },
+    {
+        name: 'About',
+        path: '/about'
+    },
+    {
+        name: 'Contact',
+        path: '/contact'
+    }
+]
 
 const LeftMenu = () => {
+
     return (
-        <div className='h-screen bg-gray-600'>
-            <h1>This Left Menu</h1>
-        </div>
+
+        <div className="transition-all duration-300">
+            <div className=''>
+                Left Menu
+            </div>
+        </div >
     );
 };
 
