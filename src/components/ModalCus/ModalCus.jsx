@@ -1,12 +1,12 @@
 import React from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
-const ModalCus = ({ name, modalTitle, children, action }) => {
+const ModalCus = ({ name, modalTitle, children, action, classes }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     return (
         <div>
-            <Button onPress={onOpen}>{name}</Button>
+            <Button className={`!px-1 sm:!px-3 sm:!py-1 !min-w-full !h-full ${classes && classes}`} onPress={onOpen}>{name}</Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (
