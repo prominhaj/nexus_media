@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import notFoundImg from '@/assets/404-Page.jpg';
+import notFoundImg from '@/assets/404-Page.png';
 import Image from 'next/image';
 
 const NotFound = () => {

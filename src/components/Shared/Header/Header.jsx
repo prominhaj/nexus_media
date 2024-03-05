@@ -14,6 +14,7 @@ import { Avatar } from '@nextui-org/react';
 import SearchModal from '../Modal/SearchModal';
 import { Fredoka } from 'next/font/google';
 import Setting from '@/components/SettingComp/Setting';
+import ProfileItems from '../Profile/ProfileItems';
 
 const fredoka = Fredoka({
     weight: ['500', '600', '700'],
@@ -47,20 +48,20 @@ const headerModeItems = [
 
 // Header Item
 const search = <>
-    <div className='flex items-center gap-2 px-3 bg-gray-200 rounded-md cursor-pointer'>
-        <FaSearch className='text-gray-600' />
+    <div className='flex items-center gap-2 px-3 bg-gray-200 rounded-md cursor-pointer dark:bg-gray-600'>
+        <FaSearch className='text-gray-600 dark:text-gray-300' />
         <input className='py-2 bg-transparent outline-none cursor-pointer' type="text" placeholder="Search" />
     </div>
 </>
 
 const notification = <>
-    <span className='p-3 rounded-full bg-slate-200'>
+    <span className='p-3 rounded-full bg-slate-200 dark:bg-gray-600 dark:text-gray-200'>
         <IoIosNotificationsOutline className='text-2xl' />
     </span>
 </>
 
 const settings = <>
-    <span className='p-3 lg:p-[10px] rounded-full bg-slate-200'>
+    <span className='p-3 lg:p-[10px] rounded-full bg-slate-200 dark:bg-gray-600'>
         <motion.div
             animate={{
                 rotate: [0, 360],
@@ -71,7 +72,7 @@ const settings = <>
                 ease: 'linear'
             }}
         >
-            <CiSettings className='text-2xl lg:text-3xl' />
+            <CiSettings className='text-2xl dark:text-gray-200 lg:text-3xl' />
         </motion.div>
     </span>
 </>
@@ -98,7 +99,7 @@ const Header = () => {
     const pathname = usePathname();
 
     return (
-        <div className='w-full px-3 py-5 shadow bg-white/75 lg:px-5'>
+        <div className='w-full px-3 py-5 shadow bg-white/75 lg:px-5 dark:bg-[#293145]'>
             <div className='grid items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 <div>
                     <Link href="/" className='block'>
@@ -115,7 +116,7 @@ const Header = () => {
                             >
                                 <Image className='w-[40px] h-[40px] sm:w-[50px] sm:h-[50px]' src={logo} width={50} height={50} priority alt='Logo' />
                             </motion.div>
-                            <h2 className={`${fredoka.className} hidden text-xl font-semibold transition-all duration-300 sm:block md:text-2xl dark:text-gray-200`}>Nexus Media</h2>
+                            <h2 className={`${fredoka.className} hidden dark:text-gray-200 text-xl font-semibold transition-all duration-300 sm:block md:text-2xl`}>Nexus Media</h2>
                         </div>
                     </Link>
                 </div>
@@ -127,7 +128,7 @@ const Header = () => {
                         <div className='hidden lg:block'>
                             <div className='flex items-center gap-4'>
                                 {
-                                    headerModeItems.map(item => <Link className={`${item.path === pathname ? "text-[#1e74fd] bg-[#d2e3ff] border-[#bcd5fe]" : "bg-[#efeeee] text-[#adb5bd]"}  p-3 rounded-full`} href={item.path} key={item.name}>
+                                    headerModeItems.map(item => <Link className={`${item.path === pathname ? "text-[#1e74fd] dark:text-[#1e74fd] bg-[#d2e3ff] dark:bg-[#d2e3ff] border-[#bcd5fe]" : "bg-[#efeeee] text-gray-600 dark:bg-gray-600 dark:text-gray-200"} p-3 rounded-full`} href={item.path} key={item.name}>
                                         <span className='text-2xl'>{item.icon}</span>
                                     </Link>)
                                 }
@@ -135,31 +136,32 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-                <div className='block sm:hidden'>
+                <div className='block md:hidden'>
                     <div className='flex items-center justify-end gap-3'>
 
                         <SearchModal data={people} />
-                        <PopoverCus name={settings}></PopoverCus>
+                        <PopoverCus name={settings}>
+                            <Setting />
+                        </PopoverCus>
 
                         {/* Bar Coming Soon */}
 
                     </div>
                 </div>
-                <div className='hidden sm:block'>
+                <div className='hidden md:block'>
                     <div className='flex justify-end'>
                         <div className='flex items-center gap-5'>
                             <PopoverCus name={notification}>
                             </PopoverCus>
                             <Link className='block' href={"/message"}>
-                                <button className='p-3 rounded-full bg-slate-200'>
-                                    <FiMessageSquare className='text-2xl' />
+                                <button className='p-3 rounded-full bg-slate-200 dark:bg-gray-600'>
+                                    <FiMessageSquare className='text-2xl dark:text-gray-200' />
                                 </button>
                             </Link>
                             <PopoverCus name={settings}>
                                 <Setting />
                             </PopoverCus>
-                            <PopoverCus name={profile}>
-                            </PopoverCus>
+                            <ProfileItems name={profile} />
                         </div>
                     </div>
                 </div>
@@ -167,15 +169,14 @@ const Header = () => {
 
             {/* Responsive Menu */}
             <div className='block md:hidden'>
-                <div className='fixed bottom-0 left-0 right-0 px-3 py-2 sm:px-5 bg-gradient-to-r from-cyan-500 to-blue-500'>
+                <div className='fixed bottom-0 left-0 right-0 z-50 px-3 py-2 sm:px-5 bg-gradient-to-r from-cyan-500 to-blue-500'>
                     <div className='flex items-center justify-between gap-3 sm:gap-0'>
                         {
                             headerModeItems.map(item => <Link className={`${item.path === pathname ? "text-[#eef1f5] bg-[#3b70c6] border-[#bcd5fe]" : "bg-[#efeeee] text-[#adb5bd]"}  p-3 rounded-full`} href={item.path} key={item.name}>
                                 <span className='text-2xl'>{item.icon}</span>
                             </Link>)
                         }
-                        <PopoverCus classes={"-top-12"} name={profile}>
-                        </PopoverCus>
+                        <ProfileItems classes={"bottom-12"} name={profile} />
                     </div>
                 </div>
             </div>

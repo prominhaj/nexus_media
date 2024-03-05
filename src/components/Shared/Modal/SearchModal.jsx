@@ -14,9 +14,9 @@ const SearchModal = ({ data, search }) => {
                         search ? <button onClick={() => setIsOpen(true)}>{search}</button> : <button
                             type="button"
                             onClick={() => setIsOpen(true)}
-                            className="p-3 rounded-full bg-slate-200"
+                            className="p-3 rounded-full bg-slate-200 dark:bg-gray-600"
                         >
-                            <IoSearch className='text-2xl font-semibold text-gray-600' />
+                            <IoSearch className='text-2xl font-semibold text-gray-600 dark:text-gray-200' />
                         </button>
                     }
                 </div>
@@ -46,13 +46,13 @@ const SearchModal = ({ data, search }) => {
                                     leaveFrom="opacity-100 scale-100"
                                     leaveTo="opacity-0 scale-95"
                                 >
-                                    <Dialog.Panel className="w-full max-w-md p-6 text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                                    <Dialog.Panel className="w-full max-w-md p-6 text-left align-middle transition-all transform bg-white dark:bg-[#1A2236] shadow-xl rounded-2xl">
                                         <div>
                                             {/* Search Combobox Component */}
                                             <SearchCombobox data={data} />
                                         </div>
                                         <div className='mt-3 text-end'>
-                                            <button onClick={() => setIsOpen(false)} className='inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'>Close</button>
+                                            <button onClick={() => setIsOpen(false)} className='inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md dark:bg-gray-500 dark:text-gray-300 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'>Close</button>
                                         </div>
                                     </Dialog.Panel>
                                 </Transition.Child>

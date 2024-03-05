@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomePage = () => {
     return (
-        <div className='w-full h-screen bg-slate-300'>
+        <div className='w-full h-screen'>
             <h1>Hello Next.js!</h1>
         </div>
     );

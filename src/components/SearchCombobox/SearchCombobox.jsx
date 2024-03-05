@@ -18,14 +18,14 @@ const SearchCombobox = ({ data }) => {
     return (
         <div className="">
             <div className='mb-4'>
-                <label htmlFor='search' className='text-lg font-medium leading-6 text-gray-900'>Search</label>
+                <label htmlFor='search' className='text-lg italic font-medium leading-6 text-gray-900 dark:text-gray-200'>Search</label>
             </div>
             <Combobox >
                 <div className="relative mt-1">
-                    <div className="relative w-full overflow-hidden text-left bg-white shadow-md cursor-default focus:outline-none">
+                    <div className="relative w-full overflow-hidden text-left shadow-md cursor-default dark:shadow-gray-600 focus:outline-none">
                         <Combobox.Input
                             id='search'
-                            className="w-full py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 border rounded-md focus:outline-blue-400 focus:ring-0"
+                            className="w-full py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 border rounded-md dark:text-gray-200 dark:bg-gray-600 focus:outline-blue-400 focus:ring-0"
                             placeholder='Search'
                             onChange={(event) => setQuery(event.target.value)}
                         />
@@ -37,9 +37,9 @@ const SearchCombobox = ({ data }) => {
                         leaveTo="opacity-0"
                         afterLeave={() => setQuery('')}
                     >
-                        <Combobox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                        <Combobox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white dark:bg-[#434854] rounded-md shadow-lg max-h-60 ring-1 ring-black/5 focus:outline-none sm:text-sm">
                             {filteredPeople.length === 0 && query !== '' ? (
-                                <div className="relative px-4 py-2 text-gray-700 cursor-default select-none">
+                                <div className="relative px-4 py-2 text-gray-700 cursor-default select-none dark:text-gray-200">
                                     Nothing found.
                                 </div>
                             ) : (
@@ -47,23 +47,21 @@ const SearchCombobox = ({ data }) => {
                                     <Combobox.Option
                                         key={person._id}
                                         className={({ active }) =>
-                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-teal-600 text-white' : 'text-gray-900'
+                                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-blue-400 text-white dark:text-gray-200' : 'text-gray-900 dark:text-gray-200'
                                             }`
                                         }
                                         value={person}
                                     >
                                         {({ selected, active }) => (
                                             <>
-                                                <>
-                                                    <Link href={`/profile/${person._id}`}>
-                                                        <span
-                                                            className={`block truncate ${selected ? 'font-medium' : 'font-normal'
-                                                                }`}
-                                                        >
-                                                            {person.name}
-                                                        </span>
-                                                    </Link>
-                                                </>
+                                                <Link href={`/profile/${person._id}`}>
+                                                    <span
+                                                        className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                                                            }`}
+                                                    >
+                                                        {person.name}
+                                                    </span>
+                                                </Link>
                                                 {selected ? (
                                                     <span
                                                         className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active ? 'text-white' : 'text-teal-600'

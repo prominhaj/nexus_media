@@ -5,7 +5,7 @@ import RightMenu from '@/components/Shared/RightMenu/RightMenu';
 
 const layout = ({ children }) => {
     return (
-        <div className='bg-[#F2F3F5]'>
+        <div className='bg-[#F2F3F5] dark:bg-[#1A2236]'>
             <Header />
             <div className='grid gap-3 pt-5 md:grid-cols-5 md:gap-5 lg:gap-6'>
                 <div>
