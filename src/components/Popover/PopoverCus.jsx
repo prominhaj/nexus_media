@@ -23,7 +23,6 @@ const PopoverCus = ({ name, children, classes }) => {
                         <Menu.Item>
                             <div>
                                 {children}
-                                Lorem ipsum dolor sit amet.
                             </div>
                         </Menu.Item>
                     </Menu.Items>

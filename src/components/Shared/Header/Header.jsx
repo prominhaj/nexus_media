@@ -6,14 +6,20 @@ import Link from 'next/link';
 import { FaHome, FaSearch, FaUserFriends, FaVideo } from "react-icons/fa";
 import { FiZap } from "react-icons/fi";
 import { usePathname } from 'next/navigation';
-import ModalCus from '@/components/ModalCus/ModalCus';
 import PopoverCus from '@/components/Popover/PopoverCus';
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FiMessageSquare } from "react-icons/fi";
 import { CiSettings } from "react-icons/ci";
 import { Avatar } from '@nextui-org/react';
 import SearchModal from '../Modal/SearchModal';
+import { Fredoka } from 'next/font/google';
+import Setting from '@/components/SettingComp/Setting';
 
+const fredoka = Fredoka({
+    weight: ['500', '600', '700'],
+    subsets: ['latin'],
+    display: 'swap'
+});
 
 // Header Mode Items
 const headerModeItems = [
@@ -91,9 +97,8 @@ const people = [
 const Header = () => {
     const pathname = usePathname();
 
-
     return (
-        <div className='w-full px-3 py-5 bg-white lg:px-5'>
+        <div className='w-full px-3 py-5 shadow bg-white/75 lg:px-5'>
             <div className='grid items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 <div>
                     <Link href="/" className='block'>
@@ -110,7 +115,7 @@ const Header = () => {
                             >
                                 <Image className='w-[40px] h-[40px] sm:w-[50px] sm:h-[50px]' src={logo} width={50} height={50} priority alt='Logo' />
                             </motion.div>
-                            <h2 className="hidden text-xl font-semibold transition-all duration-300 sm:block md:text-2xl dark:text-gray-200">Nexus Media</h2>
+                            <h2 className={`${fredoka.className} hidden text-xl font-semibold transition-all duration-300 sm:block md:text-2xl dark:text-gray-200`}>Nexus Media</h2>
                         </div>
                     </Link>
                 </div>
@@ -141,18 +146,21 @@ const Header = () => {
                     </div>
                 </div>
                 <div className='hidden sm:block'>
-                    <div className='flex items-center justify-end gap-5'>
-                        <PopoverCus name={notification}>
-                        </PopoverCus>
-                        <Link className='block' href={"/message"}>
-                            <button className='p-3 rounded-full bg-slate-200'>
-                                <FiMessageSquare className='text-2xl' />
-                            </button>
-                        </Link>
-                        <PopoverCus name={settings}>
-                        </PopoverCus>
-                        <PopoverCus name={profile}>
-                        </PopoverCus>
+                    <div className='flex justify-end'>
+                        <div className='flex items-center gap-5'>
+                            <PopoverCus name={notification}>
+                            </PopoverCus>
+                            <Link className='block' href={"/message"}>
+                                <button className='p-3 rounded-full bg-slate-200'>
+                                    <FiMessageSquare className='text-2xl' />
+                                </button>
+                            </Link>
+                            <PopoverCus name={settings}>
+                                <Setting />
+                            </PopoverCus>
+                            <PopoverCus name={profile}>
+                            </PopoverCus>
+                        </div>
                     </div>
                 </div>
             </div>

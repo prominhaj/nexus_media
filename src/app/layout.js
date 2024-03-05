@@ -1,6 +1,7 @@
-import { Inter, Poppins } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import './globals.css';
 import NextProvider from '@/Providers/NextProvider';
+import ThemeProvider from '@/Context/ThemeContext';
 
 const poppins = Poppins({
     weight: ['200', '400', '500', '600', '700', '800'],
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
     return (
         <html lang='en'>
             <body className={`${poppins.className}`}>
-                <NextProvider>{children}</NextProvider>
+                <NextProvider>
+                    <ThemeProvider>{children}</ThemeProvider>
+                </NextProvider>
             </body>
         </html>
     );
