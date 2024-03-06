@@ -6,7 +6,7 @@ import { IoSearch } from 'react-icons/io5';
 
 const SearchModal = ({ data, search }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [color] = useColor();
+    const { color } = useColor();
 
     return (
         <>

@@ -7,15 +7,13 @@ import { FaHome, FaSearch, FaUserFriends, FaVideo } from "react-icons/fa";
 import { FiZap } from "react-icons/fi";
 import { usePathname } from 'next/navigation';
 import PopoverCus from '@/components/Popover/PopoverCus';
-import { FiMessageSquare } from "react-icons/fi";
-import { CiSettings } from "react-icons/ci";
 import { Avatar } from '@nextui-org/react';
 import SearchModal from '../Modal/SearchModal';
 import { Fredoka } from 'next/font/google';
 import Setting from '@/components/SettingComp/Setting';
 import ProfileItems from '../Profile/ProfileItems';
-import { IoMdNotificationsOutline } from "react-icons/io";
 import useColor from '@/Hooks/useColor';
+import { HiMiniChatBubbleLeftEllipsis, HiOutlineBellAlert, HiOutlineCog8Tooth } from "react-icons/hi2";
 
 const fredoka = Fredoka({
     weight: ['500', '600', '700'],
@@ -62,7 +60,7 @@ const people = [
 
 const Header = () => {
     const pathname = usePathname();
-    const [color] = useColor();
+    const { color } = useColor();
 
 
     // Header Item
@@ -75,7 +73,7 @@ const Header = () => {
 
     const notification = <>
         <span className={`p-3 rounded-full bg-slate-200 dark:bg-gray-600 ${color ? color : 'dark:text-gray-200'}`}>
-            <IoMdNotificationsOutline className='text-2xl' />
+            <HiOutlineBellAlert className='text-2xl' />
         </span>
     </>
 
@@ -91,7 +89,7 @@ const Header = () => {
                     ease: 'linear'
                 }}
             >
-                <CiSettings className={`text-2xl lg:text-3xl ${color ? color : "dark:text-gray-200"}`} />
+                <HiOutlineCog8Tooth className={`text-2xl lg:text-3xl ${color ? color : "dark:text-gray-200"}`} />
             </motion.div>
         </span>
     </>
@@ -159,7 +157,7 @@ const Header = () => {
                             </PopoverCus>
                             <Link className='block' href={"/message"}>
                                 <button className='p-3 rounded-full bg-slate-200 dark:bg-gray-600'>
-                                    <FiMessageSquare className={`text-2xl ${color ? color : "dark:text-gray-200"}`} />
+                                    <HiMiniChatBubbleLeftEllipsis className={`text-2xl ${color ? color : "dark:text-gray-200"}`} />
                                 </button>
                             </Link>
                             <PopoverCus name={settings}>
@@ -173,10 +171,10 @@ const Header = () => {
 
             {/* Responsive Menu */}
             <div className='block md:hidden'>
-                <div className='fixed bottom-0 left-0 right-0 z-50 px-3 py-2 sm:px-5 bg-gradient-to-r from-cyan-500 to-blue-500'>
+                <div className='fixed bottom-0 left-0 right-0 z-50 px-3 py-2 sm:px-5 bg-gradient-to-r from-green-600 to-teal-700 dark:bg-gradient-to-r dark:from-purple-600 dark:to-indigo-700'>
                     <div className='flex items-center justify-between gap-3 sm:gap-0'>
                         {
-                            headerModeItems.map(item => <Link className={`${item.path === pathname ? "text-[#eef1f5] bg-[#3b70c6] border-[#bcd5fe]" : "bg-[#efeeee] text-[#adb5bd]"}  p-3 rounded-full`} href={item.path} key={item.name}>
+                            headerModeItems.map(item => <Link className={`${item.path === pathname ? "text-[#eef1f5] bg-[#3b70c6] border-[#bcd5fe]" : `${color ? color : "text-[#adb5bd]"} bg-[#efeeee]`}  p-3 rounded-full`} href={item.path} key={item.name}>
                                 <span className='text-2xl'>{item.icon}</span>
                             </Link>)
                         }

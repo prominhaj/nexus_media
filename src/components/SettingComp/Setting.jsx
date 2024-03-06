@@ -8,59 +8,64 @@ const colors = [
     {
         id: 1,
         colorClass: "text-red-500",
-        button: <button className='bg-[#FF3B30] w-6 h-6 rounded-full'></button>
+        bgClass: "bg-red-500",
     },
     {
         id: 2,
         colorClass: "text-green-500",
-        button: <button className='bg-[#4CD964] w-6 h-6 rounded-full'></button>
+        bgClass: "bg-green-500",
     },
     {
         id: 3,
         colorClass: "text-indigo-500",
-        button: <button className='bg-[#132977] w-6 h-6 rounded-full'></button>
+        bgClass: "bg-indigo-500",
     },
     {
         id: 4,
         colorClass: "text-yellow-500",
-        button: <button className='bg-[#FFDE00] w-6 h-6 rounded-full'></button>
+        bgClass: "bg-yellow-500",
     },
     {
         id: 5,
         colorClass: "text-orange-500",
-        button: <button className='bg-[#FF9500] w-6 h-6 rounded-full'></button>
+        bgClass: "bg-orange-500",
     },
     {
         id: 6,
         colorClass: "text-neutral-500",
-        button: <button className='bg-[#8E8E93] w-6 h-6 rounded-full'></button>
+        bgClass: "bg-neutral-500",
     },
     {
         id: 7,
         colorClass: "text-emerald-500",
-        button: <button className='bg-[#228B22] w-6 h-6 rounded-full'></button>
+        bgClass: "bg-emerald-500",
     },
     {
         id: 8,
         colorClass: "text-cyan-500",
-        button: <button className='bg-[#5F9EA0] w-6 h-6 rounded-full'></button>
+        bgClass: "bg-cyan-500",
     },
     {
         id: 9,
         colorClass: "text-blue-500",
-        button: <button className='bg-[#9932CC] w-6 h-6 rounded-full'></button>
+        bgClass: "bg-blue-500",
     },
     {
         id: 10,
         colorClass: "text-pink-500",
-        button: <button className='bg-[#FFC0CB] w-6 h-6 rounded-full'></button>
+        bgClass: "bg-pink-500",
     },
 ]
 
 const Setting = () => {
     const [theme, toggleButton] = useContext(ThemeContext);
     const [enabled, setEnabled] = useState(theme === "dark" ? true : false);
-    const [color, setColor] = useColor();
+    const { color, setColor, setBgColor } = useColor();
+
+    const handleColor = (color) => {
+        setColor(color.colorClass)
+        setBgColor(color.bgClass)
+    }
 
     return (
         <div>
@@ -71,8 +76,8 @@ const Setting = () => {
                         <h4 className='font-medium opacity-60'>Colors</h4>
                         <ul className='flex flex-wrap justify-start gap-3 mt-2'>
                             {
-                                colors.map(color => <li onClick={() => setColor(color.colorClass)} key={color.id}>
-                                    {color?.button}
+                                colors.map(color => <li onClick={() => handleColor(color)} key={color.id}>
+                                    <button className={`${color.bgClass} w-6 h-6 rounded-full`}></button>
                                 </li>)
                             }
                         </ul>
