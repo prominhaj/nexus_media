@@ -1,3 +1,4 @@
+import useColor from '@/Hooks/useColor';
 import SearchCombobox from '@/components/SearchCombobox/SearchCombobox';
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useState } from 'react';
@@ -5,6 +6,7 @@ import { IoSearch } from 'react-icons/io5';
 
 const SearchModal = ({ data, search }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [color] = useColor();
 
     return (
         <>
@@ -16,7 +18,7 @@ const SearchModal = ({ data, search }) => {
                             onClick={() => setIsOpen(true)}
                             className="p-3 rounded-full bg-slate-200 dark:bg-gray-600"
                         >
-                            <IoSearch className='text-2xl font-semibold text-gray-600 dark:text-gray-200' />
+                            <IoSearch className={`text-2xl font-semibold ${color ? color : "text-gray-600 dark:text-gray-200"}`} />
                         </button>
                     }
                 </div>

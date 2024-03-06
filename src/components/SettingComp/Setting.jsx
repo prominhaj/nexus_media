@@ -1,4 +1,5 @@
 import { ThemeContext } from '@/Context/ThemeContext';
+import useColor from '@/Hooks/useColor';
 import { Switch } from '@headlessui/react';
 import React, { useContext, useState } from 'react';
 
@@ -6,49 +7,60 @@ import React, { useContext, useState } from 'react';
 const colors = [
     {
         id: 1,
+        colorClass: "text-red-500",
         button: <button className='bg-[#FF3B30] w-6 h-6 rounded-full'></button>
     },
     {
         id: 2,
+        colorClass: "text-green-500",
         button: <button className='bg-[#4CD964] w-6 h-6 rounded-full'></button>
     },
     {
         id: 3,
+        colorClass: "text-indigo-500",
         button: <button className='bg-[#132977] w-6 h-6 rounded-full'></button>
     },
     {
         id: 4,
+        colorClass: "text-yellow-500",
         button: <button className='bg-[#FFDE00] w-6 h-6 rounded-full'></button>
     },
     {
         id: 5,
+        colorClass: "text-orange-500",
         button: <button className='bg-[#FF9500] w-6 h-6 rounded-full'></button>
     },
     {
         id: 6,
+        colorClass: "text-neutral-500",
         button: <button className='bg-[#8E8E93] w-6 h-6 rounded-full'></button>
     },
     {
         id: 7,
+        colorClass: "text-emerald-500",
         button: <button className='bg-[#228B22] w-6 h-6 rounded-full'></button>
     },
     {
         id: 8,
+        colorClass: "text-cyan-500",
         button: <button className='bg-[#5F9EA0] w-6 h-6 rounded-full'></button>
     },
     {
         id: 9,
+        colorClass: "text-blue-500",
         button: <button className='bg-[#9932CC] w-6 h-6 rounded-full'></button>
     },
     {
         id: 10,
+        colorClass: "text-pink-500",
         button: <button className='bg-[#FFC0CB] w-6 h-6 rounded-full'></button>
     },
 ]
 
 const Setting = () => {
     const [theme, toggleButton] = useContext(ThemeContext);
-    const [enabled, setEnabled] = useState(theme === "dark" ? true : false)
+    const [enabled, setEnabled] = useState(theme === "dark" ? true : false);
+    const [color, setColor] = useColor();
 
     return (
         <div>
@@ -59,7 +71,7 @@ const Setting = () => {
                         <h4 className='font-medium opacity-60'>Colors</h4>
                         <ul className='flex flex-wrap justify-start gap-3 mt-2'>
                             {
-                                colors.map(color => <li key={color.id}>
+                                colors.map(color => <li onClick={() => setColor(color.colorClass)} key={color.id}>
                                     {color?.button}
                                 </li>)
                             }
