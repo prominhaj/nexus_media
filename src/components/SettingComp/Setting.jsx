@@ -91,7 +91,7 @@ const Setting = () => {
                             <h4 className='font-medium opacity-80'>{theme === 'dark' ? "Dark" : "Light"}</h4>
                             <div>
                                 <Switch onClick={toggleButton} defaultSelected={enabled} size="lg"
-                                    color="secondary"
+                                    color="success"
                                     thumbIcon={({ isSelected, className }) =>
                                         isSelected ? (
                                             <MdSunny className={className} />

@@ -12,11 +12,6 @@ import { HiArrowRightOnRectangle } from "react-icons/hi2";
 // Left Menu Items
 const leftMenuItems = [
     {
-        name: 'New Feed',
-        path: '/',
-        icon: <MdAutorenew className="text-2xl" />
-    },
-    {
         name: "Profile",
         path: "/profile",
         icon: <CgProfile className="text-2xl" />
@@ -62,10 +57,24 @@ const leftActionItems = [
 const LeftMenu = () => {
     const { color, bgColor } = useColor();
 
+    const reloadPage = () => {
+        window.location.reload();
+    };
+
     return (
 
-        <div className="sticky top-0 transition-all dark:bg-[#293145] rounded-lg h-screen duration-300 md:space-y-5">
+        <div className="sticky top-0 transition-all bg-white dark:bg-[#293145] rounded-lg h-screen duration-300 md:space-y-5">
             <div className='p-3 bg-transparent md:bg-white rounded-lg md:shadow-lg md:dark:shadow-gray-800 md:dark:bg-[#293145]'>
+                <button onClick={reloadPage} className="w-full px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300">
+                    <span className="flex items-center gap-2 sm:gap-3">
+                        <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-3 ${color && color}`}>
+                            <MdAutorenew className="text-2xl" />
+                        </span>
+                        <span className="text-lg font-medium">
+                            New Feed
+                        </span>
+                    </span>
+                </button>
                 {
                     leftMenuItems.map(item =>
                         <Link className='block px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300' href={item.path} key={item.path}>
