@@ -64,7 +64,7 @@ const LeftMenu = () => {
 
     return (
 
-        <div className="transition-all duration-300 md:space-y-5">
+        <div className="sticky top-0 transition-all dark:bg-[#293145] rounded-lg h-screen duration-300 md:space-y-5">
             <div className='p-3 bg-transparent md:bg-white rounded-lg md:shadow-lg md:dark:shadow-gray-800 md:dark:bg-[#293145]'>
                 {
                     leftMenuItems.map(item =>

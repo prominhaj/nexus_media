@@ -2,13 +2,15 @@
 import React, { useState } from 'react';
 import LeftMenu from '../Shared/LeftMenu/LeftMenu';
 import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
+import useColor from '@/Hooks/useColor';
 
 const OffCanvas = ({ children }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { color } = useColor();
 
     return (
         <div className="flex">
-            <div className='transition-all duration-300' onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <div className={`${color && color}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? <button className='p-3 duration-300 rounded-full bg-slate-200 dark:bg-gray-600'><HiXMark className='text-2xl' /></button> : <button className='p-3 duration-300 rounded-full bg-slate-200 dark:bg-gray-600'><HiMiniBars3BottomRight className='text-2xl' /></button>}
             </div>
             {/* Off-canvas menu */}
