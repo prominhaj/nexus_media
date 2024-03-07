@@ -1,12 +1,13 @@
 "use client"
 import Link from "next/link";
-import { MdAutorenew } from "react-icons/md";
-import { FcAbout } from "react-icons/fc";
+import { MdAutorenew, MdOutlineChatBubbleOutline } from "react-icons/md";
 import { BiSolidContact } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import useColor from "@/Hooks/useColor";
 import { motion } from 'framer-motion';
-import { HiOutlineCog8Tooth } from "react-icons/hi2";
+import { SlSettings } from "react-icons/sl";
+import { IoAlertCircleSharp } from "react-icons/io5";
+import { HiArrowRightOnRectangle } from "react-icons/hi2";
 
 // Left Menu Items
 const leftMenuItems = [
@@ -23,7 +24,7 @@ const leftMenuItems = [
     {
         name: 'About',
         path: '/about',
-        icon: <FcAbout className="text-2xl" />
+        icon: <IoAlertCircleSharp className="text-2xl" />
     },
     {
         name: 'Contact',
@@ -36,7 +37,7 @@ const leftActionItems = [
     {
         name: 'Setting',
         path: '/setting',
-        icon: <div className='p-3 lg:p-[10px] rounded-full bg-slate-200 dark:bg-gray-600'>
+        icon: <div className='rounded-full bg-slate-200 dark:bg-gray-600'>
             <motion.div
                 animate={{
                     rotate: [0, 360],
@@ -47,10 +48,15 @@ const leftActionItems = [
                     ease: 'linear'
                 }}
             >
-                <HiOutlineCog8Tooth className="text-2xl lg:text-3xl" />
+                <SlSettings className="text-2xl" />
             </motion.div>
         </div>
     },
+    {
+        name: 'Chat',
+        path: '/message',
+        icon: <MdOutlineChatBubbleOutline className="text-2xl" />
+    }
 ]
 
 const LeftMenu = () => {
@@ -62,9 +68,9 @@ const LeftMenu = () => {
             <div className='p-3 bg-white rounded-lg shadow-lg dark:shadow-gray-600 dark:bg-[#293145]'>
                 {
                     leftMenuItems.map(item =>
-                        <Link className='block px-3 dark:text-gray-300 dark:hover:text-gray-200 rounded-md py-2 text-[1.02rem dark:hover:bg-gray-400 hover:bg-gray-200 duration-300' href={item.path} key={item.path}>
+                        <Link className='block px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300' href={item.path} key={item.path}>
                             <span className="flex items-center gap-2 sm:gap-3">
-                                <span className={`${bgColor ? bgColor : "bg-gray-300 dark:bg-gray-600"} rounded-full p-3`}>
+                                <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-3 ${color && color}`}>
                                     {item.icon}
                                 </span>
                                 <span className="text-lg font-medium">
@@ -78,9 +84,9 @@ const LeftMenu = () => {
             <div className='p-3 bg-white rounded-lg shadow-lg dark:shadow-gray-600 dark:bg-[#293145]'>
                 {
                     leftActionItems.map(item =>
-                        <Link className='block px-3 dark:text-gray-300 dark:hover:text-gray-200 rounded-md py-2 text-[1.02rem dark:hover:bg-gray-400 hover:bg-gray-200 duration-300' href={item.path} key={item.path}>
+                        <Link className='block px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300' href={item.path} key={item.path}>
                             <span className="flex items-center gap-2 sm:gap-3">
-                                <span className={`${bgColor ? bgColor : "bg-gray-300 dark:bg-gray-600"} rounded-full`}>
+                                <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-3 ${color && color}`}>
                                     {item.icon}
                                 </span>
                                 <span className="text-lg font-medium">
@@ -90,6 +96,16 @@ const LeftMenu = () => {
                         </Link>
                     )
                 }
+                <button className='w-full px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300'>
+                    <span className="flex items-center gap-2 sm:gap-3">
+                        <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-3 ${color && color}`}>
+                            <HiArrowRightOnRectangle className="text-2xl" />
+                        </span>
+                        <span className="text-lg font-medium">
+                            Logout
+                        </span>
+                    </span>
+                </button>
             </div>
         </div >
     );

@@ -3,59 +3,6 @@ import useColor from '@/Hooks/useColor';
 import { Switch } from '@headlessui/react';
 import React, { useContext, useState } from 'react';
 
-// Colors
-const colors = [
-    {
-        id: 1,
-        colorClass: "text-red-500",
-        bgClass: "bg-red-500",
-    },
-    {
-        id: 2,
-        colorClass: "text-green-500",
-        bgClass: "bg-green-500",
-    },
-    {
-        id: 3,
-        colorClass: "text-indigo-500",
-        bgClass: "bg-indigo-500",
-    },
-    {
-        id: 4,
-        colorClass: "text-yellow-500",
-        bgClass: "bg-yellow-500",
-    },
-    {
-        id: 5,
-        colorClass: "text-orange-500",
-        bgClass: "bg-orange-500",
-    },
-    {
-        id: 6,
-        colorClass: "text-neutral-500",
-        bgClass: "bg-neutral-500",
-    },
-    {
-        id: 7,
-        colorClass: "text-emerald-500",
-        bgClass: "bg-emerald-500",
-    },
-    {
-        id: 8,
-        colorClass: "text-cyan-500",
-        bgClass: "bg-cyan-500",
-    },
-    {
-        id: 9,
-        colorClass: "text-blue-500",
-        bgClass: "bg-blue-500",
-    },
-    {
-        id: 10,
-        colorClass: "text-pink-500",
-        bgClass: "bg-pink-500",
-    },
-]
 
 const Setting = () => {
     const [theme, toggleButton] = useContext(ThemeContext);
@@ -66,6 +13,60 @@ const Setting = () => {
         setColor(color.colorClass)
         setBgColor(color.bgClass)
     }
+
+    // Colors
+    const colors = [
+        {
+            id: 1,
+            colorClass: theme === "dark" ? "text-gray-200" : "text-gray-600",
+            bgClass: theme === "dark" ? "bg-gray-200" : "bg-gray-600",
+        },
+        {
+            id: 2,
+            colorClass: theme === "dark" ? "text-blue-400" : "text-blue-600",
+            bgClass: theme === "dark" ? "bg-blue-400" : "bg-blue-600",
+        },
+        {
+            id: 3,
+            colorClass: theme === "dark" ? "text-indigo-400" : "text-indigo-600",
+            bgClass: theme === "dark" ? "bg-indigo-400" : "bg-indigo-600",
+        },
+        {
+            id: 4,
+            colorClass: theme === "dark" ? "text-purple-400" : "text-purple-600",
+            bgClass: theme === "dark" ? "bg-purple-400" : "bg-purple-600",
+        },
+        {
+            id: 5,
+            colorClass: theme === "dark" ? "text-pink-400" : "text-pink-600",
+            bgClass: theme === "dark" ? "bg-pink-400" : "bg-pink-600",
+        },
+        {
+            id: 6,
+            colorClass: theme === "dark" ? "text-red-400" : "text-red-600",
+            bgClass: theme === "dark" ? "bg-red-400" : "bg-red-600",
+        },
+        {
+            id: 7,
+            colorClass: theme === "dark" ? "text-orange-400" : "text-orange-600",
+            bgClass: theme === "dark" ? "bg-orange-400" : "bg-orange-600",
+        },
+        {
+            id: 8,
+            colorClass: theme === "dark" ? "text-yellow-400" : "text-yellow-600",
+            bgClass: theme === "dark" ? "bg-yellow-400" : "bg-yellow-600",
+        },
+        {
+            id: 9,
+            colorClass: theme === "dark" ? "text-green-400" : "text-green-600",
+            bgClass: theme === "dark" ? "bg-green-400" : "bg-green-600",
+        },
+        {
+            id: 10,
+            colorClass: theme === "dark" ? "text-teal-400" : "text-teal-600",
+            bgClass: theme === "dark" ? "bg-teal-400" : "bg-teal-600",
+        },
+    ]
 
     return (
         <div>
