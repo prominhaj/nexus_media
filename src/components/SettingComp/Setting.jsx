@@ -69,7 +69,7 @@ const Setting = () => {
     ]
 
     return (
-        <div>
+        <div className='relative z-40'>
             <div className='px-3 py-2'>
                 <h4 className='text-xl italic font-semibold'>Settings</h4>
                 <div className='pt-2'>

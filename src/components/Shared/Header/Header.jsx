@@ -58,7 +58,7 @@ const people = [
 ]
 
 
-const Header = () => {
+const Header = ({ children }) => {
     const pathname = usePathname();
     const { color } = useColor();
 
@@ -147,7 +147,7 @@ const Header = () => {
                         </PopoverCus>
 
                         {/* Bar Coming Soon */}
-
+                        {children}
                     </div>
                 </div>
                 <div className='hidden md:block'>

@@ -64,8 +64,8 @@ const LeftMenu = () => {
 
     return (
 
-        <div className="space-y-5 transition-all duration-300">
-            <div className='p-3 bg-white rounded-lg shadow-lg dark:shadow-gray-600 dark:bg-[#293145]'>
+        <div className="transition-all duration-300 md:space-y-5">
+            <div className='p-3 bg-transparent md:bg-white rounded-lg md:shadow-lg md:dark:shadow-gray-800 md:dark:bg-[#293145]'>
                 {
                     leftMenuItems.map(item =>
                         <Link className='block px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300' href={item.path} key={item.path}>
@@ -81,7 +81,7 @@ const LeftMenu = () => {
                     )
                 }
             </div>
-            <div className='p-3 bg-white rounded-lg shadow-lg dark:shadow-gray-600 dark:bg-[#293145]'>
+            <div className='p-3 bg-transparent md:bg-white rounded-lg md:shadow-lg md:dark:shadow-gray-800 md:dark:bg-[#293145]'>
                 {
                     leftActionItems.map(item =>
                         <Link className='block px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300' href={item.path} key={item.path}>
