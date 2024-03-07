@@ -17,7 +17,7 @@ const layout = ({ children }) => {
                 </div>
 
                 <div className='md:col-span-2 lg:col-span-3'>{children}</div>
-                <div className='hidden lg:block'>
+                <div className='hidden xl:block'>
                     <RightMenu />
                 </div>
             </div>
