@@ -1,8 +1,9 @@
 import { ThemeContext } from '@/Context/ThemeContext';
 import useColor from '@/Hooks/useColor';
-import { Switch } from '@headlessui/react';
+import { Switch } from "@nextui-org/react";
 import React, { useContext, useState } from 'react';
-
+import { MdSunny } from "react-icons/md";
+import { IoIosMoon } from "react-icons/io";
 
 const Setting = () => {
     const [theme, toggleButton] = useContext(ThemeContext);
@@ -69,7 +70,7 @@ const Setting = () => {
     ]
 
     return (
-        <div className='relative z-40'>
+        <div>
             <div className='px-3 py-2'>
                 <h4 className='text-xl italic font-semibold'>Settings</h4>
                 <div className='pt-2'>
@@ -89,20 +90,15 @@ const Setting = () => {
                         <div className='flex items-center justify-between mt-2'>
                             <h4 className='font-medium opacity-80'>{theme === 'dark' ? "Dark" : "Light"}</h4>
                             <div>
-                                <Switch
-                                    checked={enabled}
-                                    onChange={setEnabled}
-                                    onClick={toggleButton}
-                                    className={`${enabled ? 'bg-teal-700' : 'bg-teal-900'}
-          relative inline-flex h-[1.875rem] w-[3.125rem] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white/75`}
-                                >
-                                    <span className="sr-only">Use setting</span>
-                                    <span
-                                        aria-hidden="true"
-                                        className={`${enabled ? 'translate-x-6' : 'translate-x-0'}
-            pointer-events-none inline-block h-[1.5625rem] w-[1.5625rem] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
-                                    />
-                                </Switch>
+                                <Switch onClick={toggleButton} defaultSelected={enabled} size="lg"
+                                    color="secondary"
+                                    thumbIcon={({ isSelected, className }) =>
+                                        isSelected ? (
+                                            <MdSunny className={className} />
+                                        ) : (
+                                            <IoIosMoon className={className} />
+                                        )
+                                    }></Switch>
                             </div>
                         </div>
                     </div>
