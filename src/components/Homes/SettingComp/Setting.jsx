@@ -24,47 +24,47 @@ const Setting = () => {
         },
         {
             id: 2,
-            colorClass: theme === "dark" ? "text-blue-400" : "text-blue-600",
+            colorClass: theme === "dark" ? "text-blue-600 dark:text-blue-400" : "text-blue-600 dark:text-blue-400",
             bgClass: theme === "dark" ? "bg-blue-400" : "bg-blue-600",
         },
         {
             id: 3,
-            colorClass: theme === "dark" ? "text-indigo-400" : "text-indigo-600",
+            colorClass: theme === "dark" ? "dark:text-indigo-400 text-indigo-600" : "text-indigo-600 dark:text-indigo-400",
             bgClass: theme === "dark" ? "bg-indigo-400" : "bg-indigo-600",
         },
         {
             id: 4,
-            colorClass: theme === "dark" ? "text-purple-400" : "text-purple-600",
+            colorClass: theme === "dark" ? "dark:text-purple-400 text-purple-600" : "text-purple-600 dark:text-purple-400",
             bgClass: theme === "dark" ? "bg-purple-400" : "bg-purple-600",
         },
         {
             id: 5,
-            colorClass: theme === "dark" ? "text-pink-400" : "text-pink-600",
+            colorClass: theme === "dark" ? "dark:text-pink-400 text-pink-600" : "text-pink-600 dark:text-pink-400",
             bgClass: theme === "dark" ? "bg-pink-400" : "bg-pink-600",
         },
         {
             id: 6,
-            colorClass: theme === "dark" ? "text-red-400" : "text-red-600",
+            colorClass: theme === "dark" ? "dark:text-red-400 text-red-600" : "text-red-600 dark:text-red-400",
             bgClass: theme === "dark" ? "bg-red-400" : "bg-red-600",
         },
         {
             id: 7,
-            colorClass: theme === "dark" ? "text-orange-400" : "text-orange-600",
+            colorClass: theme === "dark" ? "dark:text-orange-400 text-orange-600" : "text-orange-600 dark:text-orange-400",
             bgClass: theme === "dark" ? "bg-orange-400" : "bg-orange-600",
         },
         {
             id: 8,
-            colorClass: theme === "dark" ? "text-yellow-400" : "text-yellow-600",
+            colorClass: theme === "dark" ? "dark:text-yellow-400 text-yellow-600" : "text-yellow-600 dark:text-yellow-400",
             bgClass: theme === "dark" ? "bg-yellow-400" : "bg-yellow-600",
         },
         {
             id: 9,
-            colorClass: theme === "dark" ? "text-green-400" : "text-green-600",
+            colorClass: theme === "dark" ? "dark:text-green-400 text-green-600" : "text-green-600 dark:text-green-400",
             bgClass: theme === "dark" ? "bg-green-400" : "bg-green-600",
         },
         {
             id: 10,
-            colorClass: theme === "dark" ? "text-teal-400" : "text-teal-600",
+            colorClass: theme === "dark" ? "dark:text-teal-400 text-teal-600" : "text-teal-600 dark:text-teal-400",
             bgClass: theme === "dark" ? "bg-teal-400" : "bg-teal-600",
         },
     ]

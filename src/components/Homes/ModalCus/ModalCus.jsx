@@ -1,12 +1,12 @@
 import React from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
-const ModalCus = ({ name, modalTitle, children, action, classes }) => {
+const ModalCus = ({ name, modalTitle, children, action, classes, onClick }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     return (
         <div>
-            <Button className={`!px-1 sm:!px-3 sm:!py-1 !min-w-full !h-full ${classes && classes}`} onPress={onOpen}>{name}</Button>
+            <Button className={`!px-0 !py-0 bg-transparent !min-w-full !h-full ${classes && classes}`} onPress={onOpen}>{name}</Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (
@@ -16,11 +16,11 @@ const ModalCus = ({ name, modalTitle, children, action, classes }) => {
                                 {children}
                             </ModalBody>
                             <ModalFooter>
-                                <Button color="danger" variant="light" onPress={onClose}>
+                                <Button className='dark:bg-[#441729] bg-[#FDD0DF]' color="danger" variant="light" onPress={onClose}>
                                     Close
                                 </Button>
                                 {
-                                    action && <Button color="primary" onPress={onClose}>
+                                    action && <Button color="primary" onClick={onClick}>
                                         {action}
                                     </Button>
                                 }

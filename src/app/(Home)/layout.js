@@ -11,12 +11,12 @@ const layout = ({ children }) => {
             <Header>
                 <OffCanvas></OffCanvas>
             </Header>
-            <div className='grid gap-3 pt-5 md:grid-cols-3 lg:grid-cols-5 md:gap-5 lg:gap-6'>
+            <div className='grid gap-3 pt-5 md:grid-cols-3 xl:grid-cols-5 md:gap-5 lg:gap-6'>
                 <div className='hidden md:block'>
                     <LeftMenu />
                 </div>
 
-                <div className='md:col-span-2 lg:col-span-3'>{children}</div>
+                <div className='md:col-span-2 xl:col-span-3'>{children}</div>
                 <div className='hidden xl:block'>
                     <RightMenu />
                 </div>
