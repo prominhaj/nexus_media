@@ -27,7 +27,7 @@ const RightMenu = () => {
                 </div>
                 <div className='py-5'>
                     <h2 className='text-sm font-semibold opacity-80'>Contacts</h2>
-                    <div className='overflow-y-auto h-[440px] flex flex-col gap-5 py-5'>
+                    <div className='overflow-y-auto h-[600px] flex flex-col gap-5 py-5'>
                         <ContactId />
                         <ContactId />
                         <ContactId />

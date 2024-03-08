@@ -71,7 +71,7 @@ const LeftMenu = () => {
                             <MdAutorenew className="text-2xl" />
                         </span>
                         <span className="text-lg font-medium">
-                            New Feed
+                            Latest Feed
                         </span>
                     </span>
                 </button>
