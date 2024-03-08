@@ -1,13 +1,15 @@
 "use client"
 import { Avatar } from '@nextui-org/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { HiOutlineXMark } from "react-icons/hi2";
 import { HiOutlinePaperAirplane } from "react-icons/hi2";
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ContactId = () => {
     const [active, setActive] = useState(null);
     const [modal, setModal] = useState(false);
-    const [message, setMessage] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const containerRef = useRef(null);
 
     useEffect(() => {
         if (window.navigator.onLine) {
@@ -17,9 +19,23 @@ const ContactId = () => {
         }
     }, []);
 
+    useEffect(() => {
+        if (modal) {
+            containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }
+    }, [modal]);
+
     const handleMessage = (e) => {
         e.preventDefault();
         console.log(e.target.text.value);
+    }
+
+    const handleTypingLoading = () => {
+        setIsLoading(true);
+
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
     }
 
     return (
@@ -59,7 +75,7 @@ const ContactId = () => {
                 </div>
 
                 {/* Modal Body */}
-                <div className='h-[300px] overflow-y-auto px-3 py-3 dark:bg-[#1A2236]'>
+                <div ref={containerRef} className='h-[300px] overflow-y-auto px-3 py-3 dark:bg-[#1A2236]'>
 
                     <div >
                         {/* To Message */}
@@ -109,11 +125,23 @@ const ContactId = () => {
                             <div className='text-[#2a4e7f] bg-[#e2efff] dark:bg-gray-950 dark:text-gray-300 py-[10px] px-5 rounded-t-[20px] rounded-s-[20px]'>Hi, I want those files for you. I want you to send 1 PDF and 1 image file.</div>
                         </div>
                     </div>
+                    {
+                        isLoading && <div className='my-3 text-end'><AnimatePresence>
+                            <motion.span
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.5 }}
+                            >
 
+                            </motion.span>
+                        </AnimatePresence></div>
+                    }
                 </div>
+
                 {/* Typing Message */}
                 <form onSubmit={handleMessage} className='flex items-center justify-between p-3'>
-                    <input className='w-full px-3 text-base bg-transparent outline-none' name='text' type="text" placeholder='Start typing...' />
+                    <input onChange={handleTypingLoading} className='w-full px-3 text-base bg-transparent outline-none' name='text' type="text" placeholder='Start typing...' />
                     <button type='submit'><HiOutlinePaperAirplane className='text-3xl' /></button>
                 </form>
             </div>

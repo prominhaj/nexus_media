@@ -7,7 +7,7 @@ const RightMenu = () => {
     return (
         <div className='sticky top-0 p-5 bg-white dark:bg-[#293145]'>
             <div>
-                <div className='flex flex-wrap items-center justify-between gap-2'>
+                <div className='flex flex-wrap items-center justify-between gap-2 pb-2'>
                     <h2 className='text-sm font-semibold opacity-80'>Friend Request</h2>
                     <Link className='text-blue-600 dark:text-blue-400' href={"/friend/request"}>See all</Link>
                 </div>
@@ -26,7 +26,7 @@ const RightMenu = () => {
                     <FriendRequestCard />
                 </div>
                 <div className='py-5'>
-                    <h2 className='text-sm font-semibold opacity-80'>Contacts</h2>
+                    <h2 className='pb-2 text-sm font-semibold opacity-80'>Contacts</h2>
                     <div className='overflow-y-auto h-[600px] flex flex-col gap-5 py-5'>
                         <ContactId />
                         <ContactId />
