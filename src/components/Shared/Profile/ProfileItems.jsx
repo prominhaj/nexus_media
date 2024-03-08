@@ -1,4 +1,4 @@
-import PopoverCus from '@/components/Popover/PopoverCus';
+import PopoverCus from '@/components/Homes/Popover/PopoverCus';
 import Link from 'next/link';
 import React from 'react';
 

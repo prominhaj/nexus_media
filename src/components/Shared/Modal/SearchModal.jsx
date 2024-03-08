@@ -1,5 +1,5 @@
 import useColor from '@/Hooks/useColor';
-import SearchCombobox from '@/components/SearchCombobox/SearchCombobox';
+import SearchCombobox from '@/components/Homes/SearchCombobox/SearchCombobox';
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';

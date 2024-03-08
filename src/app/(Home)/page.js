@@ -1,9 +1,10 @@
+import AddStory from '@/components/Homes/AddStory/AddStory';
 import React from 'react';
 
 const HomePage = () => {
     return (
-        <div className='w-full h-[2000px]'>
-            <h1>Hello Next.js!</h1>
+        <div className=''>
+            <AddStory />
         </div>
     );
 };

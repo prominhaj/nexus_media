@@ -2,8 +2,8 @@ import React from 'react';
 import Header from '@/components/Shared/Header/Header';
 import LeftMenu from '@/components/Shared/LeftMenu/LeftMenu';
 import RightMenu from '@/components/Shared/RightMenu/RightMenu';
-import OffCanvas from '@/components/OffCanvas/OffCanvas';
-import ScrollTop from '@/components/ScrollTop/ScrollTop';
+import OffCanvas from '@/components/Homes/OffCanvas/OffCanvas';
+import ScrollTop from '@/components/Homes/ScrollTop/ScrollTop';
 
 const layout = ({ children }) => {
     return (

@@ -1,5 +1,5 @@
-import ContactId from '@/components/ContactId/ContactId';
-import FriendRequestCard from '@/components/FriendRequest/FriendRequestCard';
+import ContactId from '@/components/Homes/ContactId/ContactId';
+import FriendRequestCard from '@/components/Homes/FriendRequest/FriendRequestCard';
 import Link from 'next/link';
 import React from 'react';
 

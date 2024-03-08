@@ -30,8 +30,8 @@ const leftMenuItems = [
 
 const leftActionItems = [
     {
-        name: 'Setting',
-        path: '/setting',
+        name: 'Account Setting',
+        path: '/account/setting',
         icon: <div className='rounded-full bg-slate-200 dark:bg-gray-600'>
             <motion.div
                 animate={{
