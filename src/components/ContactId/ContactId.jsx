@@ -3,7 +3,7 @@ import { Avatar } from '@nextui-org/react';
 import { useEffect, useRef, useState } from 'react';
 import { HiOutlineXMark } from "react-icons/hi2";
 import { HiOutlinePaperAirplane } from "react-icons/hi2";
-import { motion, AnimatePresence } from 'framer-motion';
+import './ContactId.css'
 
 const ContactId = () => {
     const [active, setActive] = useState(null);
@@ -32,6 +32,7 @@ const ContactId = () => {
 
     const handleTypingLoading = () => {
         setIsLoading(true);
+        containerRef.current.scrollTop = containerRef.current.scrollHeight;
 
         setTimeout(() => {
             setIsLoading(false);
@@ -126,18 +127,16 @@ const ContactId = () => {
                         </div>
                     </div>
                     {
-                        isLoading && <div className='my-3 text-end'><AnimatePresence>
-                            <motion.span
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.5 }}
-                            >
-
-                            </motion.span>
-                        </AnimatePresence></div>
+                        isLoading && <div className='my-3 mb-2 text-end'>
+                            <div class='flex space-x-2 justify-center rounded-2xl py-[10px] ms-auto w-16 bg-gray-400 dark:bg-black items-center'>
+                                <div class='h-2 w-2 bg-gray-200 dark:bg-gray-200 rounded-full animate-bounce [animation-delay:-0.3s] animation-duration-200'></div>
+                                <div class='h-2 w-2 bg-gray-300 dark:bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]  animation-duration-300'></div>
+                                <div class='h-2 w-2 bg-gray-600 dark:bg-gray-600 rounded-full animate-bounce animation-duration-500'></div>
+                            </div>
+                        </div>
                     }
                 </div>
+
 
                 {/* Typing Message */}
                 <form onSubmit={handleMessage} className='flex items-center justify-between p-3'>
