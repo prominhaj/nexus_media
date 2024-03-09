@@ -15,7 +15,6 @@ const RightMenu = () => {
                     <FriendRequestCard />
                     <FriendRequestCard />
                     <FriendRequestCard />
-                    <FriendRequestCard />
                 </div>
                 <div className='py-5'>
                     <h2 className='pb-2 text-sm font-semibold opacity-80'>Contacts</h2>

@@ -18,14 +18,14 @@ const SearchCombobox = ({ data }) => {
     return (
         <div className="">
             <div className='mb-4'>
-                <label htmlFor='search' className='text-lg italic font-medium leading-6 text-gray-900 dark:text-gray-200'>Search</label>
+                <label htmlFor='search' className='text-lg font-medium leading-6 text-gray-900 dark:text-gray-200'>Search</label>
             </div>
             <Combobox >
                 <div className="relative mt-1">
-                    <div className="relative w-full overflow-hidden text-left shadow-md cursor-default dark:shadow-gray-600 focus:outline-none">
+                    <div className="relative w-full overflow-hidden text-left shadow-md cursor-default dark:shadow-gray-800 focus:outline-none">
                         <Combobox.Input
                             id='search'
-                            className="w-full py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 border rounded-md dark:text-gray-200 dark:bg-gray-600 focus:outline-blue-400 focus:ring-0"
+                            className="w-full py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 border rounded-md dark:text-gray-200 dark:bg-transparent dark:border-gray-700 focus:outline-blue-400"
                             placeholder='Search'
                             onChange={(event) => setQuery(event.target.value)}
                         />

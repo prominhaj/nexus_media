@@ -14,6 +14,7 @@ import Setting from '@/components/Homes/SettingComp/Setting';
 import ProfileItems from '../Profile/ProfileItems';
 import useColor from '@/Hooks/useColor';
 import { HiMiniChatBubbleLeftEllipsis, HiOutlineBellAlert, HiOutlineCog8Tooth } from "react-icons/hi2";
+import './Header.css'
 
 const fredoka = Fredoka({
     weight: ['500', '600', '700'],
@@ -65,7 +66,7 @@ const Header = ({ children }) => {
 
     // Header Item
     const search = <>
-        <div className='flex items-center gap-2 px-3 bg-gray-200 rounded-md cursor-pointer dark:bg-gray-600'>
+        <div className='flex items-center gap-2 px-3 bg-gray-200 rounded-md cursor-pointer dark:bg-[#3A3B3C]'>
             <FaSearch className={`${color ? color : 'text-gray-600 dark:text-gray-300'}`} />
             <input className='py-2 bg-transparent outline-none cursor-pointer' type="text" placeholder="Search" />
         </div>
@@ -101,7 +102,7 @@ const Header = ({ children }) => {
     </>
 
     return (
-        <div className='w-full px-3 py-5 shadow bg-white/75 lg:px-5 dark:bg-[#0F172A]'>
+        <div className='w-full px-3 py-5 shadow bg-white/75 lg:px-5 dark:bg-[#0B1120]/90 sticky top-0 z-50'>
             <div className='grid items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 <div>
                     <Link href="/" className='block'>
@@ -116,9 +117,9 @@ const Header = ({ children }) => {
                                     ease: 'linear'
                                 }}
                             >
-                                <Image className='w-[40px] h-[40px] sm:w-[50px] sm:h-[50px]' src={logo} width={50} height={50} priority alt='Logo' />
+                                <Image className='w-[40px] h-[40px] block' src={logo} width={50} height={50} priority alt='Logo' />
                             </motion.div>
-                            <h2 className={`${fredoka.className} ${color ? color : "dark:text-gray-200"} hidden text-xl font-semibold transition-all duration-300 sm:block md:text-2xl`}>Nexus Media</h2>
+                            <h2 className={`bg-gradient-to-r from-neutral-800 to-fuchsia-500 dark:from-neutral-400 dark:to-blue-500 text-lg font-semibold bg-clip-text text-transparent transition-all duration-300 sm:block md:text-2xl logo-name`}>Nexus Media</h2>
                         </div>
                     </Link>
                 </div>

@@ -4,7 +4,6 @@ import 'primereact/resources/themes/lara-light-cyan/theme.css';
 
 // Import Swiper styles
 import 'swiper/css';
-import { Avatar } from '@nextui-org/react';
 import { Image } from 'primereact/image';
 
 
@@ -48,7 +47,7 @@ const StorySlider = () => {
                         slidesPerView: 3,
                         spaceBetween: 10,
                     },
-                    230: {
+                    210: {
                         slidesPerView: 4,
                         spaceBetween: 10,
                     },

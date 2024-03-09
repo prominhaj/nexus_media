@@ -48,7 +48,7 @@ const SearchModal = ({ data, search }) => {
                                     leaveFrom="opacity-100 scale-100"
                                     leaveTo="opacity-0 scale-95"
                                 >
-                                    <Dialog.Panel className="w-full max-w-md p-6 text-left align-middle transition-all transform bg-white dark:bg-[#1A2236] shadow-xl rounded-2xl">
+                                    <Dialog.Panel className="w-full max-w-md p-6 text-left align-middle transition-all transform bg-white dark:bg-[#0B1120]/90 shadow-xl rounded-2xl">
                                         <div>
                                             {/* Search Combobox Component */}
                                             <SearchCombobox data={data} />
