@@ -1,11 +1,12 @@
+"use client"
 import React from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
-const ModalCus = ({ name, modalTitle, children, action, classes, onClick, disabled }) => {
+const ModalCus = ({ name, modalTitle, children, action, classes, onClick, disabled, type }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     return (
-        <div>
+        <>
             <Button className={`!px-0 !py-0 bg-transparent !min-w-full !h-full ${classes && classes}`} onPress={onOpen}>{name}</Button>
             <Modal
                 backdrop="opaque"
@@ -33,7 +34,7 @@ const ModalCus = ({ name, modalTitle, children, action, classes, onClick, disabl
                                     Close
                                 </Button>
                                 {
-                                    action && <Button className='disabled:bg-opacity-50 disabled:opacity-90 bg-[#6f4ef2] shadow-lg shadow-indigo-500/20' disabled={disabled && disabled} color="primary" onClick={onClick}>
+                                    action && <Button type={type && type} className='disabled:bg-opacity-50 disabled:opacity-90 bg-[#6f4ef2] shadow-lg shadow-indigo-500/20' disabled={disabled && disabled} color="primary" onClick={onClick}>
                                         {action}
                                     </Button>
                                 }
@@ -42,7 +43,7 @@ const ModalCus = ({ name, modalTitle, children, action, classes, onClick, disabl
                     )}
                 </ModalContent>
             </Modal>
-        </div>
+        </>
     );
 };
 

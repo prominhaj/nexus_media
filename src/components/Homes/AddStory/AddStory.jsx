@@ -5,11 +5,12 @@ import { GoPlus } from "react-icons/go";
 import ModalCus from "../ModalCus/ModalCus";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { CiImageOn } from "react-icons/ci";
+import UploadFile from "@/components/UploadFile/UploadFile";
 
 const AddStory = () => {
     const [selectedFile, setSelectedFile] = useState(null);
 
-    const handleFileChange = (e) => {
+    const handleImageChange = (e) => {
         const file = e.target.files[0];
         setSelectedFile(file);
     };
@@ -29,7 +30,8 @@ const AddStory = () => {
             {/* Story Create Modal */}
             <ModalCus name={addStoryBtn} modalTitle="Upload an Image" action={storySubmitBtn} disabled={selectedFile ? false : true}>
                 <div>
-                    {
+                    <UploadFile imageState={selectedFile} setImageState={setSelectedFile} onChange={handleImageChange} />
+                    {/* {
                         !selectedFile && <div className="flex items-center justify-center">
                             <label className="flex flex-col items-center w-64 px-4 py-6 tracking-wide uppercase bg-white border rounded-lg shadow-lg cursor-pointer dark:border-gray-600 dark:bg-gray-800 text-blue border-blue hover:bg-blue">
                                 <div>
@@ -65,7 +67,7 @@ const AddStory = () => {
                                 />
                             </div>
                         </div>
-                    )}
+                    )} */}
                 </div>
             </ModalCus>
         </>
