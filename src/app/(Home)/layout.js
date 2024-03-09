@@ -11,7 +11,7 @@ const layout = ({ children }) => {
             <Header>
                 <OffCanvas></OffCanvas>
             </Header>
-            <div className='grid gap-3 pt-5 md:grid-cols-3 xl:grid-cols-5 md:gap-5 lg:gap-6'>
+            <div className='grid grid-cols-1 gap-3 pt-5 md:grid-cols-3 xl:grid-cols-5 md:gap-5 lg:gap-6'>
                 <div className='hidden md:block'>
                     <LeftMenu />
                 </div>

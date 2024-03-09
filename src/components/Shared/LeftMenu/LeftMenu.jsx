@@ -63,8 +63,8 @@ const LeftMenu = () => {
 
     return (
 
-        <div className="sticky top-0 transition-all bg-white dark:bg-[#293145] rounded-lg h-screen duration-300 md:space-y-5">
-            <div className='p-3 bg-transparent md:bg-white rounded-lg md:shadow-lg md:dark:shadow-gray-800 md:dark:bg-[#293145]'>
+        <div className="sticky top-0 transition-all bg-white dark:bg-[#0F172A] rounded-lg h-screen duration-300 md:space-y-5">
+            <div className='p-3 bg-transparent md:bg-white rounded-lg md:shadow-lg md:dark:shadow-gray-800 md:dark:bg-[#0F172A]'>
                 <button onClick={reloadPage} className="w-full px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300">
                     <span className="flex items-center gap-2 sm:gap-3">
                         <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-3 ${color && color}`}>
@@ -90,7 +90,7 @@ const LeftMenu = () => {
                     )
                 }
             </div>
-            <div className='p-3 bg-transparent md:bg-white rounded-lg md:shadow-lg md:dark:shadow-gray-800 md:dark:bg-[#293145]'>
+            <div className='p-3 bg-transparent md:bg-white rounded-lg md:shadow-lg md:dark:shadow-gray-800 md:dark:bg-[#0F172A]'>
                 {
                     leftActionItems.map(item =>
                         <Link className='block px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300' href={item.path} key={item.path}>

@@ -1,7 +1,7 @@
 import { Poppins } from 'next/font/google';
 import './globals.css';
 import NextProvider from '@/Providers/NextProvider';
-import ThemeProvider from '@/Context/ThemeContext';
+import ThemeProvider from '../Context/ThemeContext';
 import ColorProvider from '@/Providers/ColorProvider';
 
 const poppins = Poppins({
