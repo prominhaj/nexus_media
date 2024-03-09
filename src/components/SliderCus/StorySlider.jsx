@@ -1,9 +1,11 @@
 "use client"
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'primereact/resources/themes/lara-light-cyan/theme.css';
 
 // Import Swiper styles
 import 'swiper/css';
 import { Avatar } from '@nextui-org/react';
+import { Image } from 'primereact/image';
 
 
 const items = [
@@ -34,7 +36,8 @@ const items = [
     { avatar: "https://via.placeholder.com/40" },
 ];
 
-const SliderCus = () => {
+const StorySlider = () => {
+
     return (
         <div>
             <Swiper
@@ -77,10 +80,17 @@ const SliderCus = () => {
             >
                 {
                     items.map((item, index) => (
-                        <SwiperSlide className='' key={index}>
-                            <button className='p-2'>
-                                <Avatar className='w-full h-full' isBordered color="primary" src={item.avatar} />
-                            </button>
+                        <SwiperSlide className='!flex' key={index}>
+                            <Image
+                                src={item.avatar}
+                                zoomSrc="https://via.placeholder.com/400"
+                                width="50"
+                                height='50'
+                                loading='lazy'
+                                imageClassName='rounded-full border-[3px] border-blue-400 dark:border-blue-500'
+                                alt="Image"
+                                preview
+                            />
                         </SwiperSlide>
                     ))
                 }
@@ -89,4 +99,4 @@ const SliderCus = () => {
     );
 };
 
-export default SliderCus;
+export default StorySlider;

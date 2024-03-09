@@ -3,6 +3,7 @@ import './globals.css';
 import NextProvider from '@/Providers/NextProvider';
 import ThemeProvider from '../Context/ThemeContext';
 import ColorProvider from '@/Providers/ColorProvider';
+import { PrimeReactProvider } from 'primereact/api';
 
 const poppins = Poppins({
     weight: ['200', '400', '500', '600', '700', '800'],
@@ -20,9 +21,11 @@ export default function RootLayout({ children }) {
         <html lang='en'>
             <body className={`${poppins.className}`}>
                 <NextProvider>
-                    <ColorProvider>
-                        <ThemeProvider>{children}</ThemeProvider>
-                    </ColorProvider>
+                    <PrimeReactProvider>
+                        <ColorProvider>
+                            <ThemeProvider>{children}</ThemeProvider>
+                        </ColorProvider>
+                    </PrimeReactProvider>
                 </NextProvider>
             </body>
         </html>

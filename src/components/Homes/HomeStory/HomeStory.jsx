@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
-import SliderCus from '@/components/SliderCus/SliderCus';
 import AddStory from '../AddStory/AddStory';
+import StorySlider from '@/components/SliderCus/StorySlider';
 
 const HomeStory = () => {
 
@@ -12,7 +12,7 @@ const HomeStory = () => {
                     <AddStory />
                 </div>
                 <div className='!w-[94%] pr-3'>
-                    <SliderCus />
+                    <StorySlider />
                 </div>
             </div>
         </div>
