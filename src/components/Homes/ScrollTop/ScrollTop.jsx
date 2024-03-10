@@ -32,7 +32,7 @@ const ScrollTop = () => {
     return (
         <div>
             {isVisible && (
-                <div className="fixed z-50 bottom-8 right-8">
+                <div className="fixed z-50 bottom-20 md:bottom-8 right-8">
                     <button onClick={scrollToTop} className={`px-3 py-2 bg-gray-500 rounded-lg shadow-lg dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-400 ${color ? color : "text-white"}`}>
                         <HiMiniChevronDoubleUp className='text-2xl' />
                     </button>

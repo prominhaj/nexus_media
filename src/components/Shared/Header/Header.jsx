@@ -102,7 +102,7 @@ const Header = ({ children }) => {
     </>
 
     return (
-        <div className='w-full px-3 py-5 shadow bg-white/75 lg:px-5 dark:bg-[#0B1120]/90 sticky top-0 z-50'>
+        <div className='w-full px-3 py-5 shadow bg-white lg:px-5 dark:bg-[#0B1120] sticky top-0 z-50'>
             <div className='grid items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 <div>
                     <Link href="/" className='block'>

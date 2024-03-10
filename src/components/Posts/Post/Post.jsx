@@ -8,13 +8,12 @@ import PopoverCus from '../../Homes/Popover/PopoverCus';
 import { FaBookmark } from "react-icons/fa";
 import { AiFillCloseSquare } from "react-icons/ai";
 import Image from 'next/image';
-import { FaRegCommentAlt } from "react-icons/fa";
-
 import VerifiedBadges from '@/components/Posts/VerifiedBadges/VerifiedBadges';
 import TooltipFromPost from '@/components/Posts/Tooltip/TooltipFromPost';
 import PostAction from '../PostAction/PostAction';
 import PostReactionTooltip from '../Tooltip/PostReactionTooltip';
 import PostReactionShow from '../PostReactionShow/PostReactionShow';
+import { GoComment } from 'react-icons/go';
 
 // Post Menu Button
 const postMenuBtn = <>
@@ -28,6 +27,7 @@ const description = `
 `
 const Post = () => {
     const [showDescription, setShowDescription] = useState(false);
+    const [reactions, setReactions] = useState("");
 
     return (
         <div className='p-3 md:p-5 bg-white dark:bg-[#0F172A] shadow dark:shadow-2xl rounded-lg'>
@@ -86,14 +86,14 @@ const Post = () => {
                 {/* Image */}
                 <div className='flex justify-start bg-[#242526]/10'>
                     <div className='w-full min-h-full max-h-[31.25rem]'>
-                        <Image width={500} height={500} className='object-cover w-full h-full' src="https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg" alt='Post Image' />
+                        <Image width={500} height={500} className='object-cover w-full h-full border dark:border-gray-700' src="https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg" alt='Post Image' />
                     </div>
                 </div>
             </div>
             {/* Post Footer */}
-            <footer className='flex flex-col gap-3 px-3 md:px-5'>
+            <footer className='px-3 md:px-5'>
                 {/* Show Activity */}
-                <div className='flex items-center justify-between pb-3 border-b dark:border-gray-700'>
+                <div className='flex items-center justify-between pb-3 border-b border-gray-200 dark:border-gray-800'>
                     {/* Show active activity */}
                     <div className='flex items-center gap-3 md:gap-5'>
                         {/* Post Reaction Show */}
@@ -103,12 +103,14 @@ const Post = () => {
                     </div>
                     {/* Show Comment Count */}
                     <div>
-                        <TooltipFromPost button={<span className='flex items-center gap-[6px] sm:gap-1'>50 <span className='block sm:hidden'><FaRegCommentAlt className='text-base' /></span> <span className='hidden sm:block'>comments</span></span>} />
+                        <TooltipFromPost button={<span className='flex items-center gap-[6px] sm:gap-1'>50 <span className='block sm:hidden'><GoComment className='text-base' /></span> <span className='hidden sm:block'>comments</span></span>} />
                     </div>
                 </div>
                 {/* Post Actions  */}
-                <div>
-                    <PostReactionTooltip />
+                <div className='grid items-center grid-cols-3 gap-3 py-[0.3125rem] border-b border-gray-200 dark:border-gray-800'>
+                    <PostReactionTooltip state={reactions} setState={setReactions} />
+                    <div></div>
+                    <div></div>
                 </div>
                 {/* Post Comment Area */}
                 <div>
