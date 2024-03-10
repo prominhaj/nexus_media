@@ -18,12 +18,8 @@ const layout = ({ children }) => {
                     </div>
                 </div>
 
-                <div className='md:col-span-2 lg:col-span-3 xl:col-span-3'>{children}</div>
-                <div className='hidden xl:block'>
-                    <div className='fixed right-0'>
-                        <RightMenu />
-                    </div>
-                </div>
+                {/* Children */}
+                <div className='md:col-span-2 lg:col-span-3 xl:col-span-4'>{children}</div>
             </div>
             <div>
                 <ScrollTop />

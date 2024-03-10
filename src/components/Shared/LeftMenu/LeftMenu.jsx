@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { SlSettings } from "react-icons/sl";
 import { IoAlertCircleSharp } from "react-icons/io5";
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
+import { FaBookmark } from "react-icons/fa6";
 
 // Left Menu Items
 const leftMenuItems = [
@@ -17,15 +18,21 @@ const leftMenuItems = [
         icon: <CgProfile className="text-2xl" />
     },
     {
-        name: 'About',
-        path: '/about',
-        icon: <IoAlertCircleSharp className="text-2xl" />
+        name: 'Saved',
+        path: '/saved',
+        icon: <FaBookmark className="text-2xl" />
     },
     {
         name: 'Contact',
         path: '/contact',
         icon: <BiSolidContact className="text-2xl" />
-    }
+    },
+    {
+        name: 'About',
+        path: '/about',
+        icon: <IoAlertCircleSharp className="text-2xl" />
+    },
+
 ]
 
 const leftActionItems = [
