@@ -1,6 +1,6 @@
 import CreatePost from '@/components/Homes/CreatePost/CreatePost';
 import HomeStory from '@/components/Homes/HomeStory/HomeStory';
-import React from 'react';
+import Post from '@/components/Homes/Post/Post';
 
 const HomePage = () => {
     return (
@@ -12,6 +12,11 @@ const HomePage = () => {
             {/* Create Post */}
             <div className='py-5 sm:py-8'>
                 <CreatePost />
+            </div>
+
+            {/* All Posts */}
+            <div className=''>
+                <Post />
             </div>
         </main>
     );
