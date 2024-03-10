@@ -6,7 +6,7 @@ import RightMenu from '@/components/Shared/RightMenu/RightMenu';
 const HomePage = () => {
     return (
         <>
-            <main className='grid h-screen grid-cols-1 xl:grid-cols-4'>
+            <main className='grid grid-cols-1 xl:grid-cols-4'>
                 {/* Home Page Main Content */}
                 <div className='px-3 xl:col-span-3 lg:px-5 xl:px-10'>
                     {/* Home Story */}
@@ -20,7 +20,8 @@ const HomePage = () => {
                     </div>
 
                     {/* All Posts */}
-                    <div className=''>
+                    <div className='grid grid-cols-1 gap-5'>
+                        <Post />
                         <Post />
                     </div>
                 </div>

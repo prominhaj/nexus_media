@@ -9,7 +9,16 @@ import PopoverCus from '../Popover/PopoverCus';
 import { FaBookmark } from "react-icons/fa";
 import { AiFillCloseSquare } from "react-icons/ai";
 import Image from 'next/image';
+import { FaRegCommentAlt } from "react-icons/fa";
 
+// Import All Reactions
+import like from '@/assets/Reactions/like.svg';
+import love from '@/assets/Reactions/love.svg';
+import care from '@/assets/Reactions/care.svg';
+import haha from '@/assets/Reactions/haha.svg';
+import sad from '@/assets/Reactions/sad.svg';
+import angry from '@/assets/Reactions/angry.svg';
+import wow from '@/assets/Reactions/wow.svg';
 
 // Post Menu Button
 const postMenuBtn = <>
@@ -21,6 +30,16 @@ const postMenuBtn = <>
 const description = `
     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex accusantium libero maiores eveniet obcaecati ullam, incidunt quisquam, mollitia voluptatem repellendus voluptate odio optio expedita fugit facilis totam, debitis tempora illo? Omnis pariatur ullam odio eos voluptate, in, at architecto reiciendis dignissimos debitis sed explicabo ut autem. Recusandae dicta esse quisquam libero animi est laudantium fugit voluptates blanditiis sint! In a vel aperiam at eius corrupti molestiae quod sint aut porro! Saepe laudantium a quam, placeat asperiores cum, nesciunt quo, soluta enim nulla praesentium ex laborum iste cupiditate reiciendis aut ea veniam. Veritatis reprehenderit voluptates tempore, error officia ad expedita magnam.
 `
+// All Reactions Items
+const reactions = [
+    like,
+    love,
+    care,
+    haha,
+    sad,
+    angry,
+    wow
+]
 
 const Post = () => {
     const [showDescription, setShowDescription] = useState(false);
@@ -124,8 +143,118 @@ const Post = () => {
                     </div>
                 </div>
             </div>
+            {/* Post Footer */}
+            <footer className='flex flex-col gap-3 px-3 md:px-5'>
+                {/* Show Activity */}
+                <div className='flex items-center justify-between pb-3 border-b dark:border-gray-700'>
+                    {/* Show active activity */}
+                    <div className='flex items-center gap-3 md:gap-5'>
+                        <div className='flex items-center gap-1'>
+                            {reactions.map((item, index) => (
+                                <span key={index}>
+                                    <Image width={18} height={18} className='w-[1.125rem] h-[1.125rem]' src={item} alt='Reaction' />
+                                </span>
+                            ))}
+                        </div>
+                        <div>
+                            <Tooltip
+                                placement={"bottom-start"}
+                                content={<div className="px-1 py-1">
+                                    <p><small>Md Minhaj</small></p>
+                                    <p><small>Md Minhaj</small></p>
+                                    <p><small>Md Minhaj</small></p>
+                                    <p><small>Md Minhaj</small></p>
+                                    <p><small>Md Minhaj</small></p>
+                                </div>}
+                                color="default"
+                                delay={100}
+                                closeDelay={50}
+                                motionProps={{
+                                    variants: {
+                                        exit: {
+                                            opacity: 0,
+                                            transition: {
+                                                duration: 0.1,
+                                                ease: "easeIn",
+                                            }
+                                        },
+                                        enter: {
+                                            opacity: 1,
+                                            transition: {
+                                                duration: 0.15,
+                                                ease: "easeOut",
+                                            }
+                                        },
+                                    },
+                                }}
+                                classNames={{
+                                    content: [
+                                        "py-1 px-2 shadow-xl",
+                                        "text-neutral-300 bg-[#3C3C3C]",
+                                    ],
+                                }}
+                            >
+                                <button className='text-[#65676B] hover:underline dark:text-[#B0B3B8] font-sans text-[.9375.rem] leading-3'>
+                                    <span className='sm:items-center sm:gap-1 sm:flex'>45 <span className='hidden sm:block'>Reaction</span></span>
+                                </button>
+                            </Tooltip>
+                        </div>
+                    </div>
+                    {/* Show Comment Count */}
+                    <div>
+                        <Tooltip
+                            placement={"bottom-start"}
+                            content={<div className="px-1 py-1">
+                                <p><small>Md Minhaj</small></p>
+                                <p><small>Md Minhaj</small></p>
+                                <p><small>Md Minhaj</small></p>
+                                <p><small>Md Minhaj</small></p>
+                                <p><small>Md Minhaj</small></p>
+                            </div>}
+                            color="default"
+                            delay={100}
+                            closeDelay={50}
+                            motionProps={{
+                                variants: {
+                                    exit: {
+                                        opacity: 0,
+                                        transition: {
+                                            duration: 0.1,
+                                            ease: "easeIn",
+                                        }
+                                    },
+                                    enter: {
+                                        opacity: 1,
+                                        transition: {
+                                            duration: 0.15,
+                                            ease: "easeOut",
+                                        }
+                                    },
+                                },
+                            }}
+                            classNames={{
+                                content: [
+                                    "py-1 px-2 shadow-xl",
+                                    "text-neutral-300 bg-[#3C3C3C]",
+                                ],
+                            }}
+                        >
+                            <button className='text-[#65676B] hover:underline dark:text-[#B0B3B8] font-sans text-[.9375.rem] leading-3'>
+                                <span className='flex items-center gap-[6px] sm:gap-1'>50 <span className='block sm:hidden'><FaRegCommentAlt className='text-base' /></span> <span className='hidden sm:block'>comments</span></span>
+                            </button>
+                        </Tooltip>
+                    </div>
+                </div>
+                {/* Post Actions  */}
+                <div>
 
-        </div>
+                </div>
+                {/* Post Comment Area */}
+                <div>
+
+                </div>
+            </footer >
+        </div >
     );
 };
 
