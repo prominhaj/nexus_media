@@ -1,5 +1,6 @@
+"use client"
 import { Avatar, Tooltip } from '@nextui-org/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { MdVerified } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import Link from 'next/link';
@@ -7,6 +8,7 @@ import { BsThreeDots } from "react-icons/bs";
 import PopoverCus from '../Popover/PopoverCus';
 import { FaBookmark } from "react-icons/fa";
 import { AiFillCloseSquare } from "react-icons/ai";
+import Image from 'next/image';
 
 
 // Post Menu Button
@@ -16,7 +18,13 @@ const postMenuBtn = <>
     </div>
 </>
 
+const description = `
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex accusantium libero maiores eveniet obcaecati ullam, incidunt quisquam, mollitia voluptatem repellendus voluptate odio optio expedita fugit facilis totam, debitis tempora illo? Omnis pariatur ullam odio eos voluptate, in, at architecto reiciendis dignissimos debitis sed explicabo ut autem. Recusandae dicta esse quisquam libero animi est laudantium fugit voluptates blanditiis sint! In a vel aperiam at eius corrupti molestiae quod sint aut porro! Saepe laudantium a quam, placeat asperiores cum, nesciunt quo, soluta enim nulla praesentium ex laborum iste cupiditate reiciendis aut ea veniam. Veritatis reprehenderit voluptates tempore, error officia ad expedita magnam.
+`
+
 const Post = () => {
+    const [showDescription, setShowDescription] = useState(false);
+
     return (
         <div className='p-3 md:p-5 bg-white dark:bg-[#0F172A] shadow dark:shadow-2xl rounded-lg'>
             {/* Post Header */}
@@ -94,6 +102,29 @@ const Post = () => {
                     </PopoverCus>
                 </div>
             </header>
+            {/* Post Body Image */}
+            <div className='py-3'>
+                {/* Description */}
+                <div className='pb-3'>
+                    <div className='text-[#050505] dark:text-[#E4E6EB] break-words'>
+                        {description && description.length > 150 ? (
+                            showDescription ? description : <>
+                                {description.slice(0, 150)}... <button onClick={() => setShowDescription(true)} className='font-medium transition-all duration-300 hover:underline text-[#050505] dark:text-[#E4E6EB]'>See more</button>
+                            </>
+                        ) : (
+                            description
+                        )}
+                    </div>
+                </div>
+
+                {/* Image */}
+                <div className='flex justify-start bg-[#242526]/10'>
+                    <div className='w-full min-h-full max-h-[31.25rem]'>
+                        <Image width={500} height={500} className='object-cover w-full h-full' src="https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg" alt='Post Image' />
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 };

@@ -6,8 +6,10 @@ import RightMenu from '@/components/Shared/RightMenu/RightMenu';
 const HomePage = () => {
     return (
         <>
-            <main className='grid grid-cols-1 xl:grid-cols-4'>
+            <main className='grid h-screen grid-cols-1 xl:grid-cols-4'>
+                {/* Home Page Main Content */}
                 <div className='px-3 xl:col-span-3 lg:px-5 xl:px-10'>
+                    {/* Home Story */}
                     <div className='shadow dark:shadow-2xl'>
                         <HomeStory />
                     </div>
@@ -22,6 +24,8 @@ const HomePage = () => {
                         <Post />
                     </div>
                 </div>
+
+                {/* Right Menu */}
                 <div className='hidden xl:block'>
                     <div className='fixed right-0'>
                         <RightMenu />

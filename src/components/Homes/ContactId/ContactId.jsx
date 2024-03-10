@@ -55,12 +55,12 @@ const ContactId = () => {
 
             {/* Modal Content */}
 
-            <div className={`${modal ? "block" : "hidden"} fixed duration-300 z-50 transition-all bottom-5 w-80 right-[20%] bg-white dark:bg-black rounded-lg shadow-xl dark:shadow-gray-700`}>
-                <div className='flex p-3 items-start justify-between rounded-t-lg dark:bg-[#293145] pb-3 border-b'>
+            <div className={`${modal ? "block" : "hidden"} fixed duration-300 z-50 transition-all bottom-5 w-80 right-[15%] bg-white dark:bg-black rounded-lg shadow-xl dark:shadow-gray-700`}>
+                <div className='flex p-3 transition-all duration-250 items-start justify-between rounded-t-lg dark:bg-[#293145] pb-3 border-b'>
                     <div className='flex items-center gap-5'>
                         <Avatar isBordered color="secondary" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
                         <div>
-                            <h2 className='font-semibold text-gray-800 dark:text-gray-200'>Hendrix Stamp</h2>
+                            <h2 className='font-semibold text-gray-800 transition-all duration-250 dark:text-gray-200'>Hendrix Stamp</h2>
                             <div className='text-[12px] font-medium text-gray-500'> {
                                 active ? <div className='flex items-center gap-2'>
                                     <div className='w-3 h-3 bg-green-500 rounded-full'></div>
@@ -76,7 +76,7 @@ const ContactId = () => {
                 </div>
 
                 {/* Modal Body */}
-                <div ref={containerRef} className='h-[300px] overflow-y-auto px-3 py-3 dark:bg-[#1A2236]'>
+                <div ref={containerRef} className='h-[300px] transition-all duration-250 overflow-y-auto px-3 py-3 dark:bg-[#1A2236]'>
 
                     <div >
                         {/* To Message */}
@@ -134,7 +134,7 @@ const ContactId = () => {
                 </div>
 
                 {/* Typing Message */}
-                <form onSubmit={handleMessage} className='flex items-center justify-between p-3'>
+                <form onSubmit={handleMessage} className='flex items-center justify-between p-3 transition-all duration-250'>
                     <input onChange={handleTypingLoading} className='w-full px-3 text-base bg-transparent outline-none' name='text' type="text" placeholder='Start typing...' />
                     <button type='submit'><HiOutlinePaperAirplane className='text-3xl' /></button>
                 </form>
