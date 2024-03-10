@@ -2,7 +2,7 @@
 import { Avatar, Textarea } from '@nextui-org/react';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import ModalCus from '../ModalCus/ModalCus';
+import ModalCus from '../../Homes/ModalCus/ModalCus';
 import UploadFile from '@/components/UploadFile/UploadFile';
 import { BsEmojiNeutral } from "react-icons/bs";
 import EmojiSlider from '@/components/SliderCus/EmojiSlider';

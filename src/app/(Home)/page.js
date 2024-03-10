@@ -1,6 +1,6 @@
-import CreatePost from '@/components/Homes/CreatePost/CreatePost';
+import CreatePost from '@/components/Posts/CreatePost/CreatePost';
 import HomeStory from '@/components/Homes/HomeStory/HomeStory';
-import Post from '@/components/Homes/Post/Post';
+import Post from '@/components/Posts/Post/Post';
 import RightMenu from '@/components/Shared/RightMenu/RightMenu';
 
 const HomePage = () => {
