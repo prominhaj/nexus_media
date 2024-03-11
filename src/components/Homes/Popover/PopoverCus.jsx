@@ -2,12 +2,12 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 
-const PopoverCus = ({ name, children, classes }) => {
+const PopoverCus = ({ name, children, classes, buttonClass }) => {
     return (
         <div>
             <Menu as="div" className="relative text-left">
                 <div>
-                    <Menu.Button className="flex justify-center">
+                    <Menu.Button className={`flex justify-center ${buttonClass}`}>
                         {name}
                     </Menu.Button>
                 </div>
