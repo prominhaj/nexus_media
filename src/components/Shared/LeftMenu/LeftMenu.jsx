@@ -9,6 +9,7 @@ import { SlSettings } from "react-icons/sl";
 import { IoAlertCircleSharp } from "react-icons/io5";
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
 import { FaBookmark } from "react-icons/fa6";
+import { usePathname } from "next/navigation";
 
 // Left Menu Items
 const leftMenuItems = [
@@ -63,6 +64,7 @@ const leftActionItems = [
 
 const LeftMenu = () => {
     const { color, bgColor } = useColor();
+    const path = usePathname();
 
     const reloadPage = () => {
         window.location.reload();
@@ -71,10 +73,10 @@ const LeftMenu = () => {
     return (
 
         <div className="transition-all bg-white dark:bg-[#0F172A] rounded-lg h-screen duration-300 md:space-y-5">
-            <div className='p-3 bg-transparent md:bg-white rounded-lg md:shadow-lg md:dark:shadow-gray-800 md:dark:bg-[#0F172A]'>
-                <button onClick={reloadPage} className="w-full px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300">
+            <div className='p-3 flex flex-col gap-2 bg-transparent md:bg-white rounded-lg md:dark:bg-[#0F172A]'>
+                <button onClick={reloadPage} className="w-full px-3 hover:bg-[#F2F2F2] dark:text-gray-300 dark:hover:bg-[#3A3B3C] rounded-md py-2 text-[1.02rem transition-all duration-300">
                     <span className="flex items-center gap-2 sm:gap-3">
-                        <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-3 ${color && color}`}>
+                        <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-2 ${color && color}`}>
                             <MdAutorenew className="text-2xl" />
                         </span>
                         <span className="text-lg font-medium">
@@ -84,9 +86,9 @@ const LeftMenu = () => {
                 </button>
                 {
                     leftMenuItems.map(item =>
-                        <Link className='block px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300' href={item.path} key={item.path}>
+                        <Link className={`${path === item.path && "dark:bg-[#3A3B3C] bg-[#F0F2F5]"} block px-3 hover:bg-[#F2F2F2] dark:text-gray-300 dark:hover:bg-[#3A3B3C] rounded-md py-2 text-[1.02rem transition-all duration-300`} href={item.path} key={item.path}>
                             <span className="flex items-center gap-2 sm:gap-3">
-                                <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-3 ${color && color}`}>
+                                <span className={`${path === item.path && "dark:bg-[#1877F2] bg-[#1877F2] text-[#FFFFFF]"} bg-gray-300 dark:bg-gray-600 rounded-full p-2 ${color && path === item.path || color}`}>
                                     {item.icon}
                                 </span>
                                 <span className="text-lg font-medium">
@@ -97,12 +99,13 @@ const LeftMenu = () => {
                     )
                 }
             </div>
-            <div className='p-3 bg-transparent md:bg-white rounded-lg md:shadow-lg md:dark:shadow-gray-800 md:dark:bg-[#0F172A]'>
+            <hr className="dark:border-t-gray-600 border-t-gray-300" />
+            <div className='p-3 flex flex-col gap-2 bg-transparent md:bg-white rounded-lg md:dark:bg-[#0F172A]'>
                 {
                     leftActionItems.map(item =>
-                        <Link className='block px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300' href={item.path} key={item.path}>
+                        <Link className={`${path === item.path && "dark:bg-[#3A3B3C] bg-[#F0F2F5]"} block px-3 hover:bg-[#F2F2F2] dark:text-gray-300 dark:hover:bg-[#3A3B3C] rounded-md py-2 text-[1.02rem transition-all duration-300`} href={item.path} key={item.path}>
                             <span className="flex items-center gap-2 sm:gap-3">
-                                <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-3 ${color && color}`}>
+                                <span className={`${path === item.path && "dark:bg-[#1877F2] bg-[#1877F2] text-[#FFFFFF]"} bg-gray-300 dark:bg-gray-600 rounded-full p-2 ${color && path === item.path || color}`}>
                                     {item.icon}
                                 </span>
                                 <span className="text-lg font-medium">
@@ -112,9 +115,9 @@ const LeftMenu = () => {
                         </Link>
                     )
                 }
-                <button className='w-full px-3 hover:bg-gray-200 dark:text-gray-300 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-500 rounded-md py-2 text-[1.02rem transition-all duration-300'>
+                <button className='w-full px-3 hover:bg-[#F2F2F2] dark:text-gray-300 dark:hover:bg-[#3A3B3C] rounded-md py-2 text-[1.02rem transition-all duration-300'>
                     <span className="flex items-center gap-2 sm:gap-3">
-                        <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-3 ${color && color}`}>
+                        <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-2 ${color && color}`}>
                             <HiArrowRightOnRectangle className="text-2xl" />
                         </span>
                         <span className="text-lg font-medium">

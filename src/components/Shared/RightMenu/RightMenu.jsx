@@ -9,7 +9,7 @@ const RightMenu = () => {
             <div>
                 <div className='flex flex-wrap items-center justify-between gap-2 pb-2'>
                     <h2 className='text-sm font-semibold opacity-80'>Friend Request</h2>
-                    <Link className='text-blue-600 dark:text-blue-400' href={"/friend/request"}>See all</Link>
+                    <Link className='text-blue-600 dark:text-blue-400' href={"/friends"}>See all</Link>
                 </div>
                 <div className='flex flex-col gap-5 py-5'>
                     <FriendRequestCard />

@@ -88,9 +88,9 @@ const Post = () => {
                 </div>
 
                 {/* Image */}
-                <div className='flex justify-start bg-[#242526]/10'>
-                    <div className='w-full min-h-full max-h-[31.25rem]'>
-                        <Image width={500} height={500} className='object-cover w-full h-full border dark:border-gray-700' src="https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg" alt='Post Image' />
+                <div className='flex justify-center bg-[#242526]/10 backdrop-blur-sm dark:bg-white/30'>
+                    <div className='max-w-full min-w-full sm:min-w-96 min-h-[10rem] md:min-h-[18rem] max-h-[31.25rem]'>
+                        <Image width={500} height={500} className='object-cover w-full h-full border dark:border-gray-700' src="https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt='Post Image' />
                     </div>
                 </div>
             </div>
