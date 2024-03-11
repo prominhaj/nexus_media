@@ -17,6 +17,7 @@ import { GoComment } from 'react-icons/go';
 import CommentAction from '../CommentAction/CommentAction';
 import ShareAction from '../ShareAction/ShareAction';
 import CommentBox from '../CommentAction/CommentBox';
+import SingleComment from '../SingleComment/SingleComment';
 
 // Post Menu Button
 const postMenuBtn = <>
@@ -114,6 +115,16 @@ const Post = () => {
                     <PostReactionTooltip state={reactions} setState={setReactions} />
                     <CommentAction />
                     <ShareAction />
+                </div>
+                {/* Show All Comments */}
+                <div className='py-3'>
+                    <button className='text-[#65676B] dark:text-[#B0B3B8] text-[.875rem] tracking-wider break-words font-medium hover:underline duration-200 block'>View more comments</button>
+                    <div className='grid grid-cols-1 gap-3 pt-3'>
+                        <SingleComment />
+                        {/* <SingleComment />
+                        <SingleComment />
+                        <SingleComment /> */}
+                    </div>
                 </div>
                 {/* Post Comment Area */}
                 <div className='pt-3'>
