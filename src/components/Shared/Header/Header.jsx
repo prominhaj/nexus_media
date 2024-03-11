@@ -12,9 +12,13 @@ import SearchModal from '../Modal/SearchModal';
 import Setting from '@/components/Homes/SettingComp/Setting';
 import ProfileItems from '../Profile/ProfileItems';
 import useColor from '@/Hooks/useColor';
+import ReactDOM from 'react-dom';
 import { HiMiniChatBubbleLeftEllipsis, HiOutlineBellAlert, HiOutlineCog8Tooth } from "react-icons/hi2";
 import { FaFacebookMessenger } from "react-icons/fa6";
 import './Header.css'
+import Notification from '../Notification/Notification';
+import { useState } from 'react';
+import ModalChat from '@/components/ModalChat/ModalChat';
 
 // Header Mode Items
 const headerModeItems = [
@@ -53,6 +57,7 @@ const people = [
 const Header = ({ children }) => {
     const pathname = usePathname();
     const { color } = useColor();
+    const [modal, setModal] = useState(false);
 
     // Header Item
     const search = <>
@@ -144,8 +149,16 @@ const Header = ({ children }) => {
                 <div className='hidden md:block'>
                     <div className='flex justify-end'>
                         <div className='flex items-center gap-5'>
-                            <PopoverCus name={notification}>
+                            {/* Notification */}
+                            <PopoverCus name={notification} classes={"w-72"}>
+                                <Notification modal={modal} setModal={setModal} />
                             </PopoverCus>
+
+                            {/* Chat Modal By Notification */}
+                            {
+                                modal && ReactDOM.createPortal(<ModalChat modal={modal} setModal={setModal} />, document.body)
+                            }
+
                             <Link className='block' href={"/message"}>
                                 <button className='p-3 rounded-full bg-slate-200 dark:bg-gray-600 dark:hover:bg-[#394D62] hover:bg-[#DDE6F0] duration-250 dark:hover:text-[#2176FF] hover:text-[#0861F2]'>
                                     <FaFacebookMessenger className={`text-2xl ${color && color}`} />
