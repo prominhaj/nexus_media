@@ -14,6 +14,9 @@ import PostAction from '../PostAction/PostAction';
 import PostReactionTooltip from '../Tooltip/PostReactionTooltip';
 import PostReactionShow from '../PostReactionShow/PostReactionShow';
 import { GoComment } from 'react-icons/go';
+import CommentAction from '../CommentAction/CommentAction';
+import ShareAction from '../ShareAction/ShareAction';
+import CommentBox from '../CommentAction/CommentBox';
 
 // Post Menu Button
 const postMenuBtn = <>
@@ -107,14 +110,14 @@ const Post = () => {
                     </div>
                 </div>
                 {/* Post Actions  */}
-                <div className='grid items-center grid-cols-3 gap-3 py-[0.3125rem] border-b border-gray-200 dark:border-gray-800'>
+                <div className='grid items-center grid-cols-3 gap-[0.625rem] py-[0.3125rem] border-b border-gray-200 dark:border-gray-800'>
                     <PostReactionTooltip state={reactions} setState={setReactions} />
-                    <div></div>
-                    <div></div>
+                    <CommentAction />
+                    <ShareAction />
                 </div>
                 {/* Post Comment Area */}
-                <div>
-
+                <div className='pt-3'>
+                    <CommentBox />
                 </div>
             </footer >
         </div >

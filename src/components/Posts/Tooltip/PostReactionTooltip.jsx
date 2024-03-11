@@ -27,26 +27,32 @@ const PostReactionTooltip = ({ state, setState }) => {
         {
             name: "love",
             icon: love,
+            color: "#F33E58",
         },
         {
             name: "care",
             icon: care,
+            color: "#F7B125"
         },
         {
             name: "haha",
             icon: haha,
+            color: "#F7B125"
         },
         {
             name: "sad",
             icon: sad,
+            color: "#F7B125"
         },
         {
             name: "wow",
             icon: wow,
+            color: "#F7B125"
         },
         {
             name: "angry",
             icon: angry,
+            color: "#E9710F"
         },
     ]
 
@@ -83,7 +89,7 @@ const PostReactionTooltip = ({ state, setState }) => {
                                 {state === "like" ? <BiSolidLike className='text-xl' /> : <BiLike className='text-xl' />}<div>Like</div>
                             </button>
                         </> : <>
-                            <button onClick={() => handleAction(findAction.name)} className='flex items-center justify-center w-full gap-1'>
+                            <button onClick={() => handleAction(findAction.name)} className='flex items-center justify-center w-full gap-1' style={{ color: findAction.color }}>
                                 <Image src={findAction.icon} width={20} height={20} className='w-5 h-5' alt={findAction.name} />
                                 <div className='capitalize'>{findAction.name}</div>
                             </button>

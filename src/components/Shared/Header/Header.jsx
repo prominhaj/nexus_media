@@ -9,18 +9,12 @@ import { usePathname } from 'next/navigation';
 import PopoverCus from '@/components/Homes/Popover/PopoverCus';
 import { Avatar } from '@nextui-org/react';
 import SearchModal from '../Modal/SearchModal';
-import { Fredoka } from 'next/font/google';
 import Setting from '@/components/Homes/SettingComp/Setting';
 import ProfileItems from '../Profile/ProfileItems';
 import useColor from '@/Hooks/useColor';
 import { HiMiniChatBubbleLeftEllipsis, HiOutlineBellAlert, HiOutlineCog8Tooth } from "react-icons/hi2";
+import { FaFacebookMessenger } from "react-icons/fa6";
 import './Header.css'
-
-const fredoka = Fredoka({
-    weight: ['500', '600', '700'],
-    subsets: ['latin'],
-    display: 'swap'
-});
 
 // Header Mode Items
 const headerModeItems = [
@@ -46,8 +40,6 @@ const headerModeItems = [
     },
 ]
 
-
-
 // face data for search
 const people = [
     { _id: 1, name: 'Wade Cooper' },
@@ -58,11 +50,9 @@ const people = [
     { _id: 6, name: 'Hellen Schmidt' },
 ]
 
-
 const Header = ({ children }) => {
     const pathname = usePathname();
     const { color } = useColor();
-
 
     // Header Item
     const search = <>
@@ -73,13 +63,13 @@ const Header = ({ children }) => {
     </>
 
     const notification = <>
-        <span className={`p-3 rounded-full bg-slate-200 dark:bg-gray-600 ${color ? color : 'dark:text-gray-200'}`}>
+        <span className={`p-3 rounded-full bg-slate-200 dark:bg-gray-600 dark:hover:bg-[#394D62] hover:bg-[#DDE6F0] duration-250 dark:hover:text-[#2176FF] hover:text-[#0861F2] ${color ? color : 'dark:text-gray-200'}`}>
             <HiOutlineBellAlert className='text-2xl' />
         </span>
     </>
 
     const settings = <>
-        <span className='p-3 lg:p-[10px] rounded-full bg-slate-200 dark:bg-gray-600'>
+        <span className='p-3 lg:p-[10px] rounded-full bg-slate-200 dark:bg-gray-600 dark:hover:bg-[#394D62] hover:bg-[#DDE6F0] duration-250 dark:hover:text-[#2176FF] hover:text-[#0861F2]'>
             <motion.div
                 animate={{
                     rotate: [0, 360],
@@ -90,7 +80,7 @@ const Header = ({ children }) => {
                     ease: 'linear'
                 }}
             >
-                <HiOutlineCog8Tooth className={`text-2xl lg:text-3xl ${color ? color : "dark:text-gray-200"}`} />
+                <HiOutlineCog8Tooth className={`text-2xl lg:text-3xl ${color && color}`} />
             </motion.div>
         </span>
     </>
@@ -157,8 +147,8 @@ const Header = ({ children }) => {
                             <PopoverCus name={notification}>
                             </PopoverCus>
                             <Link className='block' href={"/message"}>
-                                <button className='p-3 rounded-full bg-slate-200 dark:bg-gray-600'>
-                                    <HiMiniChatBubbleLeftEllipsis className={`text-2xl ${color ? color : "dark:text-gray-200"}`} />
+                                <button className='p-3 rounded-full bg-slate-200 dark:bg-gray-600 dark:hover:bg-[#394D62] hover:bg-[#DDE6F0] duration-250 dark:hover:text-[#2176FF] hover:text-[#0861F2]'>
+                                    <FaFacebookMessenger className={`text-2xl ${color && color}`} />
                                 </button>
                             </Link>
                             <PopoverCus name={settings}>
