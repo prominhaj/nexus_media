@@ -2,7 +2,7 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 
-const PopoverCus = ({ name, children, classes, buttonClass }) => {
+const PopoverCus = ({ name, children, classes, buttonClass, bottom }) => {
     return (
         <div>
             <Menu as="div" className="relative text-left">
@@ -20,7 +20,7 @@ const PopoverCus = ({ name, children, classes, buttonClass }) => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <Menu.Items className={`absolute right-0 z-40 w-56 mt-3 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg dark:bg-[#242526] ring-1 ring-black/5 focus:outline-none ${classes && classes}`}>
+                    <Menu.Items className={`absolute right-0 z-50 w-56 mt-3 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg dark:bg-[#242526] ring-1 ring-black/5 focus:outline-none ${!bottom && "top-12"} ${classes && classes}`}>
                         <Menu.Item>
                             <div>
                                 {children}

@@ -182,7 +182,7 @@ const Header = ({ children }) => {
                                 <span className='text-2xl'>{item.icon}</span>
                             </Link>)
                         }
-                        <ProfileItems classes={"bottom-12"} name={profile} />
+                        <ProfileItems classes={"bottom-12"} name={profile} bottom={true} />
                     </div>
                 </div>
             </div>
