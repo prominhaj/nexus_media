@@ -1,3 +1,4 @@
+"use client"
 import { Avatar } from '@nextui-org/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { HiOutlinePaperAirplane, HiOutlineXMark } from 'react-icons/hi2';
