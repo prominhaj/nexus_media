@@ -21,7 +21,7 @@ import SingleComment from '../SingleComment/SingleComment';
 
 // Post Menu Button
 const postMenuBtn = <>
-    <div className='text-[#65676B] dark:text-[#B0B3B8] p-[0.625rem] hover:bg-[#F2F2F2] dark:hover:bg-[#3A3B3C] transition-all rounded-full duration-250'>
+    <div className='text-light-text dark:text-dark-text p-[0.625rem] hover:bg-light-bg-hover dark:hover:bg-dark-bg-hover transition-all rounded-full duration-250'>
         <BsThreeDots className='text-2xl' />
     </div>
 </>
@@ -34,7 +34,7 @@ const Post = () => {
     const [reactions, setReactions] = useState("");
 
     return (
-        <div className='p-3 md:p-5 bg-white dark:bg-[#0F172A] shadow dark:shadow-2xl rounded-lg'>
+        <div className='p-3 rounded-lg shadow-md md:p-5 bg-light-post-bg dark:bg-dark-post-bg'>
             {/* Post Header */}
             <header className='flex items-center justify-between'>
                 <div className='flex flex-wrap items-start gap-3'>
@@ -49,7 +49,7 @@ const Post = () => {
 
                             <VerifiedBadges />
                         </div>
-                        <div className='flex items-center gap-[0.625rem] text-[#65676B] dark:text-[#B0B3B8] font-sans'>
+                        <div className='flex items-center gap-[0.625rem] text-light-text dark:text-dark-text font-sans'>
                             <Tooltip
                                 placement={"bottom"}
                                 content={"10 March 2024"}

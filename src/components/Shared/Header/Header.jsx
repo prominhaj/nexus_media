@@ -68,13 +68,13 @@ const Header = ({ children }) => {
     </>
 
     const notification = <>
-        <span className={`p-3 rounded-full bg-slate-200 dark:bg-gray-600 dark:hover:bg-[#394D62] hover:bg-[#DDE6F0] duration-250 dark:hover:text-[#2176FF] hover:text-[#0861F2] ${color ? color : 'dark:text-gray-200'}`}>
+        <span className={`p-3 rounded-full bg-light-bg dark:bg-dark-bg dark:hover:bg-dark-bg-hover hover:bg-light-bg-hover duration-250 ${color ? color : 'dark:text-dark-text'}`}>
             <HiOutlineBellAlert className='text-2xl' />
         </span>
     </>
 
     const settings = <>
-        <span className='p-3 lg:p-[10px] rounded-full bg-slate-200 dark:bg-gray-600 dark:hover:bg-[#394D62] hover:bg-[#DDE6F0] duration-250 dark:hover:text-[#2176FF] hover:text-[#0861F2]'>
+        <span className='p-3 lg:p-[10px] rounded-full bg-light-bg dark:bg-dark-bg dark:hover:bg-dark-bg-hover hover:bg-light-bg-hover duration-250'>
             <motion.div
                 animate={{
                     rotate: [0, 360],
@@ -97,7 +97,7 @@ const Header = ({ children }) => {
     </>
 
     return (
-        <div className='w-full px-3 py-5 shadow bg-white lg:px-5 dark:bg-[#0B1120] sticky top-0 z-50'>
+        <div className='sticky top-0 z-50 w-full px-3 py-5 shadow bg-light-header-bg lg:px-5 dark:bg-dark-header-bg'>
             <div className='grid items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 <div>
                     <Link href="/" className='block'>
@@ -160,7 +160,7 @@ const Header = ({ children }) => {
                             }
 
                             <Link className='block' href={"/message"}>
-                                <button className='p-3 rounded-full bg-slate-200 dark:bg-gray-600 dark:hover:bg-[#394D62] hover:bg-[#DDE6F0] duration-250 dark:hover:text-[#2176FF] hover:text-[#0861F2]'>
+                                <button className='p-3 rounded-full bg-light-bg dark:bg-dark-bg dark:hover:bg-dark-bg-hover hover:bg-light-bg-hover duration-250'>
                                     <FaFacebookMessenger className={`text-2xl ${color && color}`} />
                                 </button>
                             </Link>
@@ -175,10 +175,10 @@ const Header = ({ children }) => {
 
             {/* Responsive Menu */}
             <div className='block md:hidden'>
-                <div className='fixed bottom-0 left-0 right-0 z-50 px-3 py-2 sm:px-5 bg-gradient-to-r from-green-600 to-teal-700 dark:bg-gradient-to-r dark:from-purple-600 dark:to-indigo-700'>
+                <div className='fixed bottom-0 left-0 right-0 z-50 px-3 py-2 sm:px-5 bg-light-header-bg dark:bg-dark-header-bg'>
                     <div className='flex items-center justify-between gap-3 sm:gap-0'>
                         {
-                            headerModeItems.map(item => <Link className={`${item.path === pathname ? "text-[#eef1f5] bg-[#3b70c6] border-[#bcd5fe]" : `${color ? color : "text-[#adb5bd]"} bg-[#efeeee]`}  p-3 rounded-full`} href={item.path} key={item.name}>
+                            headerModeItems.map(item => <Link className={`${item.path === pathname ? "text-[#eef1f5] bg-[#3b70c6] border-[#bcd5fe]" : `${color ? color : "text-light-text dark:text-dark-text"} bg-light-bg hover:bg-light-bg-hover dark:hover:bg-dark-bg-hover dark:bg-dark-bg`} p-3 rounded-full`} href={item.path} key={item.name}>
                                 <span className='text-2xl'>{item.icon}</span>
                             </Link>)
                         }

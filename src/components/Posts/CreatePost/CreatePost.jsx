@@ -37,7 +37,7 @@ const CreatePost = () => {
     };
 
     return (
-        <div className='p-3 md:p-5 bg-white dark:bg-[#0F142A] shadow dark:shadow-2xl rounded-lg'>
+        <div className='p-3 rounded-lg shadow-md md:p-5 bg-light-post-bg dark:bg-dark-post-bg'>
             <div className='flex items-start gap-3'>
                 <Link href={"/profile"}>
                     <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />

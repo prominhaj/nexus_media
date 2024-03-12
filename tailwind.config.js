@@ -20,7 +20,13 @@ module.exports = {
                 'light-bg-hover': '#D8DADF',
                 'dark-bg-hover': '#616161',
                 'light-modal-bg': '#FFFFFF',
-                'dark-modal-bg': '#0E1526'
+                'dark-modal-bg': '#0E1526',
+                'light-header-bg': '#FFFFFF',
+                'dark-header-bg': '#0B1120',
+                'light-body-bg': '#F0F2F5',
+                'dark-body-bg': '#0F172A',
+                'light-post-bg': '#FFFFFF',
+                'dark-post-bg': '#0F172A'
             }
         }
     },

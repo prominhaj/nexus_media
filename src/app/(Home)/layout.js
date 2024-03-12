@@ -1,13 +1,12 @@
 import React from 'react';
 import Header from '@/components/Shared/Header/Header';
 import LeftMenu from '@/components/Shared/LeftMenu/LeftMenu';
-import RightMenu from '@/components/Shared/RightMenu/RightMenu';
 import OffCanvas from '@/components/Homes/OffCanvas/OffCanvas';
 import ScrollTop from '@/components/Homes/ScrollTop/ScrollTop';
 
 const layout = ({ children }) => {
     return (
-        <div className='bg-[#F2F3F5] dark:bg-[#1A2236]'>
+        <div className='bg-light-body-bg/80 dark:bg-dark-body-bg/80'>
             <Header>
                 <OffCanvas />
             </Header>
