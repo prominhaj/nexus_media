@@ -11,14 +11,14 @@ const SearchModal = ({ data, search }) => {
     return (
         <>
             <>
-                <div className="">
+                <div>
                     {
                         search ? <button onClick={() => setIsOpen(true)}>{search}</button> : <button
                             type="button"
                             onClick={() => setIsOpen(true)}
-                            className="p-3 rounded-full bg-slate-200 dark:bg-gray-600"
+                            className="p-3 rounded-full bg-light-bg dark:bg-dark-bg"
                         >
-                            <IoSearch className={`text-2xl font-semibold ${color ? color : "text-gray-600 dark:text-gray-200"}`} />
+                            <IoSearch className={`text-2xl font-semibold ${color ? color : "text-light-text dark:text-dark-text"}`} />
                         </button>
                     }
                 </div>
@@ -34,7 +34,7 @@ const SearchModal = ({ data, search }) => {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                         >
-                            <div className="fixed inset-0 bg-black/25" />
+                            <div className="fixed inset-0 bg-black/25 dark:bg-[#22293E]/50" />
                         </Transition.Child>
 
                         <div className="fixed inset-0">
@@ -48,7 +48,7 @@ const SearchModal = ({ data, search }) => {
                                     leaveFrom="opacity-100 scale-100"
                                     leaveTo="opacity-0 scale-95"
                                 >
-                                    <Dialog.Panel className="w-full max-w-md p-6 text-left align-middle transition-all transform bg-white dark:bg-[#0B1120]/90 shadow-xl rounded-2xl">
+                                    <Dialog.Panel className="w-full max-w-md p-6 text-left align-middle transition-all transform shadow-xl bg-light-modal-bg dark:bg-dark-modal-bg rounded-2xl">
                                         <div>
                                             {/* Search Combobox Component */}
                                             <SearchCombobox data={data} />

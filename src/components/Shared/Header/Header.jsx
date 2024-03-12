@@ -13,7 +13,7 @@ import Setting from '@/components/Homes/SettingComp/Setting';
 import ProfileItems from '../Profile/ProfileItems';
 import useColor from '@/Hooks/useColor';
 import ReactDOM from 'react-dom';
-import { HiMiniChatBubbleLeftEllipsis, HiOutlineBellAlert, HiOutlineCog8Tooth } from "react-icons/hi2";
+import { HiOutlineBellAlert, HiOutlineCog8Tooth } from "react-icons/hi2";
 import { FaFacebookMessenger } from "react-icons/fa6";
 import './Header.css'
 import Notification from '../Notification/Notification';
@@ -61,8 +61,8 @@ const Header = ({ children }) => {
 
     // Header Item
     const search = <>
-        <div className='flex items-center gap-2 px-3 bg-gray-200 rounded-md cursor-pointer dark:bg-[#3A3B3C]'>
-            <FaSearch className={`${color ? color : 'text-gray-600 dark:text-gray-300'}`} />
+        <div className='flex items-center gap-2 px-3 rounded-md cursor-pointer bg-light-bg dark:bg-dark-bg hover:bg-light-bg-hover dark:hover:bg-dark-bg-hover'>
+            <FaSearch className={`${color ? color : 'text-light-text dark:text-dark-text'}`} />
             <input className='py-2 bg-transparent outline-none cursor-pointer' type="text" placeholder="Search" />
         </div>
     </>
@@ -126,7 +126,7 @@ const Header = ({ children }) => {
                         <div className='hidden lg:block'>
                             <div className='flex items-center gap-4'>
                                 {
-                                    headerModeItems.map(item => <Link className={`${item.path === pathname ? "text-[#1e74fd] dark:text-[#1e74fd] bg-[#d2e3ff] dark:bg-[#d2e3ff] border-[#bcd5fe]" : `${color ? `${color}` : "text-gray-600 dark:text-gray-200"} bg-[#efeeee] dark:bg-gray-600`} p-3 rounded-full`} href={item.path} key={item.name}>
+                                    headerModeItems.map(item => <Link className={`${item.path === pathname ? "text-white dark:text-[#1e74fd] dark:bg-white bg-black" : `${color ? `${color}` : "text-light-text dark:text-dark-text"} bg-light-bg hover:bg-light-bg-hover dark:hover:bg-dark-bg-hover dark:bg-dark-bg`} p-3 rounded-full`} href={item.path} key={item.name}>
                                         <span className='text-2xl'>{item.icon}</span>
                                     </Link>)
                                 }
