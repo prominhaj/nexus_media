@@ -6,7 +6,7 @@ const HomePage = () => {
     return (
         <>
             {/* Home Page Main Content */}
-            <div className='px-3 lg:px-5 xl:px-10'>
+            <div className='lg:px-5 xl:px-10'>
                 {/* Home Story */}
                 <div className='shadow dark:shadow-2xl'>
                     <HomeStory />

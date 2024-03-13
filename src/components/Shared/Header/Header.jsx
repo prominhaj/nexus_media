@@ -97,7 +97,7 @@ const Header = ({ children }) => {
     </>
 
     return (
-        <div className='sticky top-0 z-50 w-full px-3 py-5 shadow bg-light-header-bg lg:px-5 dark:bg-dark-header-bg'>
+        <div className='sticky top-0 z-[45] w-full px-3 py-5 shadow bg-light-header-bg lg:px-5 dark:bg-dark-header-bg'>
             <div className='grid items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 <div>
                     <Link href="/" className='block'>

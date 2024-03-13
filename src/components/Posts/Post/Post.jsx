@@ -94,10 +94,11 @@ const Post = () => {
                     </div>
                 </div>
             </div>
+
             {/* Post Footer */}
             <footer className='px-3 md:px-5'>
                 {/* Show Activity */}
-                <div className='flex items-center justify-between pb-3 border-b border-gray-200 dark:border-gray-800'>
+                <div className='flex items-center justify-between pb-3 border-b border-gray-200 dark:border-gray-700'>
                     {/* Show active activity */}
                     <div className='flex items-center gap-3 md:gap-5'>
                         {/* Post Reaction Show */}
@@ -111,7 +112,7 @@ const Post = () => {
                     </div>
                 </div>
                 {/* Post Actions  */}
-                <div className='grid items-center grid-cols-3 gap-[0.625rem] py-[0.3125rem] border-b border-gray-200 dark:border-gray-800'>
+                <div className='grid items-center grid-cols-3 gap-[0.625rem] py-[0.3125rem] border-b border-gray-200 dark:border-gray-700'>
                     <PostReactionTooltip state={reactions} setState={setReactions} />
                     <CommentAction />
                     <ShareAction />

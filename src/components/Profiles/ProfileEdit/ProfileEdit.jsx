@@ -1,4 +1,3 @@
-import Button from '@/components/Button/Button';
 import ModalCus from '@/components/Homes/ModalCus/ModalCus';
 import { MdEdit } from "react-icons/md";
 
@@ -6,7 +5,9 @@ import { MdEdit } from "react-icons/md";
 const editBtn = <>
     <div className='flex items-center gap-2 px-4 py-3 bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text'>
         <MdEdit className='text-xl' />
-        Edit
+        <span className='text-sm'>
+            Edit
+        </span>
     </div>
 </>
 
