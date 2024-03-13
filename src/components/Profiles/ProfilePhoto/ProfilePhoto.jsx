@@ -5,7 +5,7 @@ import { FaCamera } from 'react-icons/fa';
 const ProfilePhoto = () => {
     return (
         <>
-            <div className='relative w-32 h-32 overflow-hidden rounded-full shadow-2xl cursor-pointer md:w-40 md:h-40 group shadow-gray-900 dark:shadow-gray-300 ring-4 ring-blue-500 dark:ring-pink-500 -top-20 lg:-top-10'>
+            <div className='relative w-32 h-32 overflow-hidden rounded-full shadow-2xl cursor-pointer md:w-40 md:h-40 group ring-4 ring-blue-500 dark:ring-pink-500 -top-20 lg:-top-10'>
                 <Image
                     width={100}
                     height={100}

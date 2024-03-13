@@ -6,7 +6,7 @@ import React from 'react';
 const profileItems = [
     {
         name: "My Profile",
-        path: "/profile",
+        path: "/profile/1/posts",
     },
     {
         name: "Account Information",

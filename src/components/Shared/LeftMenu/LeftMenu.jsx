@@ -15,7 +15,7 @@ import { usePathname } from "next/navigation";
 const leftMenuItems = [
     {
         name: "Profile",
-        path: "/profile",
+        path: "/profile/1/posts",
         icon: <CgProfile className="text-2xl" />
     },
     {
