@@ -18,11 +18,16 @@ const profileMenuItems = [
     },
     {
         id: 3,
+        name: 'Stories',
+        path: '/stories'
+    },
+    {
+        id: 4,
         name: 'Friends',
         path: '/friends'
     },
     {
-        id: 4,
+        id: 5,
         name: 'About',
         path: '/about'
     }
