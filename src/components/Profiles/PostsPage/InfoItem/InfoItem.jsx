@@ -16,7 +16,7 @@ const InfoItem = ({ icon, name, value }) => {
                     }
                 </div>
                 <div>
-                    <p className='text-sm font-medium'>{value}</p>
+                    <p className='text-sm font-medium break-words'>{value}</p>
                 </div>
             </div>
         </>

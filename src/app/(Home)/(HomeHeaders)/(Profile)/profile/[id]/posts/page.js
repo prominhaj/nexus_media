@@ -6,7 +6,7 @@ import PostsSearchBox from '@/components/Profiles/PostsPage/PostsSearchBox/Posts
 const PostsPage = ({ params }) => {
     return (
         <>
-            <div className='grid grid-cols-1 gap-3 py-5 md:gap-5 lg:grid-cols-3'>
+            <div className='grid grid-cols-1 gap-5 py-5 lg:grid-cols-3'>
                 {/* Info Area */}
                 <div className='flex flex-col gap-3 md:gap-5'>
                     <InfoArea />
