@@ -29,7 +29,7 @@ const postMenuBtn = <>
 const description = `
     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex accusantium libero maiores eveniet obcaecati ullam, incidunt quisquam, mollitia voluptatem repellendus voluptate odio optio expedita fugit facilis totam, debitis tempora illo? Omnis pariatur ullam odio eos voluptate, in, at architecto reiciendis dignissimos debitis sed explicabo ut autem. Recusandae dicta esse quisquam libero animi est laudantium fugit voluptates blanditiis sint! In a vel aperiam at eius corrupti molestiae quod sint aut porro! Saepe laudantium a quam, placeat asperiores cum, nesciunt quo, soluta enim nulla praesentium ex laborum iste cupiditate reiciendis aut ea veniam. Veritatis reprehenderit voluptates tempore, error officia ad expedita magnam.
 `
-const Post = () => {
+const Post = ({ video }) => {
     const [showDescription, setShowDescription] = useState(false);
     const [reactions, setReactions] = useState("");
 
@@ -87,12 +87,31 @@ const Post = () => {
                     </div>
                 </div>
 
-                {/* Image */}
-                <div className='flex justify-center bg-[#242526]/10 backdrop-blur-sm dark:bg-white/30'>
-                    <div className='max-w-full min-w-full sm:min-w-96 min-h-[10rem] md:min-h-[18rem] max-h-[31.25rem]'>
-                        <Image width={500} height={500} className='object-cover w-full h-full border dark:border-gray-700' src="https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt='Post Image' />
-                    </div>
-                </div>
+                {
+                    video ? <>
+                        <div className='flex justify-center bg-[#242526]/10 backdrop-blur-sm dark:bg-white/30'>
+                            <div className='max-w-full min-w-full sm:min-w-96 min-h-[10rem] md:min-h-[18rem] max-h-[31.25rem]'>
+                                <video width="320" height="240" className='w-full h-full' aria-label="Video player" autoPlay loop controls preload={true}>
+                                    <source src={video} type="video/mp4" />
+                                    <track
+                                        src="/path/to/captions.vtt"
+                                        kind="subtitles"
+                                        srcLang="en"
+                                        label="English"
+                                    />
+                                </video>
+                            </div>
+                        </div>
+                    </> : <>
+                        {/* Image */}
+                        <div className='flex justify-center bg-[#242526]/10 backdrop-blur-sm dark:bg-white/30'>
+                            <div className='max-w-full min-w-full sm:min-w-96 min-h-[10rem] md:min-h-[18rem] max-h-[31.25rem]'>
+                                <Image width={500} height={500} className='object-cover w-full h-full border dark:border-gray-700' src="https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt='Post Image' />
+                            </div>
+                        </div>
+                    </>
+                }
+
             </div>
 
             {/* Post Footer */}
