@@ -48,10 +48,10 @@ const PostsFriend = () => {
             </div>
             <div className='grid grid-cols-3 gap-2 pt-3'>
                 {
-                    friends.map((friend, index) => <Link href={`/friends/1`} className='relative block before:z-0 before:absolute before:w-full before:h-full before:bg-light-bg dark:before:bg-gray-500/50 max-h-32' key={friend.id}>
-                        <Image src={friend.image} width={80} height={80} className='object-cover w-full h-full rounded-md' alt={`Photo ${index}`} />
+                    friends.map((friend, index) => <Link href={`/friends/1`} className='relative block before:rounded-md before:absolute before:w-full before:h-full before:bg-gray-600/50 dark:before:bg-gray-800/50 max-h-32' key={friend.id}>
+                        <Image src={friend.image} width={80} height={80} className='z-0 object-cover w-full h-full rounded-md' alt={`Photo ${index}`} />
                         <div className='absolute bottom-0 z-10 w-full text-center'>
-                            <span className=' text-light-text dark:text-dark-text text-[0.75rem]'>{friend.name}</span>
+                            <span className='text-dark-text text-[0.75rem]'>{friend.name}</span>
                         </div>
                     </Link>)
                 }
