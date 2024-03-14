@@ -1,5 +1,6 @@
 import Post from '@/components/Posts/Post/Post';
 import InfoArea from '@/components/Profiles/PostsPage/InfoArea/InfoArea';
+import PostsFriend from '@/components/Profiles/PostsPage/PostsFriend/PostsFriend';
 import PostsPhotos from '@/components/Profiles/PostsPage/PostsPhotos/PostsPhotos';
 import PostsSearchBox from '@/components/Profiles/PostsPage/PostsSearchBox/PostsSearchBox';
 
@@ -11,6 +12,7 @@ const PostsPage = ({ params }) => {
                 <div className='flex flex-col gap-3 md:gap-5'>
                     <InfoArea />
                     <PostsPhotos />
+                    <PostsFriend />
                 </div>
 
                 <div className='lg:col-span-2'>
