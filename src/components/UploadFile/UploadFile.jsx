@@ -36,7 +36,7 @@ const UploadFile = ({ imageState, setImageState, onChange }) => {
                         <Image
                             src={URL.createObjectURL(imageState)}
                             alt="Selected"
-                            className="w-full rounded-md h-[200px] object-fill"
+                            className="w-full rounded-md max-h-[20rem] object-cover"
                             width={200}
                             height={200}
                         />
