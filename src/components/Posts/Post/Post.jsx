@@ -91,7 +91,7 @@ const Post = ({ video }) => {
                     video ? <>
                         <div className='flex justify-center bg-[#242526]/10 backdrop-blur-sm dark:bg-white/30'>
                             <div className='max-w-full min-w-full sm:min-w-96 min-h-[10rem] md:min-h-[18rem] max-h-[31.25rem]'>
-                                <video width="320" height="240" className='w-full h-full' aria-label="Video player" autoPlay loop controls preload={true}>
+                                <video width="320" height="240" className='w-full h-full' aria-label="Video player" autoPlay loop controls>
                                     <source src={video} type="video/mp4" />
                                     <track
                                         src="/path/to/captions.vtt"

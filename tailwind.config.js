@@ -26,7 +26,9 @@ module.exports = {
                 'light-body-bg': '#F0F2F5',
                 'dark-body-bg': '#0F172A',
                 'light-post-bg': '#FFFFFF',
-                'dark-post-bg': '#182234'
+                'dark-post-bg': '#182234',
+                'light-card-bg': '#FFFFFF',
+                'dark-card-bg': '#242526'
             }
         }
     },
