@@ -2,6 +2,8 @@ import Button from '@/components/Button/Button';
 import FormControl from '@/components/RegisterPage/FormControl/FormControl';
 import FormPassword from '@/components/RegisterPage/FormControl/FormPassword';
 import FormHading from '@/components/RegisterPage/FormHading/FormHading';
+import SocialLogin from '@/components/RegisterPage/SocialLogin/SocialLogin';
+import Link from 'next/link';
 import React from 'react';
 
 export const metadata = {
@@ -11,22 +13,37 @@ export const metadata = {
 
 const RegisterPage = () => {
     return (
-        <form>
-            <FormHading>Create a new account</FormHading>
-            <div className='py-3'>
-                <FormControl label='Name' id='name' type='text' placeholder='Enter Your Name' />
-                <FormControl
-                    label='Email'
-                    id='email'
-                    type='email'
-                    placeholder='example@gmail.com'
-                />
-                <FormPassword label='Password' id='password' placeholder='Enter Your Password' />
+        <>
+            <form>
+                <FormHading>Create a new account</FormHading>
+                <div className='py-3'>
+                    <FormControl label='Name' id='name' type='text' placeholder='Enter Your Name' />
+                    <FormControl
+                        label='Email'
+                        id='email'
+                        type='email'
+                        placeholder='example@gmail.com'
+                    />
+                    <FormPassword
+                        label='Password'
+                        id='password'
+                        placeholder='Enter Your Password'
+                    />
+                </div>
+                <Button className='w-full mt-2 hover:opacity-75 bg-gradient-to-r from-violet-500 to-fuchsia-500'>
+                    Register
+                </Button>
+            </form>
+            <div className='my-3 text-sm italic text-center text-gray-300'>
+                Already have a account?{' '}
+                <Link className='text-pink-500' href='/login'>
+                    Login
+                </Link>
             </div>
-            <Button className='w-full mt-2 hover:opacity-75 bg-gradient-to-r from-violet-500 to-fuchsia-500'>
-                Register
-            </Button>
-        </form>
+
+            {/* Social Login */}
+            <SocialLogin />
+        </>
     );
 };
 
