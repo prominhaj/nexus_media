@@ -1,10 +1,10 @@
 "use client"
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'primereact/resources/themes/lara-light-cyan/theme.css';
 
 // Import Swiper styles
 import 'swiper/css';
-import { Image } from 'primereact/image';
+import StoryModal from '../Shared/Modal/StoryModal';
+import Image from 'next/image';
 
 
 const items = [
@@ -80,16 +80,14 @@ const StorySlider = () => {
                 {
                     items.map((item, index) => (
                         <SwiperSlide className='!flex' key={index}>
-                            <Image
+                            <StoryModal image={item.avatar} card={<Image
                                 src={item.avatar}
-                                zoomSrc="https://via.placeholder.com/400"
-                                width="50"
-                                height='50'
+                                width={50}
+                                height={50}
                                 loading='lazy'
-                                imageClassName='rounded-full border-[3px] border-blue-400 dark:border-blue-500'
+                                className='rounded-full border-[3px] border-blue-400 dark:border-blue-500'
                                 alt="Image"
-                                preview
-                            />
+                            />} />
                         </SwiperSlide>
                     ))
                 }

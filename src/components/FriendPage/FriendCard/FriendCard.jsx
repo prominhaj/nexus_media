@@ -5,7 +5,7 @@ import React from 'react';
 
 const FriendCard = () => {
     return (
-        <div className='border rounded-lg shadow-lg bg-light-post-bg dark:bg-dark-card-bg dark:border-[#3E4042]'>
+        <div className='hover:scale-[1.02] duration-300 transition-all border rounded-lg shadow-lg bg-light-post-bg dark:bg-dark-card-bg dark:border-[#3E4042]'>
             {/* Image */}
             <Link href={"/"} className='block max-h-[12rem]'>
                 <Image src="https://images.pexels.com/photos/1462980/pexels-photo-1462980.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width={150} height={150} className='object-cover w-full h-full rounded-tl-lg rounded-tr-lg' alt='Friend Image' />
