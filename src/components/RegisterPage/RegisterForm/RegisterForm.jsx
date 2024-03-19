@@ -4,6 +4,9 @@ import Button from '@/components/Button/Button';
 import FormControl from '@/components/RegisterPage/FormControl/FormControl';
 import FormPassword from '@/components/RegisterPage/FormControl/FormPassword';
 import FormHading from '@/components/RegisterPage/FormHading/FormHading';
+import imageUpload from '@/utils/imageUpload';
+import { Spinner } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -11,7 +14,7 @@ import { toast } from 'sonner';
 const RegisterForm = () => {
     const { createAccount, nameAndPhoto } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
-    const [image, setImage] = useState(null);
+    const router = useRouter();
 
     // Hook Form to register
     const {
@@ -22,13 +25,23 @@ const RegisterForm = () => {
 
     // Form Handler
     const onSubmit = async (form) => {
-        console.log(form);
         setLoading(true)
         const { name, email, photo, password } = form;
+
         try {
-            const singUp = await createAccount(email, password);
-            const updateProfile = await nameAndPhoto(name, photo);
-            console.log("singUp", singUp, "updateProfile", updateProfile);
+
+            const imageHost = await imageUpload(photo);
+            console.log(imageHost);
+            if (imageHost.success) {
+                const singUp = await createAccount(email, password);
+                await nameAndPhoto(name, imageHost.data.display_url);
+
+                if (singUp.user) {
+                    router.push("/")
+                    toast.success('Account Created Successfully');
+                }
+
+            }
         }
         catch (err) {
             toast.error(err.message.substr(10));
@@ -108,9 +121,15 @@ const RegisterForm = () => {
                     </FormPassword>
                 </div>
 
-                <Button type="submit" className='w-full mt-2 hover:opacity-75 bg-gradient-to-r from-violet-500 to-fuchsia-500'>
-                    Register
-                </Button>
+                {loading ? (
+                    <div className='flex items-center justify-center'>
+                        <Spinner color="primary" />
+                    </div>
+                ) : (
+                    <Button type="submit" className='w-full mt-2 hover:opacity-75 bg-gradient-to-r from-violet-500 to-fuchsia-500'>
+                        Register
+                    </Button>
+                )}
             </form>
         </div>
     );

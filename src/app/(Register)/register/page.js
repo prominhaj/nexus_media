@@ -11,6 +11,7 @@ const RegisterPage = () => {
     return (
         <>
             <RegisterForm />
+
             <div className='my-3 text-sm italic text-center text-gray-300'>
                 Already have a account?{' '}
                 <Link className='text-pink-500' href='/login'>
