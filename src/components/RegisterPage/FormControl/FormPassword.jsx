@@ -21,11 +21,11 @@ const FormPassword = ({ id, label, placeholder, register, children }) => {
                     className='w-full px-3 ring-1 bg-transparent mt-2 text-base text-gray-300 rounded-md outline-none py-[0.375rem] focus:ring-2 placeholder:text-gray-500'
                     type={showPass ? "text" : "password"}
                     placeholder={placeholder} />
-                <span onClick={() => setShowPass(!showPass)} className='absolute text-xl text-gray-300 cursor-pointer bottom-2 right-2'>{showPass ? <FaEyeSlash /> : <FaEye />}</span>
-                <>
-                    {children}
-                </>
+                <button type="button" onClick={() => setShowPass(!showPass)} className='absolute text-xl text-gray-300 cursor-pointer bottom-2 right-2'>{showPass ? <FaEyeSlash /> : <FaEye />}</button>
             </div>
+            <>
+                {children}
+            </>
         </div>
     );
 };

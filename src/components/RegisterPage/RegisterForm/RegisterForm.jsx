@@ -1,19 +1,41 @@
 "use client"
+import { AuthContext } from '@/Providers/AuthProvider';
 import Button from '@/components/Button/Button';
 import FormControl from '@/components/RegisterPage/FormControl/FormControl';
 import FormPassword from '@/components/RegisterPage/FormControl/FormPassword';
 import FormHading from '@/components/RegisterPage/FormHading/FormHading';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 const RegisterForm = () => {
+    const { createAccount, nameAndPhoto } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
+    const [image, setImage] = useState(null);
+
+    // Hook Form to register
     const {
         register,
         formState: { errors },
         handleSubmit
     } = useForm();
 
-    const onSubmit = (form) => {
+    // Form Handler
+    const onSubmit = async (form) => {
         console.log(form);
+        setLoading(true)
+        const { name, email, photo, password } = form;
+        try {
+            const singUp = await createAccount(email, password);
+            const updateProfile = await nameAndPhoto(name, photo);
+            console.log("singUp", singUp, "updateProfile", updateProfile);
+        }
+        catch (err) {
+            toast.error(err.message.substr(10));
+        }
+        finally {
+            setLoading(false)
+        }
     };
 
     return (
@@ -37,6 +59,22 @@ const RegisterForm = () => {
                             <p className='mt-1 text-sm text-red-500'>Email is required</p>
                         )}
                     </FormControl>
+
+                    {/* Image Uploader */}
+                    <FormControl
+                        register={register}
+                        className="file:bg-indigo-500 file:rounded-md file:border-none"
+                        label='Profile Photo'
+                        id='photo'
+                        type='file'
+                        placeholder="Upload Profile Photo..."
+                    >
+                        {errors.photo?.type === "required" && (
+                            <p className='mt-1 text-sm text-red-500'>Profile Photo is required</p>
+                        )}
+                    </FormControl>
+
+                    {/* Form Password Control */}
                     <FormPassword
                         register={register}
                         label='Password'
@@ -69,6 +107,7 @@ const RegisterForm = () => {
 
                     </FormPassword>
                 </div>
+
                 <Button type="submit" className='w-full mt-2 hover:opacity-75 bg-gradient-to-r from-violet-500 to-fuchsia-500'>
                     Register
                 </Button>

@@ -3,6 +3,8 @@ import { Poppins } from 'next/font/google';
 import NextProvider from '@/Providers/NextProvider';
 import ThemeProvider from '../Context/ThemeContext';
 import ColorProvider from '@/Providers/ColorProvider';
+import AuthProvider from '@/Providers/AuthProvider';
+import { Toaster } from 'sonner';
 
 const poppins = Poppins({
     weight: ['200', '400', '500', '600', '700', '800'],
@@ -21,7 +23,12 @@ export default function RootLayout({ children }) {
             <body className={`${poppins.className}`}>
                 <NextProvider>
                     <ColorProvider>
-                        <ThemeProvider>{children}</ThemeProvider>
+                        <ThemeProvider>
+                            <AuthProvider>
+                                <Toaster position='top-right' />
+                                {children}
+                            </AuthProvider>
+                        </ThemeProvider>
                     </ColorProvider>
                 </NextProvider>
             </body>

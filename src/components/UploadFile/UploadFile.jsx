@@ -3,7 +3,7 @@ import React from 'react';
 import { CiImageOn } from 'react-icons/ci';
 import { HiOutlineTrash } from 'react-icons/hi2';
 
-const UploadFile = ({ imageState, setImageState, onChange }) => {
+const UploadFile = ({ imageState, setImageState, onChange, className }) => {
     return (
         <div>
             {
@@ -36,7 +36,7 @@ const UploadFile = ({ imageState, setImageState, onChange }) => {
                         <Image
                             src={URL.createObjectURL(imageState)}
                             alt="Selected"
-                            className="w-full rounded-md max-h-[20rem] object-cover"
+                            className={`${className} w-full rounded-md max-h-[20rem] object-cover`}
                             width={200}
                             height={200}
                         />
