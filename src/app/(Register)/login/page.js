@@ -1,13 +1,21 @@
 'use client';
+import { AuthContext } from '@/Providers/AuthProvider';
 import Button from '@/components/Button/Button';
 import FormControl from '@/components/RegisterPage/FormControl/FormControl';
 import FormPassword from '@/components/RegisterPage/FormControl/FormPassword';
 import FormHading from '@/components/RegisterPage/FormHading/FormHading';
 import SocialLogin from '@/components/RegisterPage/SocialLogin/SocialLogin';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 const LoginPage = () => {
+    const { login } = useContext(AuthContext);
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
+
     // Hook Form to register
     const {
         register,
@@ -15,8 +23,19 @@ const LoginPage = () => {
         handleSubmit
     } = useForm();
 
-    const onSubmit = async (user) => {
-        console.log(user);
+    const onSubmit = async ({ email, password }) => {
+        setLoading(true);
+        try {
+            const singIn = await login(email, password);
+            if (singIn.user) {
+                router.push('/');
+                toast.success('Login Successfully');
+            }
+        } catch (error) {
+            toast.error(error.message.substr(10));
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -40,6 +59,7 @@ const LoginPage = () => {
                         label='Password'
                         id='password'
                         placeholder='Enter Your Password'
+                        login={true}
                     >
                         {errors.password?.type === 'required' && (
                             <p className='text-red-600 dark:text-red-400'>

@@ -1,6 +1,6 @@
 "use client"
 import app from '@/Firebase/Firebase.config';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
 
 export const AuthContext = createContext(null);
@@ -10,6 +10,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
+    // Register the user
     const createAccount = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
@@ -18,6 +19,11 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
         })
+    }
+
+    // Login the user
+    const login = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
     }
 
     // Set User
@@ -33,6 +39,7 @@ const AuthProvider = ({ children }) => {
     const info = {
         createAccount,
         nameAndPhoto,
+        login,
         user,
     }
 
