@@ -5,6 +5,7 @@ import FormControl from '@/components/RegisterPage/FormControl/FormControl';
 import FormPassword from '@/components/RegisterPage/FormControl/FormPassword';
 import FormHading from '@/components/RegisterPage/FormHading/FormHading';
 import imageUpload from '@/utils/imageUpload';
+import postSingupData from '@/utils/postSingupData';
 import { Spinner } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { useContext, useState } from 'react';
@@ -29,16 +30,22 @@ const RegisterForm = () => {
         const { name, email, photo, password } = form;
 
         try {
-
             const imageHost = await imageUpload(photo);
-            console.log(imageHost);
             if (imageHost.success) {
                 const singUp = await createAccount(email, password);
                 await nameAndPhoto(name, imageHost.data.display_url);
-
                 if (singUp.user) {
-                    router.push("/")
-                    toast.success('Account Created Successfully');
+                    const user = {
+                        name,
+                        email,
+                        photo: imageHost.data.display_url,
+                        joinDate: new Date().toString()
+                    }
+                    const singUpData = await postSingupData(user);
+                    if (singUpData.success) {
+                        router.push("/")
+                        toast.success('Account Created Successfully');
+                    }
                 }
 
             }
