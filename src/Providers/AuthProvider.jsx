@@ -2,7 +2,7 @@
 import app from '@/Firebase/Firebase.config';
 import { deleteCookies } from '@/components/cookies/deleteCookies';
 import { setCookies } from '@/components/cookies/setCookies';
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
 
 export const AuthContext = createContext(null);
@@ -40,6 +40,11 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider);
     }
 
+    // Github Authentication
+    const githubProvider = new GithubAuthProvider();
+    const githubSignIn = () => {
+        return signInWithPopup(auth, githubProvider);
+    }
 
     // Set User
     useEffect(() => {
@@ -67,6 +72,7 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         googleSignIn,
+        githubSignIn,
         logout
     }
 
