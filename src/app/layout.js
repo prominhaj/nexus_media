@@ -1,7 +1,7 @@
 import './globals.css';
 import { Poppins } from 'next/font/google';
 import NextProvider from '@/Providers/NextProvider';
-import ThemeProvider from '../Context/ThemeContext';
+import ThemeProvider from '../Providers/ThemeContext';
 import ColorProvider from '@/Providers/ColorProvider';
 import AuthProvider from '@/Providers/AuthProvider';
 import { Toaster } from 'sonner';

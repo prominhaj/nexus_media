@@ -1,4 +1,4 @@
-import { ThemeContext } from '../../../Context/ThemeContext';
+import { ThemeContext } from '../../../Providers/ThemeContext';
 import useColor from '@/Hooks/useColor';
 import { Switch } from "@nextui-org/react";
 import React, { useContext, useState } from 'react';

@@ -5,6 +5,7 @@ import FormControl from '@/components/RegisterPage/FormControl/FormControl';
 import FormPassword from '@/components/RegisterPage/FormControl/FormPassword';
 import FormHading from '@/components/RegisterPage/FormHading/FormHading';
 import SocialLogin from '@/components/RegisterPage/SocialLogin/SocialLogin';
+import { Spinner } from '@nextui-org/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useContext, useState } from 'react';
@@ -68,9 +69,20 @@ const LoginPage = () => {
                         )}
                     </FormPassword>
                 </div>
-                <Button className='w-full mt-2 hover:opacity-75 bg-gradient-to-r from-violet-500 to-fuchsia-500'>
-                    Login
-                </Button>
+
+                {/* Login Button */}
+                {loading ? (
+                    <div className='flex items-center justify-center'>
+                        <Spinner color='primary' />
+                    </div>
+                ) : (
+                    <Button
+                        type='submit'
+                        className='w-full mt-2 hover:opacity-75 bg-gradient-to-r from-violet-500 to-fuchsia-500'
+                    >
+                        Login
+                    </Button>
+                )}
             </form>
             <div className='my-3 text-sm italic text-center text-gray-300'>
                 Create a new account?{' '}

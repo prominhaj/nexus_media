@@ -19,6 +19,7 @@ import './Header.css'
 import Notification from '../Notification/Notification';
 import { useState } from 'react';
 import ModalChat from '@/components/ModalChat/ModalChat';
+import useAuth from '@/Hooks/useAuth';
 
 // Header Mode Items
 const headerModeItems = [
@@ -55,6 +56,7 @@ const people = [
 ]
 
 const Header = ({ children }) => {
+    const user = useAuth();
     const pathname = usePathname();
     const { color } = useColor();
     const [modal, setModal] = useState(false);
@@ -92,7 +94,7 @@ const Header = ({ children }) => {
 
     const profile = <>
         <div>
-            <Avatar isBordered color="success" src="https://i.pravatar.cc/150?u=a04258114e29026302d" />
+            <Avatar isBordered color="success" src={user?.photoURL} />
         </div>
     </>
 

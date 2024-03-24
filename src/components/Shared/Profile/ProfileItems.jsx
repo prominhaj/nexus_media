@@ -1,6 +1,8 @@
 import PopoverCus from '@/components/Homes/Popover/PopoverCus';
 import Link from 'next/link';
 import React from 'react';
+import Logout from '../Logout/Logout';
+import useAuth from '@/Hooks/useAuth';
 
 // Profile Items 
 const profileItems = [
@@ -15,6 +17,8 @@ const profileItems = [
 ]
 
 const ProfileItems = ({ name, classes, bottom }) => {
+    const user = useAuth();
+
     return (
         <div>
             <PopoverCus classes={classes} name={name} bottom={bottom}>
@@ -25,7 +29,12 @@ const ProfileItems = ({ name, classes, bottom }) => {
                                 <Link className='block px-3 dark:text-dark-text text-light-text rounded-md py-2 text-[1.02rem dark:hover:bg-dark-bg-hover hover:bg-light-bg-hover duration-300' href={item.path} key={item.path}>{item.name}</Link>
                             )
                         }
-                        <button className='block text-start px-3 dark:text-dark-text text-light-text rounded-md py-2 text-[1.02rem dark:hover:bg-dark-bg-hover hover:bg-light-bg-hover duration-300'>Logout</button>
+                        {
+                            user ? <Logout>
+                                <button className='block text-start px-3 w-full dark:text-dark-text text-light-text rounded-md py-2 text-[1.02rem dark:hover:bg-dark-bg-hover hover:bg-light-bg-hover duration-300'>Logout</button>
+                            </Logout> : <Link className='block text-start px-3 w-full dark:text-dark-text text-light-text rounded-md py-2 text-[1.02rem dark:hover:bg-dark-bg-hover hover:bg-light-bg-hover duration-300' href="/login">Login</Link>
+                        }
+
                     </div>
                 </div>
             </PopoverCus>
