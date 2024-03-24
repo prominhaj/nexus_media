@@ -2,7 +2,7 @@
 import app from '@/Firebase/Firebase.config';
 import { deleteCookies } from '@/components/cookies/deleteCookies';
 import { setCookies } from '@/components/cookies/setCookies';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
 
 export const AuthContext = createContext(null);
@@ -34,6 +34,13 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
+    // Google Authentication
+    const googleProvider = new GoogleAuthProvider();
+    const googleSignIn = () => {
+        return signInWithPopup(auth, googleProvider);
+    }
+
+
     // Set User
     useEffect(() => {
         setLoading(true);
@@ -59,6 +66,7 @@ const AuthProvider = ({ children }) => {
         login,
         user,
         loading,
+        googleSignIn,
         logout
     }
 
