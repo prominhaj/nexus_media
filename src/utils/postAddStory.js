@@ -1,5 +1,5 @@
 export const postAddStory = async (data) => {
-    const req = await fetch('/api/addstory', {
+    const req = await fetch('/api/story', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

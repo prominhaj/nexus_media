@@ -6,37 +6,7 @@ import 'swiper/css';
 import StoryModal from '../Shared/Modal/StoryModal';
 import Image from 'next/image';
 
-
-const items = [
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-    { avatar: "https://via.placeholder.com/40" },
-];
-
-const StorySlider = () => {
-
+const StorySlider = ({ stories }) => {
     return (
         <div>
             <Swiper
@@ -78,16 +48,18 @@ const StorySlider = () => {
                 }}
             >
                 {
-                    items.map((item, index) => (
+                    stories?.map((item, index) => (
                         <SwiperSlide className='!flex' key={index}>
-                            <StoryModal image={item.avatar} card={<Image
-                                src={item.avatar}
-                                width={50}
-                                height={50}
-                                loading='lazy'
-                                className='rounded-full border-[3px] border-blue-400 dark:border-blue-500'
-                                alt="Image"
-                            />} />
+                            <StoryModal image={item.
+                                storyPhoto} card={<Image
+                                    src={item.
+                                        storyPhoto}
+                                    width={50}
+                                    height={50}
+                                    loading='lazy'
+                                    className='rounded-full w-[3.125rem] h-[3.125rem] border-[3px] border-blue-400 dark:border-blue-500'
+                                    alt="Image"
+                                />} />
                         </SwiperSlide>
                     ))
                 }

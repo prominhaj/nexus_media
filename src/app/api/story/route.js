@@ -2,6 +2,17 @@ import connectDB from '@/lib/mongodb';
 import Story from '@/models/Story';
 import { NextResponse } from 'next/server';
 
+export const GET = async (req) => {
+    try {
+        await connectDB();
+        const stories = await Story.find();
+        console.log(stories);
+        return NextResponse.json(stories);
+    } catch (err) {
+        return NextResponse.json({ error: err.message });
+    }
+};
+
 export const POST = async (req) => {
     try {
         await connectDB();
