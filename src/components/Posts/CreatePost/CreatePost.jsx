@@ -6,6 +6,7 @@ import ModalCus from '../../Homes/ModalCus/ModalCus';
 import UploadFile from '@/components/UploadFile/UploadFile';
 import { BsEmojiNeutral } from "react-icons/bs";
 import EmojiSlider from '@/components/SliderCus/EmojiSlider';
+import useAuth from '@/Hooks/useAuth';
 
 // Create Post Button
 const createPostBtn = <>
@@ -30,6 +31,7 @@ const CreatePost = () => {
     const [image, setImage] = useState(null);
     const [description, setDescription] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
+    const user = useAuth();
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -40,7 +42,7 @@ const CreatePost = () => {
         <div className='p-3 rounded-lg shadow-md md:p-5 bg-light-post-bg dark:bg-dark-post-bg'>
             <div className='flex items-start gap-3'>
                 <Link href={"/profile"}>
-                    <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
+                    <Avatar src={user?.photoURL} />
                 </Link>
                 <div className='flex flex-1'>
                     <ModalCus name={createPostBtn} modalTitle="Create Post" classes={"w-full"} action={actionBtn} disabled={image || description ? false : true} type={"submit"}>
