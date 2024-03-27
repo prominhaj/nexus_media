@@ -30,7 +30,6 @@ const StoryModal = ({ card, item }) => {
         };
     }, [isOpen]);
 
-    console.log(item);
     return (
         <>
             {/* Story Modal Button */}

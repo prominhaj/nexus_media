@@ -5,8 +5,27 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import StoryModal from '../Shared/Modal/StoryModal';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import StorySliderLoading from './StorySliderLoading';
 
-const StorySlider = ({ stories }) => {
+const StorySlider = () => {
+    const [loading, setLoading] = useState(true);
+    const [stories, setStories] = useState([]);
+
+    useEffect(() => {
+        getAllStory()
+            .then(story => {
+                setLoading(false);
+                setStories(story)
+            })
+    }, [])
+
+    const getAllStory = async () => {
+        const response = await fetch('http://localhost:3000/api/story');
+        const data = await response.json();
+        return data;
+    }
+
     return (
         <div>
             <Swiper
@@ -48,7 +67,7 @@ const StorySlider = ({ stories }) => {
                 }}
             >
                 {
-                    stories?.map((item, index) => (
+                    loading ? <SwiperSlide><StorySliderLoading /></SwiperSlide> : stories?.map((item, index) => (
                         <SwiperSlide className='!flex' key={index}>
                             <StoryModal
                                 item={item}

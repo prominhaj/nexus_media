@@ -46,10 +46,11 @@ const AddStory = ({ addStory }) => {
                 // Add the new story
                 const addStoryData = await postAddStory(newStory);
                 if (addStoryData.success) {
-                    setLoading(false);
                     router.refresh();
+                    setLoading(false);
                     setSelectedFile("")
                     toast.success('Story Added successfully');
+
                 }
                 else {
                     toast.error("Something went wrong");
