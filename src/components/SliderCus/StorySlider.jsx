@@ -50,8 +50,9 @@ const StorySlider = ({ stories }) => {
                 {
                     stories?.map((item, index) => (
                         <SwiperSlide className='!flex' key={index}>
-                            <StoryModal image={item.
-                                storyPhoto} card={<Image
+                            <StoryModal
+                                item={item}
+                                card={<Image
                                     src={item.
                                         storyPhoto}
                                     width={50}

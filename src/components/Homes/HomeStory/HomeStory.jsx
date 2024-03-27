@@ -1,4 +1,3 @@
-import React from 'react';
 import AddStory from '../AddStory/AddStory';
 import StorySlider from '@/components/SliderCus/StorySlider';
 import getAllStory from '@/utils/getAllStory';
