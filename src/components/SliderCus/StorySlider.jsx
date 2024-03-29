@@ -7,24 +7,20 @@ import StoryModal from '../Shared/Modal/StoryModal';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import StorySliderLoading from './StorySliderLoading';
+import getAllStory from '@/utils/getAllStory';
 
 const StorySlider = () => {
     const [loading, setLoading] = useState(true);
     const [stories, setStories] = useState([]);
 
     useEffect(() => {
-        getAllStory()
-            .then(story => {
-                setLoading(false);
-                setStories(story)
-            })
+        const story = async () => {
+            const result = await getAllStory();
+            setStories(result);
+            setLoading(false);
+        }
+        story()
     }, [])
-
-    const getAllStory = async () => {
-        const response = await fetch('http://localhost:3000/api/story');
-        const data = await response.json();
-        return data;
-    }
 
     return (
         <div>
@@ -77,7 +73,7 @@ const StorySlider = () => {
                                     width={50}
                                     height={50}
                                     loading='lazy'
-                                    className='rounded-full w-[3.125rem] h-[3.125rem] border-[3px] border-blue-400 dark:border-blue-500'
+                                    className='rounded-full transition-all duration-300 w-[3.125rem] h-[3.125rem] border-[3px] border-blue-400 dark:border-blue-500'
                                     alt="Image"
                                 />} />
                         </SwiperSlide>

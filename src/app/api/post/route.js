@@ -1,12 +1,12 @@
 import connectDB from '@/lib/mongodb';
-import Story from '@/models/Story';
+import Post from '@/models/Post';
 import { NextResponse } from 'next/server';
 
-export const GET = async (req) => {
+export const GET = async () => {
     try {
         await connectDB();
-        const stories = await Story.find();
-        return NextResponse.json(stories);
+        const posts = await Post.find();
+        return NextResponse.json(posts);
     } catch (err) {
         return NextResponse.json({ error: err.message });
     }
@@ -15,9 +15,9 @@ export const GET = async (req) => {
 export const POST = async (req) => {
     try {
         await connectDB();
-        const story = await req.json();
-        await Story.create(story);
-        return NextResponse.json({ success: true }, { message: 'Story created successfully' });
+        const newPost = await req.json();
+        await Post.create(newPost);
+        return NextResponse.json({ success: true });
     } catch (err) {
         return NextResponse.json({ error: err.message });
     }

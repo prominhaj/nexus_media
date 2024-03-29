@@ -39,7 +39,6 @@ const RegisterForm = () => {
                         name,
                         email,
                         photo: imageHost.data.display_url,
-                        Date: new Date().toString()
                     }
                     const singUpData = await postSingupData(user);
                     if (singUpData.success) {

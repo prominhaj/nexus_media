@@ -48,7 +48,7 @@ const StoryModal = ({ card, item }) => {
                                         <Avatar isBordered src={item?.profilePhoto} />
                                         <div>
                                             <h2>{item?.name}</h2>
-                                            <p>{moment(item?.Date).format('lll')}</p>
+                                            <p>{moment(item?.Date).format('MMM DD, YYYY h:mm A')}</p>
                                         </div>
                                     </div>
 
