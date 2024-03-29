@@ -42,6 +42,7 @@ const RegisterForm = () => {
                     }
                     const singUpData = await postSingupData(user);
                     if (singUpData.success) {
+                        setLoading(false)
                         router.push("/")
                         toast.success('Account Created Successfully');
                     }
@@ -50,10 +51,8 @@ const RegisterForm = () => {
             }
         }
         catch (err) {
-            toast.error(err.message.substr(10));
-        }
-        finally {
             setLoading(false)
+            toast.error(err.message.substr(10));
         }
     };
 
