@@ -59,7 +59,7 @@ const StoryModal = ({ card, item }) => {
                                         </svg>
                                     </button>
                                 </div>
-                                <Image src={item?.storyPhoto} width={500} height={500} className='object-cover w-full h-full transition-all duration-300 rounded-md ' alt='Image' />
+                                <Image src={item?.storyPhoto} width={600} loading='lazy' height={600} className='object-cover w-full h-full transition-all duration-300 rounded-md ' alt='Image' />
                             </div>
                         </div>
                     </div>,

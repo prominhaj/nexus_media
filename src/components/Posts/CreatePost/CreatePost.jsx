@@ -6,10 +6,6 @@ import ModalCus from '../../Homes/ModalCus/ModalCus';
 import UploadFile from '@/components/UploadFile/UploadFile';
 import { BsEmojiNeutral } from "react-icons/bs";
 import EmojiSlider from '@/components/SliderCus/EmojiSlider';
-import useAuth from '@/Hooks/useAuth';
-import imageUpload from '@/utils/imageUpload';
-import { toast } from 'sonner';
-import createPost from '@/utils/createPost';
 
 // Create Post Button
 const createPostBtn = <>
@@ -30,43 +26,36 @@ const emojiBtn = <>
     </div>
 </>
 
-const CreatePost = () => {
-    const [image, setImage] = useState(null);
-    const [description, setDescription] = useState("");
-    const [loading, setLoading] = useState(false);
+const CreatePost = ({ handleCreatePost, user, loading, setImage, image, handleImageChange, description, setDescription }) => {
     const [showEmoji, setShowEmoji] = useState(false);
-    const user = useAuth();
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setImage(file);
-    };
+    // const handleCreatePost = async () => {
+    //     setLoading(true)
+    //     try {
+    //         const imageHost = await imageUpload(image, true);
+    //         if (imageHost.success) {
+    //             // New Post 
+    //             const newPost = {
+    //                 name: user?.displayName,
+    //                 email: user?.email,
+    //                 profilePhoto: user?.photoURL,
+    //                 postPhoto: imageHost?.data?.display_url,
+    //                 description: description
+    //             }
 
-    const handleCreatePost = async () => {
-        setLoading(true)
-        try {
-            const imageHost = await imageUpload(image, true);
-            if (imageHost.success) {
-                // New Post 
-                const newPost = {
-                    name: user?.displayName,
-                    email: user?.email,
-                    profilePhoto: user?.photoURL,
-                    postPhoto: imageHost?.data?.display_url,
-                    description: description
-                }
+    //             const req = await createPost(newPost);
+    //             if (req.success) {
+    //                 setLoading(false)
+    //                 setDescription("")
+    //                 setImage("")
+    //                 toast.success("Post created successfully")
+    //             }
+    //         }
+    //     } catch (error) {
+    //         toast.error(error.message)
+    //     }
 
-                const req = await createPost(newPost);
-                if (req.success) {
-                    setLoading(false)
-                    toast.success("Post created successfully")
-                }
-            }
-        } catch (error) {
-            toast.error(error.message)
-        }
-
-    }
+    // }
 
     return (
         <div className='p-3 rounded-lg shadow-md md:p-5 bg-light-post-bg dark:bg-dark-post-bg'>
@@ -75,7 +64,7 @@ const CreatePost = () => {
                     <Avatar src={user?.photoURL} />
                 </Link>
                 <div className='flex flex-1'>
-                    <ModalCus onClick={handleCreatePost} loading={loading} name={createPostBtn} modalTitle="Create Post" classes={"w-full"} action={actionBtn} disabled={image || description ? false : true} type={"submit"}>
+                    <ModalCus onClick={handleCreatePost} loading={loading} name={createPostBtn} modalTitle="Create Post" classes={"w-full"} action={actionBtn} disabled={image && description ? false : true} type={"submit"}>
                         <form>
                             {/* Image Update  */}
                             <div>
@@ -93,7 +82,7 @@ const CreatePost = () => {
                                     isRequired
                                     label="Description"
                                     labelPlacement="outside"
-                                    placeholder="Enter your description"
+                                    placeholder="Enter your description..."
                                     className="w-full"
                                 />
 

@@ -35,9 +35,9 @@ const ModalCus = ({ name, modalTitle, children, action, classes, onClick, disabl
                                 </Button>
                                 {
                                     loading ? <Spinner color="warning" /> :
-                                        action && <Button type={type && type} className='disabled:bg-opacity-50 disabled:opacity-90 bg-[#6f4ef2] shadow-lg shadow-indigo-500/20' disabled={disabled && disabled} color="primary" onClick={onClick}>
+                                        action && <button type={type && type} className='px-4 text-sm tracking-wider text-white transition-all shadow-lg rounded-3xl duration-250 disabled:bg-opacity-50 disabled:cursor-not-allowed disabled:opacity-60 bg-gradient-to-r from-blue-500 to-blue-500' disabled={disabled && disabled} onClick={onClick}>
                                             {action}
-                                        </Button>
+                                        </button>
                                 }
                             </ModalFooter>
                         </>

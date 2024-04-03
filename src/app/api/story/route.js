@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 export const GET = async (req) => {
     try {
         await connectDB();
-        const stories = await Story.find();
+        const stories = await Story.find().sort({ Date: 1 });
         return NextResponse.json(stories);
     } catch (err) {
         return NextResponse.json({ error: err.message });

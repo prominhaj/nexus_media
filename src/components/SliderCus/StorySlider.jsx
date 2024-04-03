@@ -10,10 +10,11 @@ import StorySliderLoading from './StorySliderLoading';
 import getAllStory from '@/utils/getAllStory';
 
 const StorySlider = () => {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [stories, setStories] = useState([]);
 
     useEffect(() => {
+        setLoading(true)
         const story = async () => {
             const result = await getAllStory();
             setStories(result);

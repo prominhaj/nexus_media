@@ -1,6 +1,6 @@
 import CreatePost from '@/components/Posts/CreatePost/CreatePost';
 import HomeStory from '@/components/Homes/HomeStory/HomeStory';
-import Post from '@/components/Posts/Post/Post';
+import AllPosts from '@/components/Posts/AllPosts/AllPosts';
 
 const HomePage = () => {
     return (
@@ -12,24 +12,8 @@ const HomePage = () => {
                     <HomeStory />
                 </div>
 
-                {/* Create Post */}
-                <div className='py-5 sm:py-8'>
-                    <CreatePost />
-                </div>
-
                 {/* All Posts */}
-                <div className='grid grid-cols-1 gap-5'>
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                </div>
+                <AllPosts />
             </div>
         </>
     );

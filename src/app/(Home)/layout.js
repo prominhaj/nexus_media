@@ -6,7 +6,7 @@ import ScrollTop from '@/components/Homes/ScrollTop/ScrollTop';
 
 const layout = ({ children }) => {
     return (
-        <div className='bg-light-body-bg/80 dark:bg-dark-body-bg/80'>
+        <div className='bg-right bg-light-body-bg/80 dark:bg-dark-body-bg/80'>
             <Header>
                 <OffCanvas />
             </Header>

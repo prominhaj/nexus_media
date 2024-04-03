@@ -18,6 +18,7 @@ import CommentAction from '../CommentAction/CommentAction';
 import ShareAction from '../ShareAction/ShareAction';
 import CommentBox from '../CommentAction/CommentBox';
 import SingleComment from '../SingleComment/SingleComment';
+import moment from 'moment';
 
 // Post Menu Button
 const postMenuBtn = <>
@@ -26,35 +27,37 @@ const postMenuBtn = <>
     </div>
 </>
 
-const description = `
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex accusantium libero maiores eveniet obcaecati ullam, incidunt quisquam, mollitia voluptatem repellendus voluptate odio optio expedita fugit facilis totam, debitis tempora illo? Omnis pariatur ullam odio eos voluptate, in, at architecto reiciendis dignissimos debitis sed explicabo ut autem. Recusandae dicta esse quisquam libero animi est laudantium fugit voluptates blanditiis sint! In a vel aperiam at eius corrupti molestiae quod sint aut porro! Saepe laudantium a quam, placeat asperiores cum, nesciunt quo, soluta enim nulla praesentium ex laborum iste cupiditate reiciendis aut ea veniam. Veritatis reprehenderit voluptates tempore, error officia ad expedita magnam.
-`
-const Post = ({ video }) => {
+const Post = ({ post, video }) => {
     const [showDescription, setShowDescription] = useState(false);
-    const [reactions, setReactions] = useState("");
+    const [reactionState, setReactionState] = useState("");
+
+    // Posts
+    const { _id, name, postPhoto, profilePhoto, description, date, reactions, comments } = post;
 
     return (
         <div className='p-3 rounded-lg shadow-md md:p-5 bg-light-post-bg dark:bg-dark-post-bg'>
             {/* Post Header */}
             <header className='flex items-center justify-between'>
                 <div className='flex flex-wrap items-start gap-3'>
-                    <Link href={"/"}>
-                        <Avatar isBordered radius="full" src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
+                    <Link href={`/profile/${_id}/posts`}>
+                        <Avatar isBordered radius="full" src={profilePhoto} />
                     </Link>
                     <div className='flex flex-col'>
                         <div className='flex items-center flex-wrap gap-[6px]'>
                             <Link href={"/"} className='block text-[#050505] dark:text-[#E4E6EB] font-medium font-sans'>
-                                <span>Shakib Al Hasan</span>
+                                <span>{name}</span>
                             </Link>
 
-                            <VerifiedBadges />
+                            {/* TODO?? Verified Badges Only Admin */}
+
+                            {/* <VerifiedBadges /> */}
                         </div>
                         <div className='flex items-center gap-[0.625rem] text-light-text dark:text-dark-text font-sans'>
                             <Tooltip
                                 placement={"bottom"}
                                 content={"10 March 2024"}
                             >
-                                <button className='text-[.75rem] font-medium'>1 h</button>
+                                <button className='text-[.75rem] font-medium'>{moment(date).startOf('hour').fromNow()}</button>
                             </Tooltip>
                             <span className='text-[.75rem] font-medium'>
                                 <IoMdPersonAdd />
@@ -106,7 +109,7 @@ const Post = ({ video }) => {
                         {/* Image */}
                         <div className='flex justify-center bg-[#242526]/10 backdrop-blur-sm dark:bg-white/30'>
                             <div className='max-w-full min-w-full sm:min-w-96 min-h-[10rem] md:min-h-[18rem] max-h-[31.25rem]'>
-                                <Image width={500} height={500} className='object-cover w-full h-full border dark:border-gray-700' src="https://images.pexels.com/photos/1485894/pexels-photo-1485894.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt='Post Image' />
+                                <Image width={600} height={600} loading='lazy' className='object-cover w-full h-full border dark:border-gray-700' src={postPhoto} priority={false} alt='Post Image' />
                             </div>
                         </div>
                     </>
@@ -123,7 +126,7 @@ const Post = ({ video }) => {
                         {/* Post Reaction Show */}
                         <PostReactionShow />
                         {/* Tooltip From Post Components */}
-                        <TooltipFromPost button={<span className='sm:items-center sm:gap-1 sm:flex'>45 <span className='hidden sm:block'>Reaction</span></span>} />
+                        <TooltipFromPost data={reactions} button={<span className='sm:items-center sm:gap-1 sm:flex'>45 <span className='hidden sm:block'>Reaction</span></span>} />
                     </div>
                     {/* Show Comment Count */}
                     <div>
@@ -132,7 +135,7 @@ const Post = ({ video }) => {
                 </div>
                 {/* Post Actions  */}
                 <div className='grid items-center grid-cols-3 gap-[0.625rem] py-[0.3125rem] border-b border-gray-200 dark:border-gray-700'>
-                    <PostReactionTooltip state={reactions} setState={setReactions} />
+                    <PostReactionTooltip state={reactionState} setState={setReactionState} />
                     <CommentAction />
                     <ShareAction />
                 </div>
