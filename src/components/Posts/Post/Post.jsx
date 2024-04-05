@@ -57,7 +57,7 @@ const Post = ({ post, video }) => {
                                 placement={"bottom"}
                                 content={moment(date).format('LLLL')}
                             >
-                                <button className='text-[.75rem] font-medium'>{moment(date).startOf('minute').fromNow()}</button>
+                                <button className='text-[.75rem] font-medium'>{moment(date).startOf('minute',).fromNow()}</button>
                             </Tooltip>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ import ThemeProvider from '../Providers/ThemeContext';
 import ColorProvider from '@/Providers/ColorProvider';
 import AuthProvider from '@/Providers/AuthProvider';
 import { Toaster } from 'sonner';
+import QueryProvider from '@/Providers/QueryProvider';
 
 const poppins = Poppins({
     weight: ['200', '400', '500', '600', '700', '800'],
@@ -24,10 +25,12 @@ export default function RootLayout({ children }) {
                 <NextProvider>
                     <ColorProvider>
                         <ThemeProvider>
-                            <AuthProvider>
-                                <Toaster position='top-right' />
-                                {children}
-                            </AuthProvider>
+                            <QueryProvider>
+                                <AuthProvider>
+                                    <Toaster position='top-right' />
+                                    {children}
+                                </AuthProvider>
+                            </QueryProvider>
                         </ThemeProvider>
                     </ColorProvider>
                 </NextProvider>

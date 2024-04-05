@@ -8,7 +8,7 @@ import createPost from '@/utils/createPost';
 import { toast } from 'sonner';
 import imageUpload from '@/utils/imageUpload';
 import { useRouter } from 'next/navigation';
-import moment from 'moment';
+import PostLoading from '../../Loading/PostLoading/PostLoading';
 
 // Posts Limit
 const postsLimit = 6;
@@ -34,7 +34,11 @@ const AllPosts = () => {
 
     useEffect(() => {
         const fetchingPosts = async () => {
-            const res = await fetch(`${domain}/api/post?limit=${postsLimit}&skip=${page * postsLimit}`);
+            const res = await fetch(`${domain}/api/post?limit=${postsLimit}&skip=${page * postsLimit}`, {
+                next: {
+                    cache: "no-store"
+                }
+            });
             const data = await res.json();
 
             if (data.length === 0) {
@@ -97,8 +101,6 @@ const AllPosts = () => {
 
     }
 
-    console.log(posts);
-
     return (
         <div>
             {/* Create Post */}
@@ -110,7 +112,7 @@ const AllPosts = () => {
                     posts.map((post, index) => <Post key={index} post={post} />)
                 }
 
-                {hasMore && <h1 ref={loadingRef}>Loading...</h1>}
+                {hasMore && <div ref={loadingRef}><PostLoading /></div>}
             </div>
         </div>
     );
