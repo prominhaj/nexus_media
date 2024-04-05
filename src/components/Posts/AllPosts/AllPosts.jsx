@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Post from '../Post/Post';
 import CreatePost from '../CreatePost/CreatePost';
 import domain from '@/Domain/domain.config';
@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import imageUpload from '@/utils/imageUpload';
 import { useRouter } from 'next/navigation';
 import PostLoading from '../../Loading/PostLoading/PostLoading';
+import Intersection from '@/components/InfinityScroll/Intersection/Intersection';
 
 // Posts Limit
 const postsLimit = 6;
@@ -18,7 +19,6 @@ const AllPosts = () => {
     const [page, setPage] = useState(0);
     const [posts, setPosts] = useState([]);
     const [hasMore, setHasMore] = useState(true);
-    const loadingRef = useRef(null);
 
     // Create Post
     const [loading, setLoading] = useState(false);
@@ -32,46 +32,64 @@ const AllPosts = () => {
         setImage(file);
     };
 
-    useEffect(() => {
-        const fetchingPosts = async () => {
-            const res = await fetch(`${domain}/api/post?limit=${postsLimit}&skip=${page * postsLimit}`, {
-                next: {
-                    cache: "no-store"
-                }
-            });
-            const data = await res.json();
-
-            if (data.length === 0) {
-                setHasMore(false)
+    const fetchingPosts = async () => {
+        const res = await fetch(`${domain}/api/post?limit=${postsLimit}&skip=${page * postsLimit}`, {
+            next: {
+                cache: "no-store"
             }
-            else {
-                setPosts(prev => [...prev, ...data])
-                setPage(prev => prev + 1)
-            }
+        });
+        const data = await res.json();
+
+        if (data.length === 0) {
+            setHasMore(false)
         }
-
-        const onInterSection = (items) => {
-            const loaderItem = items[0];
-
-            if (loaderItem.isIntersecting && hasMore) {
-                fetchingPosts();
-            }
+        else {
+            setPosts(prev => [...prev, ...data])
+            setPage(prev => prev + 1)
         }
+    }
 
-        const observer = new IntersectionObserver(onInterSection)
+    // useEffect(() => {
+    //     const fetchingPosts = async () => {
+    //         const res = await fetch(`${domain}/api/post?limit=${postsLimit}&skip=${page * postsLimit}`, {
+    //             next: {
+    //                 cache: "no-store"
+    //             }
+    //         });
+    //         const data = await res.json();
 
-        if (observer && loadingRef.current) {
-            observer.observe(loadingRef.current);
-        }
+    //         if (data.length === 0) {
+    //             setHasMore(false)
+    //         }
+    //         else {
+    //             setPosts(prev => [...prev, ...data])
+    //             setPage(prev => prev + 1)
+    //         }
+    //     }
 
-        // cleanup
-        return () => {
-            if (observer) observer.disconnect();
-        }
+    //     const onInterSection = (items) => {
+    //         const loaderItem = items[0];
 
-    }, [page, hasMore])
+    //         if (loaderItem.isIntersecting && hasMore) {
+    //             fetchingPosts();
+    //         }
+    //     }
+
+    //     const observer = new IntersectionObserver(onInterSection)
+
+    //     if (observer && loadingRef.current) {
+    //         observer.observe(loadingRef.current);
+    //     }
+
+    //     // cleanup
+    //     return () => {
+    //         if (observer) observer.disconnect();
+    //     }
+
+    // }, [page, hasMore])
 
     // Handle Create Post
+
     const handleCreatePost = async () => {
         setLoading(true)
         try {
@@ -87,11 +105,11 @@ const AllPosts = () => {
                 }
 
                 const req = await createPost(newPost);
+                router.refresh();
                 if (req.success) {
                     setLoading(false)
                     setDescription("")
                     setImage("")
-                    router.refresh();
                     toast.success("Post created successfully")
                 }
             }
@@ -112,7 +130,11 @@ const AllPosts = () => {
                     posts.map((post, index) => <Post key={index} post={post} />)
                 }
 
-                {hasMore && <div ref={loadingRef}><PostLoading /></div>}
+                {hasMore && (
+                    <Intersection fetchingData={fetchingPosts} hasMore={hasMore} page={page}>
+                        <PostLoading />
+                    </Intersection>
+                )}
             </div>
         </div>
     );

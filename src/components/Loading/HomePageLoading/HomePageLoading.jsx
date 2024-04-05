@@ -1,9 +1,7 @@
-import React from 'react';
 
 const HomePageLoading = ({ theme }) => {
-
     return (
-        <div className={`flex items-center justify-center h-screen ${theme === 'dark' ? "bg-black" : ""}`}>
+        <div className={`flex items-center justify-center h-screen ${theme === 'dark' && 'bg-black'}`}>
             <div aria-label='Loading...' role='status' className='flex items-center space-x-2'>
                 <svg className='w-20 h-20 animate-spin stroke-gray-500' viewBox='0 0 256 256'>
                     <line

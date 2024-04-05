@@ -11,7 +11,12 @@ const ThemeProvider = ({ children }) => {
     // State Variables
     const [theme, setTheme] = useState("light");
     const [loading, setLoading] = useState(true);
-    const getTheme = localStorage.getItem("theme");
+
+    const getItemFromLocalStorage = () => {
+        return localStorage.getItem('theme');
+    };
+
+    const getTheme = getItemFromLocalStorage();
 
     // Effects
     useEffect(() => {
