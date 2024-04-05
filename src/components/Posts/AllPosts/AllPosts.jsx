@@ -8,6 +8,7 @@ import createPost from '@/utils/createPost';
 import { toast } from 'sonner';
 import imageUpload from '@/utils/imageUpload';
 import { useRouter } from 'next/navigation';
+import moment from 'moment';
 
 // Posts Limit
 const postsLimit = 6;
@@ -66,9 +67,7 @@ const AllPosts = () => {
 
     }, [page, hasMore])
 
-
-    console.log(posts);
-
+    // Handle Create Post
     const handleCreatePost = async () => {
         setLoading(true)
         try {
@@ -80,7 +79,7 @@ const AllPosts = () => {
                     email: user?.email,
                     profilePhoto: user?.photoURL,
                     postPhoto: imageHost?.data?.display_url,
-                    description: description
+                    description: description,
                 }
 
                 const req = await createPost(newPost);
@@ -97,6 +96,8 @@ const AllPosts = () => {
         }
 
     }
+
+    console.log(posts);
 
     return (
         <div>

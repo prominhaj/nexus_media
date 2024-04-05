@@ -9,7 +9,7 @@ const postSchema = new Schema({
     description: { type: String, required: true },
     reactions: { type: Array, default: [] },
     comments: { type: Array, default: [] },
-    date: { type: Date, default: Date.now() }
+    date: { type: String, default: Date.now() }
 });
 
 export default mongoose.models.Post || mongoose.model('Post', postSchema);

@@ -55,13 +55,10 @@ const Post = ({ post, video }) => {
                         <div className='flex items-center gap-[0.625rem] text-light-text dark:text-dark-text font-sans'>
                             <Tooltip
                                 placement={"bottom"}
-                                content={"10 March 2024"}
+                                content={moment(date).format('LLLL')}
                             >
-                                <button className='text-[.75rem] font-medium'>{moment(date).startOf('hour').fromNow()}</button>
+                                <button className='text-[.75rem] font-medium'>{moment(date).startOf('minute').fromNow()}</button>
                             </Tooltip>
-                            <span className='text-[.75rem] font-medium'>
-                                <IoMdPersonAdd />
-                            </span>
                         </div>
                     </div>
                 </div>
@@ -109,7 +106,7 @@ const Post = ({ post, video }) => {
                         {/* Image */}
                         <div className='flex justify-center bg-[#242526]/10 backdrop-blur-sm dark:bg-white/30'>
                             <div className='max-w-full min-w-full sm:min-w-96 min-h-[10rem] md:min-h-[18rem] max-h-[31.25rem]'>
-                                <Image width={600} height={600} loading='lazy' className='object-cover w-full h-full border dark:border-gray-700' src={postPhoto} priority={false} alt='Post Image' />
+                                <Image width={800} height={600} className='object-cover w-full h-full border dark:border-gray-700' src={postPhoto} priority alt='Post Image' />
                             </div>
                         </div>
                     </>

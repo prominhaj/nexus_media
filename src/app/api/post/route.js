@@ -10,7 +10,6 @@ export const GET = async (req) => {
         const limit = searchParams.get('limit');
         const skip = searchParams.get('skip');
 
-        console.log(skip);
         const posts = await Post.find()
             .limit(parseInt(limit))
             .skip(parseInt(skip))
