@@ -1,8 +1,7 @@
 "use client"
-
 import { useEffect, useRef } from "react";
 
-const Intersection = ({ fetchingData, hasMore, page, children }) => {
+const Intersection = ({ fetchingData, hasMore, page, refresh, children }) => {
     const loadingRef = useRef(null);
 
     useEffect(() => {
@@ -25,7 +24,7 @@ const Intersection = ({ fetchingData, hasMore, page, children }) => {
             if (observer) observer.disconnect();
         }
 
-    }, [fetchingData, hasMore, page])
+    }, [fetchingData, hasMore, page, refresh])
 
     return (
         <div ref={loadingRef}>

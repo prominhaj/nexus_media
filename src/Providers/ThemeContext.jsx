@@ -12,12 +12,6 @@ const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState("light");
     const [loading, setLoading] = useState(true);
 
-    const getItemFromLocalStorage = () => {
-        return localStorage.getItem('theme');
-    };
-
-    const getTheme = getItemFromLocalStorage();
-
     // Effects
     useEffect(() => {
         // Effect to set loading state and initialize theme
@@ -57,7 +51,7 @@ const ThemeProvider = ({ children }) => {
     // Return JSX
     return (
         <ThemeContext.Provider value={value}>
-            {loading ? <HomePageLoading theme={getTheme} /> : children}
+            {loading ? <HomePageLoading /> : children}
         </ThemeContext.Provider>
     );
 };

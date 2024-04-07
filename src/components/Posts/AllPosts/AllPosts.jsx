@@ -19,6 +19,7 @@ const AllPosts = () => {
     const [page, setPage] = useState(0);
     const [posts, setPosts] = useState([]);
     const [hasMore, setHasMore] = useState(true);
+    const [refresh, setRefresh] = useState(false);
 
     // Create Post
     const [loading, setLoading] = useState(false);
@@ -107,6 +108,7 @@ const AllPosts = () => {
                 const req = await createPost(newPost);
                 router.refresh();
                 if (req.success) {
+                    setRefresh(true);
                     setLoading(false)
                     setDescription("")
                     setImage("")
@@ -131,7 +133,7 @@ const AllPosts = () => {
                 }
 
                 {hasMore && (
-                    <Intersection fetchingData={fetchingPosts} hasMore={hasMore} page={page}>
+                    <Intersection fetchingData={fetchingPosts} hasMore={hasMore} page={page} refresh={refresh}>
                         <PostLoading />
                     </Intersection>
                 )}
