@@ -1,11 +1,13 @@
 "use client"
 import { Avatar, Textarea } from '@nextui-org/react';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ModalCus from '../../Homes/ModalCus/ModalCus';
 import UploadFile from '@/components/UploadFile/UploadFile';
 import { BsEmojiNeutral } from "react-icons/bs";
 import EmojiSlider from '@/components/SliderCus/EmojiSlider';
+import createPost from '@/utils/createPost';
+import useAuth from '@/Hooks/useAuth';
 
 // Create Post Button
 const createPostBtn = <>
@@ -26,36 +28,40 @@ const emojiBtn = <>
     </div>
 </>
 
-const CreatePost = ({ handleCreatePost, user, loading, setImage, image, handleImageChange, description, setDescription }) => {
+const CreatePost = () => {
     const [showEmoji, setShowEmoji] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [image, setImage] = useState(null);
+    const [description, setDescription] = useState("");
+    const user = useAuth();
 
-    // const handleCreatePost = async () => {
-    //     setLoading(true)
-    //     try {
-    //         const imageHost = await imageUpload(image, true);
-    //         if (imageHost.success) {
-    //             // New Post 
-    //             const newPost = {
-    //                 name: user?.displayName,
-    //                 email: user?.email,
-    //                 profilePhoto: user?.photoURL,
-    //                 postPhoto: imageHost?.data?.display_url,
-    //                 description: description
-    //             }
+    const handleCreatePost = async () => {
+        setLoading(true)
+        try {
+            const imageHost = await imageUpload(image, true);
+            if (imageHost.success) {
+                // New Post 
+                const newPost = {
+                    name: user?.displayName,
+                    email: user?.email,
+                    profilePhoto: user?.photoURL,
+                    postPhoto: imageHost?.data?.display_url,
+                    description: description
+                }
 
-    //             const req = await createPost(newPost);
-    //             if (req.success) {
-    //                 setLoading(false)
-    //                 setDescription("")
-    //                 setImage("")
-    //                 toast.success("Post created successfully")
-    //             }
-    //         }
-    //     } catch (error) {
-    //         toast.error(error.message)
-    //     }
+                const req = await createPost(newPost);
+                if (req.success) {
 
-    // }
+                    setDescription("")
+                    setImage("")
+                    toast.success("Post created successfully")
+                }
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+
+    }
 
     return (
         <div className='p-3 rounded-lg shadow-md md:p-5 bg-light-post-bg dark:bg-dark-post-bg'>
@@ -68,7 +74,7 @@ const CreatePost = ({ handleCreatePost, user, loading, setImage, image, handleIm
                         <form>
                             {/* Image Update  */}
                             <div>
-                                <UploadFile imageState={image} setImageState={setImage} onChange={handleImageChange} />
+                                <UploadFile imageState={image} setImageState={setImage} />
                             </div>
 
                             {/* Description */}

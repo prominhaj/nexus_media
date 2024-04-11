@@ -3,7 +3,7 @@ import React from 'react';
 import { CiImageOn } from 'react-icons/ci';
 import { HiOutlineTrash } from 'react-icons/hi2';
 
-const UploadFile = ({ imageState, setImageState, onChange, className }) => {
+const UploadFile = ({ imageState, setImageState, className }) => {
     return (
         <div>
             {
@@ -19,7 +19,7 @@ const UploadFile = ({ imageState, setImageState, onChange, className }) => {
                             type="file"
                             className="hidden"
                             accept="image/*"
-                            onChange={onChange}
+                            onChange={e => setImageState(e.target.files[0])}
                         />
                     </label>
                 </div>

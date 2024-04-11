@@ -15,7 +15,7 @@ const PostLoading = () => {
             </div>
             <Card className="w-full p-4 mt-4 space-y-5" radius="lg">
                 <Skeleton className="rounded-lg">
-                    <div className="h-48 rounded-lg bg-default-300"></div>
+                    <div className="h-48 rounded-lg bg-default-200"></div>
                 </Skeleton>
                 <div className="space-y-3">
                     <Skeleton className="w-3/5 rounded-lg">

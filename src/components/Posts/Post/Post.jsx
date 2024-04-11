@@ -31,6 +31,7 @@ const Post = ({ post, video }) => {
     const [showDescription, setShowDescription] = useState(false);
     const [reactionState, setReactionState] = useState("");
 
+
     // Posts
     const { _id, name, postPhoto, profilePhoto, description, date, reactions, comments } = post;
 

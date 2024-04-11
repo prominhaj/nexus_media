@@ -7,7 +7,6 @@ import imageUpload from "@/utils/imageUpload";
 import { toast } from "sonner";
 import useAuth from "@/Hooks/useAuth";
 import { postAddStory } from "@/utils/postAddStory";
-import { useRouter } from "next/navigation";
 
 const addStoryBtn = <>
     <div className="flex items-center justify-center w-12 h-12 bg-white border rounded-full dark:bg-transparent">
@@ -23,13 +22,6 @@ const AddStory = ({ addStory }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const user = useAuth();
     const [loading, setLoading] = useState(false);
-    const router = useRouter();
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setSelectedFile(file);
-    };
-
     const handleStory = async () => {
         try {
             setLoading(true);
@@ -46,8 +38,6 @@ const AddStory = ({ addStory }) => {
                 // Add the new story
                 const addStoryData = await postAddStory(newStory);
                 if (addStoryData.success) {
-                    router.refresh();
-                    setLoading(false);
                     setSelectedFile("")
                     toast.success('Story Added successfully');
 
@@ -57,8 +47,10 @@ const AddStory = ({ addStory }) => {
                 }
             }
         } catch (error) {
-            setLoading(false);
             toast.error(error.message)
+        }
+        finally {
+            setLoading(false);
         }
     }
 
@@ -67,7 +59,7 @@ const AddStory = ({ addStory }) => {
             {/* Story Create Modal */}
             <ModalCus name={addStory || addStoryBtn} modalTitle="Upload an Image" action={storySubmitBtn} disabled={selectedFile ? false : true} onClick={handleStory} loading={loading}>
                 <div>
-                    <UploadFile imageState={selectedFile} setImageState={setSelectedFile} onChange={handleImageChange} />
+                    <UploadFile imageState={selectedFile} setImageState={setSelectedFile} />
                 </div>
             </ModalCus>
         </>

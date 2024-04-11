@@ -1,4 +1,5 @@
 "use client"
+import useAuth from '@/Hooks/useAuth';
 import EmojiSlider from '@/components/SliderCus/EmojiSlider';
 import { Avatar } from '@nextui-org/react';
 import Link from 'next/link';
@@ -9,12 +10,13 @@ import { IoSend } from 'react-icons/io5';
 const CommentBox = () => {
     const [comment, setComment] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
+    const user = useAuth();
 
     return (
         <div className='grid items-start grid-cols-1 gap-3 sm:grid-cols-12'>
             <div className='hidden sm:block'>
                 <Link className='flex items-start justify-center' href={"/profile"}>
-                    <Avatar isBordered src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
+                    <Avatar isBordered src={user && user.photoURL} />
                 </Link>
             </div>
             <div className='sm:col-span-11 relative bg-[#F0F2F5] dark:bg-[#3A3B3C] rounded-2xl'>
