@@ -2,7 +2,7 @@
 import { Avatar } from '@nextui-org/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { HiOutlinePaperAirplane, HiOutlineXMark } from 'react-icons/hi2';
-import TypingLoading from '../Homes/TypingLoading/TypingLoading';
+import TypingLoading from '../Loading/TypingLoading/TypingLoading';
 
 const ModalChat = ({ modal, setModal }) => {
     const [isLoading, setIsLoading] = useState(false);

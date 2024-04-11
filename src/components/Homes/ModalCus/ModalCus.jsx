@@ -1,8 +1,8 @@
 "use client"
 import React from 'react';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Spinner } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, Button, useDisclosure } from "@nextui-org/react";
 
-const ModalCus = ({ name, modalTitle, children, action, classes, onClick, disabled, type, loading }) => {
+const ModalCus = ({ name, modalTitle, children, classes, }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     return (
@@ -29,17 +29,6 @@ const ModalCus = ({ name, modalTitle, children, action, classes, onClick, disabl
                             <ModalBody>
                                 {children}
                             </ModalBody>
-                            <ModalFooter>
-                                <Button color="foreground" variant="light" onPress={onClose}>
-                                    Close
-                                </Button>
-                                {
-                                    loading ? <Spinner color="warning" /> :
-                                        action && <button type={type && type} className='px-4 text-sm tracking-wider text-white transition-all shadow-lg rounded-3xl duration-250 disabled:bg-opacity-50 disabled:cursor-not-allowed disabled:opacity-60 bg-gradient-to-r from-blue-500 to-blue-500' disabled={disabled && disabled} onClick={onClick}>
-                                            {action}
-                                        </button>
-                                }
-                            </ModalFooter>
                         </>
                     )}
                 </ModalContent>

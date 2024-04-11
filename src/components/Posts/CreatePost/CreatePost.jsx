@@ -4,10 +4,11 @@ import Link from 'next/link';
 import { useState } from 'react';
 import ModalCus from '../../Homes/ModalCus/ModalCus';
 import UploadFile from '@/components/UploadFile/UploadFile';
-import { BsEmojiNeutral } from "react-icons/bs";
-import EmojiSlider from '@/components/SliderCus/EmojiSlider';
-import createPost from '@/utils/createPost';
 import useAuth from '@/Hooks/useAuth';
+import { toast } from 'sonner'
+import { createPost } from '@/server/post';
+import imageUpload from '@/utils/imageUpload';
+import Emoji from './Emoji';
 
 // Create Post Button
 const createPostBtn = <>
@@ -16,27 +17,13 @@ const createPostBtn = <>
     </div>
 </>
 
-// Create Post Modal Action
-const actionBtn = <>
-    <span className='text-base tracking-wider'>Post</span>
-</>
-
-// Emoji Btn
-const emojiBtn = <>
-    <div>
-        <BsEmojiNeutral className='text-2xl' />
-    </div>
-</>
-
 const CreatePost = () => {
-    const [showEmoji, setShowEmoji] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [image, setImage] = useState(null);
     const [description, setDescription] = useState("");
+    const [loading, setLoading] = useState(false)
     const user = useAuth();
 
     const handleCreatePost = async () => {
-        setLoading(true)
         try {
             const imageHost = await imageUpload(image, true);
             if (imageHost.success) {
@@ -51,7 +38,6 @@ const CreatePost = () => {
 
                 const req = await createPost(newPost);
                 if (req.success) {
-
                     setDescription("")
                     setImage("")
                     toast.success("Post created successfully")
@@ -70,18 +56,17 @@ const CreatePost = () => {
                     <Avatar src={user?.photoURL} />
                 </Link>
                 <div className='flex flex-1'>
-                    <ModalCus onClick={handleCreatePost} loading={loading} name={createPostBtn} modalTitle="Create Post" classes={"w-full"} action={actionBtn} disabled={image && description ? false : true} type={"submit"}>
-                        <form>
-                            {/* Image Update  */}
+                    <ModalCus name={createPostBtn} modalTitle="Create Post" classes={"w-full"}>
+
+                        {/* Modal Create Post Form */}
+                        <form action={handleCreatePost}>
+                            {/* Image Upload  */}
                             <div>
                                 <UploadFile imageState={image} setImageState={setImage} />
                             </div>
 
                             {/* Description */}
                             <div className='relative pt-5'>
-                                <div className='absolute z-20 right-4 top-14'>
-                                    <button onClick={() => setShowEmoji(!showEmoji)} type='button'>{emojiBtn}</button>
-                                </div>
                                 <Textarea
                                     onChange={e => setDescription(e.target.value)}
                                     value={description}
@@ -90,14 +75,18 @@ const CreatePost = () => {
                                     labelPlacement="outside"
                                     placeholder="Enter your description..."
                                     className="w-full"
+                                    classNames={
+                                        {
+                                            inputWrapper: "border rounded-lg border-gray-200 dark:border-gray-600"
+                                        }
+                                    }
                                 />
-
-                                {/* Show Emoji */}
-                                {
-                                    showEmoji && <div className='pt-2'>
-                                        <EmojiSlider setEmoji={setDescription} />
-                                    </div>
-                                }
+                                <Emoji setDescription={setDescription} />
+                            </div>
+                            <div className='mt-3 text-end'>
+                                <button type="submit" className='px-4 py-1.5 text-sm tracking-wider text-white transition-all shadow-lg rounded-3xl duration-250 disabled:bg-opacity-50 disabled:cursor-not-allowed disabled:opacity-60 bg-gradient-to-r from-blue-500 to-blue-500'>
+                                    Submit
+                                </button>
                             </div>
                         </form>
                     </ModalCus>

@@ -5,6 +5,8 @@ import CreatePost from '../CreatePost/CreatePost';
 import domain from '@/Domain/domain.config';
 import PostLoading from '../../Loading/PostLoading/PostLoading';
 import Intersection from '@/components/InfinityScroll/Intersection/Intersection';
+import { getPosts } from '@/server/post';
+
 
 // Posts Limit
 const postsLimit = 6;
@@ -16,13 +18,13 @@ const AllPosts = () => {
     const [hasMore, setHasMore] = useState(true);
 
     const fetchingPosts = async () => {
-        const res = await fetch(`${domain}/api/post?limit=${postsLimit}&skip=${page * postsLimit}`, {
-            next: {
-                tags: ['posts']
-            },
-            cache: "no-store"
-        });
-        const data = await res.json();
+        // const res = await fetch(`${domain}/api/post?limit=${postsLimit}&skip=${page * postsLimit}`, {
+        //     next: {
+        //         tags: ['posts']
+        //     },
+        //     cache: "no-store"
+        // });
+        const data = await getPosts(postsLimit, page * postsLimit)
 
         if (data.length === 0) {
             setHasMore(false)
@@ -35,10 +37,6 @@ const AllPosts = () => {
 
     return (
         <div>
-            {/* Create Post */}
-            <div className='py-5 sm:py-8'>
-                <CreatePost />
-            </div>
             <div className='grid grid-cols-1 gap-5'>
                 {
                     posts.map((post, index) => <Post key={index} post={post} />)

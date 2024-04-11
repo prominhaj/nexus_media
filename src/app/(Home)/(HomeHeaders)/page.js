@@ -12,8 +12,14 @@ const HomePage = () => {
                     <HomeStory />
                 </div>
 
-                {/* All Posts */}
-                <AllPosts />
+                <div>
+                    {/* Create Post */}
+                    <div className='py-5 sm:py-8'>
+                        <CreatePost />
+                    </div>
+                    {/* All Posts */}
+                    <AllPosts />
+                </div>
             </div>
         </>
     );

@@ -1,7 +1,6 @@
 "use client"
 // Import Dependencies
 import React, { createContext, useEffect, useState } from 'react';
-import HomePageLoading from '@/components/Loading/HomePageLoading/HomePageLoading';
 
 // Create Context
 export const ThemeContext = createContext(null);
@@ -10,7 +9,6 @@ export const ThemeContext = createContext(null);
 const ThemeProvider = ({ children }) => {
     // State Variables
     const [theme, setTheme] = useState("light");
-    const [loading, setLoading] = useState(true);
 
     // Effects
     useEffect(() => {
@@ -18,7 +16,6 @@ const ThemeProvider = ({ children }) => {
         if (localStorage.getItem("theme") === null) {
             localStorage.setItem("theme", "dark");
         }
-        setLoading(false);
     }, []);
 
     useEffect(() => {
@@ -31,7 +28,6 @@ const ThemeProvider = ({ children }) => {
             html.classList.remove("dark");
             setTheme("light");
         }
-        setLoading(false);
     }, [theme]);
 
     // Helper Function
@@ -46,12 +42,12 @@ const ThemeProvider = ({ children }) => {
     };
 
     // Context Value
-    const value = [theme, toggleButton, loading];
+    const value = [theme, toggleButton];
 
     // Return JSX
     return (
         <ThemeContext.Provider value={value}>
-            {loading ? <HomePageLoading /> : children}
+            {children}
         </ThemeContext.Provider>
     );
 };

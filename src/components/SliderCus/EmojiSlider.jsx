@@ -1,50 +1,25 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
 
 // List of emoji symbols with their Unicode representation
 const emojiSymbols = [
-    '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '😘', '😗', '😙', '😚', '😋', '😜', '😝', '😛', '🤑', '🤗', '🤓', '😎', '🤡', '🤠', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️', '😣', '😖', '😫', '😩', '😤', '😠', '😡', '😶', '😐', '😑', '😯', '😦', '😧', '😮', '😲', '😵', '😳', '😱', '😨', '😰', '😢', '😥', '🤤', '😭', '😓', '😪', '😴', '🙄', '🤔', '🤥', '😬', '🤐', '🤢', '🤧', '😷', '🤒', '🤕', '😈', '👿', '👹', '👺', '💀', '👻', '👽', '👾', '🤖', '💩', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾'
+    "😀", "😂", "😁", "😍", "😊",
+    "😋", "😎", "😘", "😭", "😂",
+    "🤗", "🤔", "🤣", "🤩", "🥰",
+    "🥺", "🎉", "🎶", "🌟", "🙏",
+    "🙌", "👍"
 ];
 
-const EmojiSlider = ({ setEmoji, slidePerView }) => {
+const EmojiSlider = ({ setEmoji }) => {
 
     return (
-        <>
-            <div>
-                <Swiper
-                    slidesPerView={slidePerView || 10}
-                    spaceBetween={5}
-                    breakpoints={{
-                        50: {
-                            slidesPerView: 6,
-                        },
-                        768: {
-                            slidesPerView: 6,
-                        },
-                        1000: {
-                            slidesPerView: 8,
-                        },
-                        1600: {
-                            slidesPerView: slidePerView || 10,
-                        },
-                    }}
-                >
-                    {
-                        emojiSymbols.map((symbol, index) => {
-                            return (
-                                <SwiperSlide key={index}>
-                                    <button onClick={() => setEmoji((prev) => prev + symbol)} type='button' className='flex items-center justify-center w-10 h-10 text-xl rounded-full'>
-                                        {symbol}
-                                    </button>
-                                </SwiperSlide>
-                            );
-                        })
-                    }
-                </Swiper>
-            </div >
-        </>
+        <div className="flex flex-wrap bg-white dark:border-gray-600 dark:bg-gray-800 text-blue border-blue hover:bg-blue border rounded-lg shadow-lg">
+            {
+                emojiSymbols.map((emoji, index) =>
+                    <button key={index} onClick={() => setEmoji((prev) => prev + emoji)} type='button' className='flex items-center justify-center text-xl rounded-full w-9 h-9'>
+                        {emoji}
+                    </button>
+                )
+            }
+        </div>
     );
 };
 
