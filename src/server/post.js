@@ -2,7 +2,7 @@
 
 import connectDB from '@/lib/mongodb';
 import Post from '@/models/Post';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 
 export const getPosts = async (limit, skip) => {
     try {
@@ -14,7 +14,12 @@ export const getPosts = async (limit, skip) => {
             .skip(parseInt(skip))
             .sort({ date: -1 });
 
-        return posts;
+        const modifiedPosts = posts.map((post) => ({
+            ...post.toObject(),
+            _id: post._id.toString() // Convert ObjectId to string
+        }));
+
+        return modifiedPosts;
     } catch (err) {
         throw new Error(err.message);
     }
@@ -26,7 +31,7 @@ export const createPost = async (newPost) => {
         await connectDB();
 
         await Post.create(newPost);
-        revalidatePath('/');
+        revalidateTag('posts');
         return { success: true };
     } catch (err) {
         throw new Error(err.message);

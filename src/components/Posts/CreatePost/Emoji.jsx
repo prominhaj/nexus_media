@@ -9,7 +9,7 @@ const Emoji = ({ setDescription }) => {
         <div>
             <div className='absolute z-20 right-4 top-14'>
                 <button onClick={() => setShowEmoji(!showEmoji)} type='button'>
-                    <BsEmojiNeutral className='text-2xl' />
+                    <BsEmojiNeutral className={`text-2xl ${showEmoji ? "text-blue-500" : ""}`} />
                 </button>
             </div>
             {/* Show Emoji */}
