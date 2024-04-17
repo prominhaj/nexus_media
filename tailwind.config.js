@@ -16,19 +16,21 @@ module.exports = {
                 'light-text': '#050505',
                 'dark-text': '#E4E6EB',
                 'light-bg': '#E4E6EB',
-                'dark-bg': '#4B4C4F',
+                'dark-bg': '#3A3B3C',
                 'light-bg-hover': '#D8DADF',
                 'dark-bg-hover': '#616161',
                 'light-modal-bg': '#FFFFFF',
                 'dark-modal-bg': '#0E1526',
                 'light-header-bg': '#FFFFFF',
-                'dark-header-bg': '#0B1120',
+                'dark-header-bg': '#242526',
                 'light-body-bg': '#F0F2F5',
-                'dark-body-bg': '#0F172A',
+                'dark-body-bg': '#18191A',
                 'light-post-bg': '#FFFFFF',
-                'dark-post-bg': '#182234',
+                'dark-post-bg': '#242526',
                 'light-card-bg': '#FFFFFF',
-                'dark-card-bg': '#242526'
+                'dark-card-bg': '#242526',
+                'light-menu-bg': '#FFFFFF',
+                'dark-menu-bg': '#242526'
             }
         }
     },

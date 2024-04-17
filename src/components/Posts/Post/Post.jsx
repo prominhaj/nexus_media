@@ -1,6 +1,4 @@
-"use client"
 import { Avatar, Tooltip } from '@nextui-org/react';
-import React, { useState } from 'react';
 import { IoMdPersonAdd } from "react-icons/io";
 import Link from 'next/link';
 import { BsThreeDots } from "react-icons/bs";
@@ -19,6 +17,7 @@ import ShareAction from '../ShareAction/ShareAction';
 import CommentBox from '../CommentAction/CommentBox';
 import SingleComment from '../SingleComment/SingleComment';
 import moment from 'moment';
+import ShowDescription from './Description/ShowDescription';
 
 // Post Menu Button
 const postMenuBtn = <>
@@ -28,8 +27,7 @@ const postMenuBtn = <>
 </>
 
 const Post = ({ post, video }) => {
-    const [showDescription, setShowDescription] = useState(false);
-    const [reactionState, setReactionState] = useState("");
+
 
 
     // Posts
@@ -77,15 +75,7 @@ const Post = ({ post, video }) => {
             <div className='py-3'>
                 {/* Description */}
                 <div className='pb-3'>
-                    <div className='text-[#050505] dark:text-[#E4E6EB] break-words selection:bg-blue-200 dark:selection:bg-blue-600'>
-                        {description && description.length > 150 ? (
-                            showDescription ? description : <>
-                                {description.slice(0, 150)}... <button onClick={() => setShowDescription(true)} className='font-medium transition-all duration-300 hover:underline text-[#050505] dark:text-[#E4E6EB]'>See more</button>
-                            </>
-                        ) : (
-                            description
-                        )}
-                    </div>
+                    <ShowDescription description={description} />
                 </div>
 
                 {
@@ -104,6 +94,7 @@ const Post = ({ post, video }) => {
                             </div>
                         </div>
                     </> : <>
+
                         {/* Image */}
                         <div className='flex justify-center bg-[#242526]/10 backdrop-blur-sm dark:bg-white/30'>
                             <div className='max-w-full min-w-full sm:min-w-96 min-h-[10rem] md:min-h-[18rem] max-h-[31.25rem]'>
@@ -133,7 +124,7 @@ const Post = ({ post, video }) => {
                 </div>
                 {/* Post Actions  */}
                 <div className='grid items-center grid-cols-3 gap-[0.625rem] py-[0.3125rem] border-b border-gray-200 dark:border-gray-700'>
-                    <PostReactionTooltip state={reactionState} setState={setReactionState} />
+                    <PostReactionTooltip />
                     <CommentAction />
                     <ShareAction />
                 </div>

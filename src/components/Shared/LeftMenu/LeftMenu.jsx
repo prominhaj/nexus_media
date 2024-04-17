@@ -75,8 +75,8 @@ const LeftMenu = () => {
 
     return (
 
-        <div className="transition-all bg-white dark:bg-[#0F172A] rounded-lg h-screen duration-300 md:space-y-5">
-            <div className='p-3 flex flex-col gap-2 bg-transparent md:bg-white rounded-lg md:dark:bg-[#0F172A]'>
+        <div className="h-screen transition-all duration-300 rounded-lg bg-light-menu-bg dark:bg-dark-menu-bg md:space-y-5">
+            <div className='flex flex-col gap-2 p-3 bg-transparent rounded-lg md:bg-light-menu-bg md:dark:bg-dark-menu-bg'>
                 <button onClick={reloadPage} className="w-full px-3 hover:bg-[#F2F2F2] dark:text-gray-300 dark:hover:bg-[#3A3B3C] rounded-md py-2 text-[1.02rem transition-all duration-300">
                     <span className="flex items-center gap-2 sm:gap-3">
                         <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-2 ${color && color}`}>
@@ -103,7 +103,7 @@ const LeftMenu = () => {
                 }
             </div>
             <hr className="dark:border-t-gray-600 border-t-gray-300" />
-            <div className='p-3 flex flex-col gap-2 bg-transparent md:bg-white rounded-lg md:dark:bg-[#0F172A]'>
+            <div className='flex flex-col gap-2 p-3 bg-transparent rounded-lg md:bg-light-menu-bg md:dark:bg-dark-menu-bg'>
                 {
                     leftActionItems.map(item =>
                         <Link className={`${path === item.path && "dark:bg-[#3A3B3C] bg-[#F0F2F5]"} block px-3 hover:bg-[#F2F2F2] dark:text-gray-300 dark:hover:bg-[#3A3B3C] rounded-md py-2 text-[1.02rem transition-all duration-300`} href={item.path} key={item.path}>

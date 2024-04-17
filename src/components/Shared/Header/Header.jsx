@@ -99,7 +99,7 @@ const Header = ({ children }) => {
     </>
 
     return (
-        <div className='sticky top-0 z-[45] w-full px-3 py-5 shadow bg-light-header-bg lg:px-5 dark:bg-dark-header-bg'>
+        <div className='sticky top-0 z-[45] w-full px-3 py-3.5 shadow bg-light-header-bg lg:px-5 dark:bg-dark-header-bg'>
             <div className='grid items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 <div>
                     <Link href="/" className='block'>
@@ -114,7 +114,7 @@ const Header = ({ children }) => {
                                     ease: 'linear'
                                 }}
                             >
-                                <Image className='w-[40px] h-[40px] block' src={logo} width={50} height={50} priority alt='Logo' />
+                                <Image className='w-[2.5rem] h-[2.5rem] block' src={logo} width={50} height={50} priority alt='Logo' />
                             </motion.div>
                             <h2 className={`bg-gradient-to-r from-neutral-800 to-fuchsia-500 dark:from-neutral-400 dark:to-blue-500 text-lg font-semibold bg-clip-text text-transparent transition-all duration-300 sm:block md:text-2xl logo-name`}>Nexus Media</h2>
                         </div>
@@ -128,7 +128,7 @@ const Header = ({ children }) => {
                         <div className='hidden lg:block'>
                             <div className='flex items-center gap-4'>
                                 {
-                                    headerModeItems.map(item => <Link className={`${item.path === pathname ? "text-white dark:text-[#1e74fd] dark:bg-white bg-black" : `${color ? `${color}` : "text-light-text dark:text-dark-text"} bg-light-bg hover:bg-light-bg-hover dark:hover:bg-dark-bg-hover dark:bg-dark-bg`} p-3 rounded-full`} href={item.path} key={item.name}>
+                                    headerModeItems.map(item => <Link className={`${item.path === pathname ? "text-white dark:text-[#1e74fd] dark:bg-white bg-black" : `${color ? `${color}` : "text-light-text dark:text-dark-text"} bg-light-bg hover:bg-light-bg-hover dark:hover:bg-dark-bg-hover dark:bg-dark-bg`} p-2.5 rounded-full`} href={item.path} key={item.name}>
                                         <span className='text-2xl'>{item.icon}</span>
                                     </Link>)
                                 }

@@ -5,7 +5,7 @@ import React from 'react';
 
 const RightMenu = () => {
     return (
-        <div className='sticky top-0 p-5 bg-white dark:bg-[#0F172A] rounded-lg'>
+        <div className='p-5 rounded-lg bg-light-menu-bg dark:bg-dark-menu-bg'>
             <div>
                 <div className='flex flex-wrap items-center justify-between gap-2 pb-2'>
                     <h2 className='text-sm font-semibold opacity-80'>Friend Request</h2>

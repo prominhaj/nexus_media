@@ -1,5 +1,5 @@
 "use client"
-import { Avatar, Textarea } from '@nextui-org/react';
+import { Avatar, Spinner, Textarea } from '@nextui-org/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import ModalCus from '../../Homes/ModalCus/ModalCus';
@@ -20,10 +20,11 @@ const createPostBtn = <>
 const CreatePost = () => {
     const [image, setImage] = useState(null);
     const [description, setDescription] = useState("");
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const user = useAuth();
 
     const handleCreatePost = async () => {
+        setLoading(true)
         try {
             const imageHost = await imageUpload(image, true);
             if (imageHost.success) {
@@ -45,6 +46,9 @@ const CreatePost = () => {
             }
         } catch (error) {
             toast.error(error.message)
+        }
+        finally {
+            setLoading(false)
         }
 
     }
@@ -83,9 +87,9 @@ const CreatePost = () => {
                                 />
                                 <Emoji setDescription={setDescription} />
                             </div>
-                            <div className='mt-3 text-end'>
-                                <button type="submit" className='px-4 py-1.5 text-sm tracking-wider text-white transition-all shadow-lg rounded-3xl duration-250 disabled:bg-opacity-50 disabled:cursor-not-allowed disabled:opacity-60 bg-gradient-to-r from-blue-500 to-blue-500'>
-                                    Submit
+                            <div className='flex justify-end mt-3'>
+                                <button disabled={loading} type="submit" className='flex items-center gap-1.5 px-4 py-1.5 text-sm tracking-wider text-white transition-all shadow-lg rounded-3xl duration-250 disabled:bg-opacity-50 disabled:cursor-not-allowed disabled:opacity-60 bg-gradient-to-r from-blue-500 to-blue-500'>
+                                    {loading && <Spinner classNames={{ wrapper: "w-5 h-5", circle2: "border-white" }} />} <span>Submit</span>
                                 </button>
                             </div>
                         </form>
