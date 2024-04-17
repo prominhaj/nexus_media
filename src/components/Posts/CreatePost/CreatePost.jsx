@@ -1,5 +1,5 @@
 "use client"
-import { Avatar, Spinner, Textarea } from '@nextui-org/react';
+import { Avatar, Textarea } from '@nextui-org/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import ModalCus from '../../Homes/ModalCus/ModalCus';
@@ -9,6 +9,7 @@ import { toast } from 'sonner'
 import { createPost } from '@/server/post';
 import imageUpload from '@/utils/imageUpload';
 import Emoji from './Emoji';
+import SubmitButton from '@/components/Button/SubmitButton';
 
 // Create Post Button
 const createPostBtn = <>
@@ -24,6 +25,11 @@ const CreatePost = () => {
     const user = useAuth();
 
     const handleCreatePost = async () => {
+        // Check Empty State
+        if (!image) {
+            return toast.error('Please select an image');
+        }
+
         setLoading(true)
         try {
             const imageHost = await imageUpload(image, true);
@@ -50,7 +56,6 @@ const CreatePost = () => {
         finally {
             setLoading(false)
         }
-
     }
 
     return (
@@ -74,7 +79,6 @@ const CreatePost = () => {
                                 <Textarea
                                     onChange={e => setDescription(e.target.value)}
                                     value={description}
-                                    isRequired
                                     label="Description"
                                     labelPlacement="outside"
                                     placeholder="Enter your description..."
@@ -88,9 +92,7 @@ const CreatePost = () => {
                                 <Emoji setDescription={setDescription} />
                             </div>
                             <div className='flex justify-end mt-3'>
-                                <button disabled={loading} type="submit" className='flex items-center gap-1.5 px-4 py-1.5 text-sm tracking-wider text-white transition-all shadow-lg rounded-3xl duration-250 disabled:bg-opacity-50 disabled:cursor-not-allowed disabled:opacity-60 bg-gradient-to-r from-blue-500 to-blue-500'>
-                                    {loading && <Spinner classNames={{ wrapper: "w-5 h-5", circle2: "border-white" }} />} <span>Submit</span>
-                                </button>
+                                <SubmitButton loading={loading} />
                             </div>
                         </form>
                     </ModalCus>

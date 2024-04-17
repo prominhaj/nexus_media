@@ -56,14 +56,16 @@ const Post = ({ post, video }) => {
                                 placement={"bottom"}
                                 content={moment(date).format('LLLL')}
                             >
-                                <button className='text-[.75rem] font-medium'>{moment(date).startOf('minute',).fromNow()}</button>
+                                <button className='text-[.75rem] font-medium'>
+                                    {moment(date).startOf('minute',).fromNow()}
+                                </button>
                             </Tooltip>
                         </div>
                     </div>
                 </div>
                 <div>
                     <PopoverCus name={postMenuBtn}>
-                        <div className='flex flex-col gap-2 p-2'>
+                        <div className='flex flex-col gap-2 p-2 '>
                             <PostAction icon={<FaBookmark />} title={"Save Post"} text={"Add this to your saved items."} />
                             <PostAction icon={<AiFillCloseSquare />} title={"Hide Post"} text={"See fewer posts like this."} />
                             <PostAction icon={<IoMdPersonAdd />} title={"Add Friend"} text={"Add Friend Request"} />

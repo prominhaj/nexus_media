@@ -6,7 +6,8 @@ import UploadFile from "@/components/UploadFile/UploadFile";
 import imageUpload from "@/utils/imageUpload";
 import { toast } from "sonner";
 import useAuth from "@/Hooks/useAuth";
-import { postAddStory } from "@/utils/postAddStory";
+import SubmitButton from "@/components/Button/SubmitButton";
+import { createStory } from "@/server/story";
 
 const addStoryBtn = <>
     <div className="flex items-center justify-center w-12 h-12 bg-white border rounded-full dark:bg-transparent">
@@ -14,15 +15,18 @@ const addStoryBtn = <>
     </div>
 </>
 
-const storySubmitBtn = <>
-    <div>Submit</div>
-</>
-
 const AddStory = ({ addStory }) => {
     const [selectedFile, setSelectedFile] = useState(null);
-    const user = useAuth();
     const [loading, setLoading] = useState(false);
+    const user = useAuth();
+
+    // add new Story
     const handleStory = async () => {
+        // check image empty
+        if (!selectedFile) {
+            return toast.error("Please select an image")
+        }
+
         try {
             setLoading(true);
             const image = await imageUpload(selectedFile, true);
@@ -36,7 +40,7 @@ const AddStory = ({ addStory }) => {
                 }
 
                 // Add the new story
-                const addStoryData = await postAddStory(newStory);
+                const addStoryData = await createStory(newStory);
                 if (addStoryData.success) {
                     setSelectedFile("")
                     toast.success('Story Added successfully');
@@ -57,10 +61,13 @@ const AddStory = ({ addStory }) => {
     return (
         <>
             {/* Story Create Modal */}
-            <ModalCus name={addStory || addStoryBtn} modalTitle="Upload an Image" action={storySubmitBtn} disabled={selectedFile ? false : true} onClick={handleStory} loading={loading}>
-                <div>
+            <ModalCus name={addStory || addStoryBtn} modalTitle="Upload an Image">
+                <form action={handleStory}>
                     <UploadFile imageState={selectedFile} setImageState={setSelectedFile} />
-                </div>
+                    <div className="flex justify-end mt-3">
+                        <SubmitButton loading={loading} />
+                    </div>
+                </form>
             </ModalCus>
         </>
     );

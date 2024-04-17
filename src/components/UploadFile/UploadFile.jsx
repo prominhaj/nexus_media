@@ -8,7 +8,7 @@ const UploadFile = ({ imageState, setImageState, className }) => {
         <div>
             {
                 !imageState && <div className="flex items-center justify-center">
-                    <label className="flex flex-col items-center w-64 px-4 py-6 tracking-wide uppercase bg-white border rounded-lg shadow-lg cursor-pointer dark:border-gray-600 dark:bg-gray-800 text-blue border-blue hover:bg-blue">
+                    <label className="flex flex-col items-center w-full px-4 py-6 tracking-wide uppercase bg-white border rounded-lg shadow-lg cursor-pointer dark:border-gray-600 dark:bg-gray-800 text-blue border-blue hover:bg-blue">
                         <div>
                             <CiImageOn className="text-4xl" />
                         </div>
@@ -17,7 +17,7 @@ const UploadFile = ({ imageState, setImageState, className }) => {
                         </span>
                         <input
                             type="file"
-                            className="hidden"
+                            hidden
                             accept="image/*"
                             onChange={e => setImageState(e.target.files[0])}
                         />
