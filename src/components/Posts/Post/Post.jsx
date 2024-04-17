@@ -98,7 +98,7 @@ const Post = ({ post, video }) => {
                     </> : <>
 
                         {/* Image */}
-                        <div className='flex justify-center bg-[#242526]/10 backdrop-blur-sm dark:bg-white/30'>
+                        <div className='flex justify-center bg-[#242526]/10 backdrop-blur-sm dark:bg-white/10'>
                             <div className='max-w-full min-w-full sm:min-w-96 min-h-[10rem] md:min-h-[18rem] max-h-[31.25rem]'>
                                 <Image width={800} height={600} className='object-cover w-full h-full border dark:border-gray-700' src={postPhoto} priority alt='Post Image' />
                             </div>

@@ -4,7 +4,7 @@ import connectDB from '@/lib/mongodb';
 import Story from '@/models/Story';
 import { revalidatePath } from 'next/cache';
 
-export const getStory = async (limit, skip) => {
+export const getStories = async (limit, skip) => {
     try {
         // Connect to the database
         await connectDB();

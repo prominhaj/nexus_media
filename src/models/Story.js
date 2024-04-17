@@ -6,7 +6,7 @@ const storySchema = new Schema({
     email: { type: String, required: true },
     profilePhoto: { type: String, required: true },
     storyPhoto: { type: String, required: true },
-    Date: { type: String, required: true, default: Date.now().toString() }
+    Date: { type: Date, default: Date.now }
 });
 
 export default mongoose.models.Story || mongoose.model('Story', storySchema);

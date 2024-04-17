@@ -24,8 +24,9 @@ const AllPosts = () => {
         //     },
         //     cache: "no-store"
         // });
-        const data = await getPosts(postsLimit, page * postsLimit)
         // const data = await res.json();
+
+        const data = await getPosts(postsLimit, page * postsLimit)
 
         if (data.length === 0) {
             setHasMore(false)
@@ -45,6 +46,7 @@ const AllPosts = () => {
 
                 {hasMore && (
                     <Intersection fetchingData={fetchingPosts} hasMore={hasMore} page={page}>
+                        <PostLoading />
                         <PostLoading />
                     </Intersection>
                 )}

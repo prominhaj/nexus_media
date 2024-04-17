@@ -4,6 +4,7 @@ import Button from '@/components/Button/Button';
 import FormControl from '@/components/RegisterPage/FormControl/FormControl';
 import FormPassword from '@/components/RegisterPage/FormControl/FormPassword';
 import FormHading from '@/components/RegisterPage/FormHading/FormHading';
+import { createNewAccount } from '@/server/register';
 import imageUpload from '@/utils/imageUpload';
 import postSingupData from '@/utils/postSingupData';
 import { Spinner } from '@nextui-org/react';
@@ -40,19 +41,21 @@ const RegisterForm = () => {
                         email,
                         photo: imageHost.data.display_url,
                     }
-                    const singUpData = await postSingupData(user);
-                    if (singUpData.success) {
-                        setLoading(false)
-                        router.push("/")
-                        toast.success('Account Created Successfully');
-                    }
+                    const singUpData = await createNewAccount(user);
+                    console.log(singUpData);
+                    // if (singUpData.success) {
+                    //     router.push("/")
+                    //     toast.success('Account Created Successfully');
+                    // }
                 }
 
             }
         }
         catch (err) {
-            setLoading(false)
             toast.error(err.message.substr(10));
+        }
+        finally {
+            setLoading(false);
         }
     };
 
