@@ -12,8 +12,10 @@ export const POST = async (req) => {
         if (existingUser) {
             return NextResponse.json({ error: 'User already exists' });
         }
+
+        // Add New User
         await User.create(user);
-        return NextResponse.json({ success: true }, { message: 'User created successfully' });
+        return NextResponse.json({ success: true });
     } catch (err) {
         return NextResponse.json({ error: err.message });
     }

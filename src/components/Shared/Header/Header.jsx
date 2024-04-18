@@ -15,11 +15,11 @@ import useColor from '@/Hooks/useColor';
 import ReactDOM from 'react-dom';
 import { HiOutlineBellAlert, HiOutlineCog8Tooth } from "react-icons/hi2";
 import { FaFacebookMessenger } from "react-icons/fa6";
-import './Header.css'
 import Notification from '../Notification/Notification';
 import { useState } from 'react';
 import ModalChat from '@/components/ModalChat/ModalChat';
 import useAuth from '@/Hooks/useAuth';
+import './Header.css'
 
 // Header Mode Items
 const headerModeItems = [

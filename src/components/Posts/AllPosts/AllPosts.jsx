@@ -46,8 +46,10 @@ const AllPosts = () => {
 
                 {hasMore && (
                     <Intersection fetchingData={fetchingPosts} hasMore={hasMore} page={page}>
-                        <PostLoading />
-                        <PostLoading />
+                        <div className='space-y-5'>
+                            <PostLoading />
+                            <PostLoading />
+                        </div>
                     </Intersection>
                 )}
             </div>

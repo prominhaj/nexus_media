@@ -1,7 +1,7 @@
 "use client"
 import { AuthContext } from '@/Providers/AuthProvider';
 import Button from '@/components/Button/Button';
-import postSingupData from '@/utils/postSingupData';
+import postSingupData from '@/utils/createNewAccout';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';

@@ -4,9 +4,8 @@ import Button from '@/components/Button/Button';
 import FormControl from '@/components/RegisterPage/FormControl/FormControl';
 import FormPassword from '@/components/RegisterPage/FormControl/FormPassword';
 import FormHading from '@/components/RegisterPage/FormHading/FormHading';
-import { createNewAccount } from '@/server/register';
+import createNewAccount from '@/utils/createNewAccout';
 import imageUpload from '@/utils/imageUpload';
-import postSingupData from '@/utils/postSingupData';
 import { Spinner } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { useContext, useState } from 'react';
@@ -27,34 +26,45 @@ const RegisterForm = () => {
 
     // Form Handler
     const onSubmit = async (form) => {
+        // Loading State
         setLoading(true)
+        // Form Data
         const { name, email, photo, password } = form;
 
         try {
+            // Image upload
             const imageHost = await imageUpload(photo);
+
             if (imageHost.success) {
+                // Firebase Create new Account
                 const singUp = await createAccount(email, password);
+                // Firebase Name And Photo Add
                 await nameAndPhoto(name, imageHost.data.display_url);
+                // Check User SingUp
                 if (singUp.user) {
                     const user = {
                         name,
                         email,
                         photo: imageHost.data.display_url,
                     }
+
+                    // API request
                     const singUpData = await createNewAccount(user);
-                    console.log(singUpData);
-                    // if (singUpData.success) {
-                    //     router.push("/")
-                    //     toast.success('Account Created Successfully');
-                    // }
+                    // Check User SingUp Save DataBase
+                    if (singUpData.success) {
+                        router.push("/")
+                        toast.success('Account Created Successfully');
+                    }
                 }
 
             }
         }
         catch (err) {
+            // Handle error
             toast.error(err.message.substr(10));
         }
         finally {
+            // Loading State FALSE
             setLoading(false);
         }
     };
