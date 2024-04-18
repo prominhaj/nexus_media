@@ -17,7 +17,14 @@ const PostReactionTooltip = () => {
     const [reactionState, setReactionState] = useState("");
 
     const handleAction = (action) => {
-        setReactionState(prevState => prevState === action ? "" : action);
+        if (reactionState === action) {
+            setReactionState("");
+        }
+        else {
+            const audio = new Audio("/Sound/likes-sound.mp3");
+            audio.play();
+            setReactionState(action);
+        }
     };
 
     const reactionsAction = useMemo(() => [

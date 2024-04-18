@@ -28,8 +28,6 @@ const postMenuBtn = <>
 
 const Post = ({ post, video }) => {
 
-
-
     // Posts
     const { _id, name, postPhoto, profilePhoto, description, date, reactions, comments } = post;
 
