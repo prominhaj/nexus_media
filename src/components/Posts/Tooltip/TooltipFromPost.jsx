@@ -8,9 +8,11 @@ const TooltipFromPost = ({ data, button }) => {
             <Tooltip
                 placement={"bottom-start"}
                 content={<div className="px-1 py-1">
-                    <Link href={"/"} className='block'>
-                        <small>Md Minhaj</small>
-                    </Link>
+                    {
+                        data?.map(d => <small key={d.email}>
+                            <p>{d.name}</p>
+                        </small>)
+                    }
                 </div>}
                 color="default"
                 delay={100}

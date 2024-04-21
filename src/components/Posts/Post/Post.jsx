@@ -113,9 +113,9 @@ const Post = ({ post, video }) => {
                     {/* Show active activity */}
                     <div className='flex items-center gap-3 md:gap-5'>
                         {/* Post Reaction Show */}
-                        <PostReactionShow />
+                        <PostReactionShow reactionTypes={reactions} />
                         {/* Tooltip From Post Components */}
-                        <TooltipFromPost data={reactions} button={<span className='sm:items-center sm:gap-1 sm:flex'>45 <span className='hidden sm:block'>Reaction</span></span>} />
+                        <TooltipFromPost data={reactions} button={<span className='sm:items-center sm:gap-1 sm:flex'>{reactions?.length} <span className='hidden sm:block'>Reaction</span></span>} />
                     </div>
                     {/* Show Comment Count */}
                     <div>
@@ -124,7 +124,7 @@ const Post = ({ post, video }) => {
                 </div>
                 {/* Post Actions  */}
                 <div className='grid items-center grid-cols-3 gap-[0.625rem] py-[0.3125rem] border-b border-gray-200 dark:border-gray-700'>
-                    <PostReactionTooltip />
+                    <PostReactionTooltip id={_id} reactions={reactions} />
                     <CommentAction />
                     <ShareAction />
                 </div>

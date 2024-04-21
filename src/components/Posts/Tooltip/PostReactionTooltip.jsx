@@ -2,7 +2,7 @@
 import { Tooltip } from '@nextui-org/react';
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import Image from 'next/image';
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react'; // Changed import to include useEffect
 
 // Import All Reactions
 import like from '@/assets/Reactions/like.svg';
@@ -12,21 +12,48 @@ import haha from '@/assets/Reactions/haha.svg';
 import sad from '@/assets/Reactions/sad.svg';
 import angry from '@/assets/Reactions/angry.svg';
 import wow from '@/assets/Reactions/wow.svg';
+import useAuth from '@/Hooks/useAuth';
+import { postReaction } from '@/utils/postReaction';
+import { toast } from 'sonner';
 
-const PostReactionTooltip = () => {
+const PostReactionTooltip = ({ id, reactions }) => {
+    const user = useAuth();
     const [reactionState, setReactionState] = useState("");
 
-    const handleAction = (action) => {
-        if (reactionState === action) {
-            setReactionState("");
+    // Check if user already has reactions
+    useEffect(() => {
+        const alreadyReaction = reactions.find(r => r.email === user?.email);
+        if (alreadyReaction) {
+            setReactionState(alreadyReaction.reactionType);
         }
-        else {
-            const audio = new Audio("/Sound/likes-sound.mp3");
-            audio.play();
-            setReactionState(action);
+    }, [reactions, user]); // Update reactionState when reactions or user change
+
+    const handleAction = async (action) => {
+        if (reactionState === action) {
+            setReactionState(""); // Reset state if clicked again
+        } else {
+            try {
+                const reaction = {
+                    name: user?.displayName,
+                    email: user?.email,
+                    profilePhoto: user?.photoURL,
+                    reactionType: action
+                }
+                const req = await postReaction(id, reaction)
+                if (req.success) {
+                    const audio = new Audio("/Sound/likes-sound.mp3");
+                    audio.play();
+                    setReactionState(action);
+                } else {
+                    toast.error(req.error);
+                }
+            } catch (error) {
+                toast.error(error.message)
+            }
         }
     };
 
+    // Reactions Type
     const reactionsAction = useMemo(() => [
         { name: "like", icon: like, color: "#2078F4" },
         { name: "love", icon: love, color: "#F33E58" },
