@@ -115,7 +115,7 @@ const Post = ({ post, video }) => {
                         {/* Post Reaction Show */}
                         <PostReactionShow reactionTypes={reactions} />
                         {/* Tooltip From Post Components */}
-                        <TooltipFromPost data={reactions} button={<span className='sm:items-center sm:gap-1 sm:flex'>{reactions?.length} <span className='hidden sm:block'>Reaction</span></span>} />
+                        <TooltipFromPost data={reactions} button={<span className='sm:items-center sm:gap-1 sm:flex'>{reactions?.length} <span className='hidden sm:block'>Reactions</span></span>} />
                     </div>
                     {/* Show Comment Count */}
                     <div>

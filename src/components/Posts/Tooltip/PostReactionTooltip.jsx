@@ -2,7 +2,7 @@
 import { Tooltip } from '@nextui-org/react';
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import Image from 'next/image';
-import { useState, useEffect, useMemo } from 'react'; // Changed import to include useEffect
+import { useState, useEffect, useMemo } from 'react';
 
 // Import All Reactions
 import like from '@/assets/Reactions/like.svg';
@@ -29,29 +29,31 @@ const PostReactionTooltip = ({ id, reactions }) => {
     }, [reactions, user]); // Update reactionState when reactions or user change
 
     const handleAction = async (action) => {
-        if (reactionState === action) {
-            setReactionState(""); // Reset state if clicked again
-        } else {
-            try {
-                const reaction = {
-                    name: user?.displayName,
-                    email: user?.email,
-                    profilePhoto: user?.photoURL,
-                    reactionType: action
-                }
-                const req = await postReaction(id, reaction)
-                if (req.success) {
+        try {
+            const reaction = {
+                name: user?.displayName,
+                email: user?.email,
+                profilePhoto: user?.photoURL,
+                reactionType: action
+            }
+            const req = await postReaction(id, reaction);
+            if (req.success) {
+                if (reactionState !== action) {
                     const audio = new Audio("/Sound/likes-sound.mp3");
                     audio.play();
                     setReactionState(action);
-                } else {
-                    toast.error(req.error);
                 }
-            } catch (error) {
-                toast.error(error.message)
+                else {
+                    setReactionState("");
+                }
             }
+            else {
+                toast.error(req.error);
+            }
+        } catch (error) {
+            toast.error(error.message)
         }
-    };
+    }
 
     // Reactions Type
     const reactionsAction = useMemo(() => [

@@ -48,14 +48,18 @@ export const POST = async (request, { params: { id } }) => {
 // Function to handle existing reaction
 const handleExistingReaction = (post, postReaction, existingReactionIndex) => {
     if (post.reactions[existingReactionIndex].reactionType === postReaction.reactionType) {
-        // If the reaction type is the same as the existing one, return an error
-        return NextResponse.json({
-            error: `This Post Already ${postReaction.reactionType}`
-        });
+        // If the reaction type is the same as the existing one, delete the existing reaction
+        deleteExistingReaction(post, existingReactionIndex);
     } else {
         // Update the existing reaction
         updateExistingReaction(post, postReaction, existingReactionIndex);
     }
+};
+
+// Function to delete existing reaction
+const deleteExistingReaction = (post, existingReactionIndex) => {
+    // Remove the existing reaction
+    post.reactions.splice(existingReactionIndex, 1);
 };
 
 // Function to update existing reaction

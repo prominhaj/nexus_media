@@ -9,7 +9,7 @@ const TooltipFromPost = ({ data, button }) => {
                 placement={"bottom-start"}
                 content={<div className="px-1 py-1">
                     {
-                        data?.map(d => <small key={d.email}>
+                        data?.map((d, index) => <small key={index}>
                             <p>{d.name}</p>
                         </small>)
                     }

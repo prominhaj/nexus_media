@@ -1,11 +1,10 @@
 "use client"
 import { useState } from 'react';
 import Post from '../Post/Post';
-import CreatePost from '../CreatePost/CreatePost';
-import domain from '@/Domain/domain.config';
 import PostLoading from '../../Loading/PostLoading/PostLoading';
 import Intersection from '@/components/InfinityScroll/Intersection/Intersection';
 import { getPosts } from '@/server/post';
+import { getAllPosts } from '@/utils/getAllPosts';
 
 
 // Posts Limit
@@ -25,8 +24,9 @@ const AllPosts = () => {
         //     cache: "no-store"
         // });
         // const data = await res.json();
+        const data = await getAllPosts(postsLimit, page)
 
-        const data = await getPosts(postsLimit, page * postsLimit)
+        // const data = await getPosts(postsLimit, page * postsLimit)
 
         if (data.length === 0) {
             setHasMore(false)
