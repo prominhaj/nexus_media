@@ -1,5 +1,4 @@
-"use client"
-import { Tooltip } from '@nextui-org/react';
+"use client";
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import Image from 'next/image';
 import { useState, useEffect, useMemo } from 'react';
@@ -15,6 +14,7 @@ import wow from '@/assets/Reactions/wow.svg';
 import useAuth from '@/Hooks/useAuth';
 import { postReaction } from '@/utils/postReaction';
 import { toast } from 'sonner';
+import Tooltip from "./Tooltip";
 
 const PostReactionTooltip = ({ id, reactions }) => {
     const user = useAuth();
@@ -67,7 +67,7 @@ const PostReactionTooltip = ({ id, reactions }) => {
     ], []);
 
     const toolTipContent = useMemo(() => (
-        <div className="px-1 py-2">
+        <div className="w-60 max-w-full md:w-72 px-0.5 py-1 md:px-1 md:py-2">
             <div className='flex items-center gap-3'>
                 {reactionsAction.map((item, index) => (
                     <button onClick={() => handleAction(item.name)} className='transition-all duration-300 hover:scale-125' key={index}>
@@ -81,9 +81,9 @@ const PostReactionTooltip = ({ id, reactions }) => {
     const renderButton = () => {
         if (!reactionState) {
             return (
-                <button onClick={() => handleAction("like")} className='flex items-center justify-center w-full gap-1'>
+                <button onClick={() => handleAction("like")} className='flex items-center justify-center w-full gap-1 font-medium'>
                     {reactionState === "like" ? <BiSolidLike className='text-xl' /> : <BiLike className='text-xl' />}
-                    <div className='font-medium'>Like</div>
+                    <div>Like</div>
                 </button>
             );
         } else {
@@ -98,11 +98,11 @@ const PostReactionTooltip = ({ id, reactions }) => {
     };
 
     return (
-        <div className='w-full dark:hover:bg-[#3A3B3C] hover:bg-[#F2F2F2] py-[0.3125rem] text-[.875rem] dark:text-[#B0B3B8] px-2 rounded-md duration-200 transition-all cursor-pointer'>
-            <Tooltip placement='top' content={toolTipContent}>
-                <div className={`w-full ${reactionState && reactionState === "like" && "text-[#1E76FF]"}`}>
-                    {renderButton()}
-                </div>
+        <div className='w-full flex items-center justify-center dark:hover:bg-[#3A3B3C] hover:bg-[#F2F2F2] py-[0.375rem] text-[.875rem] dark:text-[#B0B3B8] rounded-md duration-200 transition-all cursor-pointer'>
+            <Tooltip className="!bg-transparent pt-4" button={<div className={`w-full ${reactionState && reactionState === "like" && "text-[#1E76FF]"}`}>
+                {renderButton()}
+            </div>}>
+                {toolTipContent}
             </Tooltip>
         </div>
     );

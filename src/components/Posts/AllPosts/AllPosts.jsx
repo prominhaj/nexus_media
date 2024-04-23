@@ -24,9 +24,9 @@ const AllPosts = () => {
         //     cache: "no-store"
         // });
         // const data = await res.json();
-        const data = await getAllPosts(postsLimit, page)
+        // const data = await getAllPosts(postsLimit, page)
 
-        // const data = await getPosts(postsLimit, page * postsLimit)
+        const data = await getPosts(postsLimit, page * postsLimit)
 
         if (data.length === 0) {
             setHasMore(false)
