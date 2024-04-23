@@ -4,10 +4,13 @@ import { useState } from 'react';
 import { BsEmojiNeutral } from 'react-icons/bs';
 
 // Dynamic Import
-const EmojiSlider = dynamic(() => import('@/components/SliderCus/EmojiSlider'))
+const EmojiSlider = dynamic(() => import('@/components/SliderCus/EmojiSlider'), {
+    loading: () => <p>Loading...</p>,
+})
 
 const Emoji = ({ setDescription }) => {
     const [showEmoji, setShowEmoji] = useState(false);
+
     return (
         <div>
             <div className='absolute z-20 right-4 top-14'>

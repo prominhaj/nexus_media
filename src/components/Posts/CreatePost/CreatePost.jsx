@@ -6,8 +6,6 @@ import useAuth from '@/Hooks/useAuth';
 import { toast } from 'sonner'
 import { createPost } from '@/server/post';
 import imageUpload from '@/utils/imageUpload';
-import Emoji from './Emoji';
-// import SubmitButton from '@/components/Button/SubmitButton';
 import dynamic from 'next/dynamic';
 
 // Dynamic Import
@@ -16,6 +14,7 @@ const UploadFile = dynamic(() => import('@/components/UploadFile/UploadFile'), {
     loading: () => <p>Loading...</p>,
 })
 const SubmitButton = dynamic(() => import('@/components/Button/SubmitButton'))
+const Emoji = dynamic(() => import('../../SliderCus/Emoji'))
 
 
 // Create Post Button
