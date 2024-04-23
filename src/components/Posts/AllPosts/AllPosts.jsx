@@ -4,8 +4,6 @@ import Post from '../Post/Post';
 import PostLoading from '../../Loading/PostLoading/PostLoading';
 import Intersection from '@/components/InfinityScroll/Intersection/Intersection';
 import { getPosts } from '@/server/post';
-import { getAllPosts } from '@/utils/getAllPosts';
-
 
 // Posts Limit
 const postsLimit = 6;

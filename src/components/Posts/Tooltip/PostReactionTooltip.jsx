@@ -12,9 +12,9 @@ import sad from '@/assets/Reactions/sad.svg';
 import angry from '@/assets/Reactions/angry.svg';
 import wow from '@/assets/Reactions/wow.svg';
 import useAuth from '@/Hooks/useAuth';
-import { postReaction } from '@/utils/postReaction';
 import { toast } from 'sonner';
 import Tooltip from "./Tooltip";
+import { postReaction } from "@/server/reaction";
 
 const PostReactionTooltip = ({ id, reactions }) => {
     const user = useAuth();
@@ -36,7 +36,7 @@ const PostReactionTooltip = ({ id, reactions }) => {
                 profilePhoto: user?.photoURL,
                 reactionType: action
             }
-            const req = await postReaction(id, reaction);
+            const req = await postReaction(reaction, id);
             if (req.success) {
                 if (reactionState !== action) {
                     const audio = new Audio("/Sound/likes-sound.mp3");

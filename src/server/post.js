@@ -16,7 +16,7 @@ export const getPosts = async (limit, skip) => {
 
         const modifiedPosts = posts.map((post) => ({
             ...post.toObject(),
-            _id: post._id.toString() // Convert ObjectId to string
+            _id: post._id.toString()
         }));
 
         return modifiedPosts;
@@ -31,6 +31,7 @@ export const createPost = async (newPost) => {
         await connectDB();
 
         await Post.create(newPost);
+        // Revalidate Path
         revalidatePath('/');
         return { success: true };
     } catch (err) {
