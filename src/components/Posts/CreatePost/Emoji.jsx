@@ -1,7 +1,10 @@
-"use client"
-import EmojiSlider from '@/components/SliderCus/EmojiSlider';
-import React, { useState } from 'react';
+"use client";
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import { BsEmojiNeutral } from 'react-icons/bs';
+
+// Dynamic Import
+const EmojiSlider = dynamic(() => import('@/components/SliderCus/EmojiSlider'))
 
 const Emoji = ({ setDescription }) => {
     const [showEmoji, setShowEmoji] = useState(false);

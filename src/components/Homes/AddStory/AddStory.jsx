@@ -1,13 +1,25 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { GoPlus } from "react-icons/go";
-import ModalCus from "../ModalCus/ModalCus";
-import UploadFile from "@/components/UploadFile/UploadFile";
 import imageUpload from "@/utils/imageUpload";
 import { toast } from "sonner";
 import useAuth from "@/Hooks/useAuth";
-import SubmitButton from "@/components/Button/SubmitButton";
 import { createStory } from "@/server/story";
+import dynamic from "next/dynamic";
+
+// Dynamic Import
+const UploadFile = dynamic(() => import('@/components/UploadFile/UploadFile'),
+    {
+        loading: () => <p>Loading...</p>,
+    }
+);
+const ModalCus = dynamic(() => import('../ModalCus/ModalCus'),
+    {
+        loading: () => <p>Loading...</p>,
+    }
+);
+const SubmitButton = dynamic(() => import('@/components/Button/SubmitButton'));
+
 
 const addStoryBtn = <>
     <div className="flex items-center justify-center w-12 h-12 bg-white border rounded-full dark:bg-transparent">

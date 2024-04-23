@@ -1,15 +1,22 @@
-"use client"
+"use client";
 import { Avatar, Textarea } from '@nextui-org/react';
 import Link from 'next/link';
 import { useState } from 'react';
-import ModalCus from '../../Homes/ModalCus/ModalCus';
-import UploadFile from '@/components/UploadFile/UploadFile';
 import useAuth from '@/Hooks/useAuth';
 import { toast } from 'sonner'
 import { createPost } from '@/server/post';
 import imageUpload from '@/utils/imageUpload';
 import Emoji from './Emoji';
-import SubmitButton from '@/components/Button/SubmitButton';
+// import SubmitButton from '@/components/Button/SubmitButton';
+import dynamic from 'next/dynamic';
+
+// Dynamic Import
+const ModalCus = dynamic(() => import('../../Homes/ModalCus/ModalCus'))
+const UploadFile = dynamic(() => import('@/components/UploadFile/UploadFile'), {
+    loading: () => <p>Loading...</p>,
+})
+const SubmitButton = dynamic(() => import('@/components/Button/SubmitButton'))
+
 
 // Create Post Button
 const createPostBtn = <>

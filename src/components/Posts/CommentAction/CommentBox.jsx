@@ -1,11 +1,15 @@
-"use client"
+"use client";
+
 import useAuth from '@/Hooks/useAuth';
-import EmojiSlider from '@/components/SliderCus/EmojiSlider';
 import { Avatar } from '@nextui-org/react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { GrEmoji } from "react-icons/gr";
 import { IoSend } from 'react-icons/io5';
+
+// Dynamic Import
+const EmojiSlider = dynamic(() => import('@/components/SliderCus/EmojiSlider'))
 
 const CommentBox = () => {
     const [comment, setComment] = useState("");
