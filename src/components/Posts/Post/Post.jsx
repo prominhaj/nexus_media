@@ -119,14 +119,14 @@ const Post = ({ post, video }) => {
                     </div>
                     {/* Show Comment Count */}
                     <div>
-                        <TooltipFromPost button={<span className='flex items-center gap-[6px] sm:gap-1'>50 <span className='block sm:hidden'><GoComment className='text-base' /></span> <span className='hidden sm:block'>comments</span></span>} />
+                        <TooltipFromPost data={comments} comment={true} button={<span className='flex items-center gap-[6px] sm:gap-1'>{comments?.length} <span className='block sm:hidden'><GoComment className='text-base' /></span> <span className='hidden sm:block'>comments</span></span>} />
                     </div>
                 </div>
                 {/* Post Actions  */}
                 <div className='grid items-center grid-cols-3 gap-[0.625rem] py-[0.3125rem] border-b border-gray-200 dark:border-gray-700'>
                     <PostReactionTooltip id={_id} reactions={reactions} />
                     <CommentAction />
-                    <ShareAction />
+                    <ShareAction id={_id} />
                 </div>
                 {/* Show All Comments */}
                 <div className='py-3'>

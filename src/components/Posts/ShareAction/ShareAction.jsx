@@ -1,3 +1,4 @@
+import domain from "@/Domain/domain.config";
 import PopoverCus from "@/components/Homes/Popover/PopoverCus";
 import { Snippet } from "@nextui-org/react";
 import { FiShare } from "react-icons/fi";
@@ -10,7 +11,7 @@ const shareBtn = <>
     </div>
 </>
 
-const ShareAction = () => {
+const ShareAction = ({ id }) => {
     return (
         <>
             <PopoverCus name={shareBtn} buttonClass={"w-full"} classes={"w-80"}>
@@ -26,7 +27,7 @@ const ShareAction = () => {
                         }}
                         className="relative flex-wrap w-full overflow-x-hidden text-wrap">
                         <span>
-                            http://localhost:3000/post/54554545fsdklfjsdfsdh
+                            {`${domain}/post/${id}`}
                         </span>
                     </Snippet>
                 </div>
