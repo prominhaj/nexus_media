@@ -1,8 +1,12 @@
-"use client"
+"use client";
+
 import { Avatar } from '@nextui-org/react';
-import React, { useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useEffect, useRef, useState } from 'react';
 import { HiOutlinePaperAirplane, HiOutlineXMark } from 'react-icons/hi2';
-import TypingLoading from '../Loading/TypingLoading/TypingLoading';
+
+// Dynamic Import
+const TypingLoading = dynamic(() => import('../Loading/TypingLoading/TypingLoading'))
 
 const ModalChat = ({ modal, setModal }) => {
     const [isLoading, setIsLoading] = useState(false);

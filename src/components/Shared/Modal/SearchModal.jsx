@@ -1,8 +1,16 @@
 import useColor from '@/Hooks/useColor';
-import SearchCombobox from '@/components/Homes/SearchCombobox/SearchCombobox';
 import { Dialog, Transition } from '@headlessui/react';
-import React, { Fragment, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { Fragment, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
+
+// Dynamic Import
+const SearchCombobox = dynamic(
+    () => import('@/components/Homes/SearchCombobox/SearchCombobox'),
+    {
+        loading: () => <p>Loading...</p>,
+    }
+)
 
 const SearchModal = ({ data, search }) => {
     const [isOpen, setIsOpen] = useState(false);
