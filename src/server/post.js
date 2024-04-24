@@ -14,7 +14,12 @@ export const getPosts = async (limit, skip) => {
             .skip(parseInt(skip))
             .sort({ date: -1 });
 
-        return posts;
+        const modifiedPosts = posts.map((post) => ({
+            ...post.toObject(),
+            _id: post._id.toString()
+        }));
+
+        return modifiedPosts;
     } catch (err) {
         throw new Error(err.message);
     }

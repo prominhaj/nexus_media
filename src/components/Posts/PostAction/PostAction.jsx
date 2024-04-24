@@ -1,4 +1,3 @@
-import React from 'react';
 
 const PostAction = ({ icon, title, text, onClick }) => {
     return (

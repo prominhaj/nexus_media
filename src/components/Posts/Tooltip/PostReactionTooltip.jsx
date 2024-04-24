@@ -28,6 +28,7 @@ const PostReactionTooltip = ({ id, reactions }) => {
         }
     }, [reactions, user]); // Update reactionState when reactions or user change
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleAction = async (action) => {
         try {
             const reaction = {
@@ -76,7 +77,7 @@ const PostReactionTooltip = ({ id, reactions }) => {
                 ))}
             </div>
         </div>
-    ), [reactionsAction]);
+    ), [reactionsAction, handleAction]);
 
     const renderButton = () => {
         if (!reactionState) {
