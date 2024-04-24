@@ -1,7 +1,7 @@
 "use client"
 import app from '@/Firebase/Firebase.config';
-import { deleteCookies } from '@/components/cookies/deleteCookies';
-import { setCookies } from '@/components/cookies/setCookies';
+import { deleteCookies } from '@/components/Global/cookies/deleteCookies';
+import { setCookies } from '@/components/Global/cookies/setCookies';
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
 

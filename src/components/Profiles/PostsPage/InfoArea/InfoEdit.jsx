@@ -1,4 +1,4 @@
-import Button from '@/components/Button/Button';
+import Button from '@/components/Global/cookies/Button/Button';
 import React from 'react';
 
 const InfoEdit = () => {

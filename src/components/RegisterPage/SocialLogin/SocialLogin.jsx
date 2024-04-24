@@ -1,6 +1,6 @@
 "use client"
 import { AuthContext } from '@/Providers/AuthProvider';
-import Button from '@/components/Button/Button';
+import Button from '@/components/Global/cookies/Button/Button';
 import postSingupData from '@/utils/createNewAccout';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';

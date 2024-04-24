@@ -1,6 +1,6 @@
 "use client"
 import { AuthContext } from '@/Providers/AuthProvider';
-import Button from '@/components/Button/Button';
+import Button from '@/components/Global/cookies/Button/Button';
 import FormControl from '@/components/RegisterPage/FormControl/FormControl';
 import FormPassword from '@/components/RegisterPage/FormControl/FormPassword';
 import FormHading from '@/components/RegisterPage/FormHading/FormHading';

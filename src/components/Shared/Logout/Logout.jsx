@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import { AuthContext } from '@/Providers/AuthProvider';
 import { useRouter } from 'next/navigation';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { toast } from 'sonner';
 
 const Logout = ({ children }) => {
@@ -12,7 +12,7 @@ const Logout = ({ children }) => {
         try {
             await logout();
             router.push('/login');
-            toast.success("Logout successfully")
+            toast.success("Logout successfully");
         } catch (error) {
             toast.error(error.message)
         }

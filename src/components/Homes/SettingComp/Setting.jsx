@@ -1,7 +1,7 @@
 import { ThemeContext } from '../../../Providers/ThemeContext';
 import useColor from '@/Hooks/useColor';
 import { Switch } from "@nextui-org/react";
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { MdSunny } from "react-icons/md";
 import { IoIosMoon } from "react-icons/io";
 

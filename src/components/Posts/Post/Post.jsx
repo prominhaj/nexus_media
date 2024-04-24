@@ -1,4 +1,4 @@
-import { Avatar, Tooltip } from '@nextui-org/react';
+import { Avatar } from '@nextui-org/react';
 import { IoMdPersonAdd } from "react-icons/io";
 import Link from 'next/link';
 import { BsThreeDots } from "react-icons/bs";
@@ -8,7 +8,6 @@ import { AiFillCloseSquare } from "react-icons/ai";
 import Image from 'next/image';
 import VerifiedBadges from '@/components/Posts/VerifiedBadges/VerifiedBadges';
 import TooltipFromPost from '@/components/Posts/Tooltip/TooltipFromPost';
-import PostAction from '../PostAction/PostAction';
 import PostReactionTooltip from '../Tooltip/PostReactionTooltip';
 import PostReactionShow from '../PostReactionShow/PostReactionShow';
 import { GoComment } from 'react-icons/go';
@@ -18,6 +17,11 @@ import CommentBox from '../CommentAction/CommentBox';
 import moment from 'moment';
 import ShowDescription from './Description/ShowDescription';
 import ShowComment from './ShowComment/ShowComment';
+import Tooltip from '../Tooltip/Tooltip';
+import dynamic from 'next/dynamic';
+
+// Dynamic Import
+const PostAction = dynamic(() => import('../PostAction/PostAction'), { loading: () => <p>Loading...</p>, })
 
 // Post Menu Button
 const postMenuBtn = <>
@@ -51,12 +55,11 @@ const Post = ({ post, video }) => {
                         </div>
                         <div className='flex items-center gap-[0.625rem] text-light-text dark:text-dark-text font-sans'>
                             <Tooltip
-                                placement={"bottom"}
-                                content={moment(date).format('LLLL')}
+                                button={<button className='text-[.75rem] font-medium'>
+                                    {moment(date).startOf('minutes').fromNow()}
+                                </button>}
                             >
-                                <button className='text-[.75rem] font-medium'>
-                                    {moment(date).startOf('minute',).fromNow()}
-                                </button>
+                                <small>{moment(date).subtract(10, 'days').calendar()}</small>
                             </Tooltip>
                         </div>
                     </div>

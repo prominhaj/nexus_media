@@ -6,7 +6,7 @@ import Intersection from '@/components/InfinityScroll/Intersection/Intersection'
 import { getPosts } from '@/server/post';
 
 // Posts Limit
-const postsLimit = 6;
+const postsLimit = 4;
 
 const AllPosts = () => {
     // Load all posts
@@ -26,12 +26,14 @@ const AllPosts = () => {
 
         const data = await getPosts(postsLimit, page * postsLimit)
 
-        if (data.length === 0) {
-            setHasMore(false)
-        }
-        else {
-            setPosts(prev => [...prev, ...data])
-            setPage(prev => prev + 1)
+        if (data) {
+            if (data?.length === 0) {
+                setHasMore(false)
+            }
+            else {
+                setPosts(prev => [...prev, ...data])
+                setPage(prev => prev + 1)
+            }
         }
     }
 
@@ -39,7 +41,7 @@ const AllPosts = () => {
         <div>
             <div className='grid grid-cols-1 gap-5'>
                 {
-                    posts.map((post, index) => <Post key={index} post={post} />)
+                    posts?.map((post, index) => <Post key={index} post={post} />)
                 }
 
                 {hasMore && (

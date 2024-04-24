@@ -18,7 +18,7 @@ const ModalCus = dynamic(() => import('../ModalCus/ModalCus'),
         loading: () => <p>Loading...</p>,
     }
 );
-const SubmitButton = dynamic(() => import('@/components/Button/SubmitButton'));
+const SubmitButton = dynamic(() => import('@/components/Global/cookies/Button/SubmitButton'));
 
 
 const addStoryBtn = <>

@@ -16,6 +16,8 @@ export default function middleware(req) {
             return NextResponse.redirect(new URL('/login', req.url));
         }
     }
+
+    return NextResponse.next();
 }
 
 // See "Matching Paths" below to learn more

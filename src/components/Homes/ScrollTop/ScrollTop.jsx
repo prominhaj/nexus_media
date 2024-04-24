@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import useColor from '@/Hooks/useColor';
 import { useState, useEffect } from 'react';
 import { HiMiniChevronDoubleUp } from "react-icons/hi2";

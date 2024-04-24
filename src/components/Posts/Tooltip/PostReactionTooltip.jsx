@@ -15,10 +15,12 @@ import useAuth from '@/Hooks/useAuth';
 import { toast } from 'sonner';
 import Tooltip from "./Tooltip";
 import { postReaction } from "@/server/reaction";
+import { useRouter } from "next/navigation";
 
 const PostReactionTooltip = ({ id, reactions }) => {
     const user = useAuth();
     const [reactionState, setReactionState] = useState("");
+    const router = useRouter();
 
     // Check if user already has reactions
     useEffect(() => {
@@ -30,29 +32,35 @@ const PostReactionTooltip = ({ id, reactions }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleAction = async (action) => {
-        try {
-            const reaction = {
-                name: user?.displayName,
-                email: user?.email,
-                profilePhoto: user?.photoURL,
-                reactionType: action
-            }
-            const req = await postReaction(reaction, id);
-            if (req.success) {
-                if (reactionState !== action) {
-                    const audio = new Audio("/Sound/likes-sound.mp3");
-                    audio.play();
-                    setReactionState(action);
+        if (!user) {
+            return router.push("/login")
+        }
+        else {
+            try {
+                const reaction = {
+                    name: user?.displayName,
+                    email: user?.email,
+                    profilePhoto: user?.photoURL,
+                    reactionType: action
+                }
+                const req = await postReaction(reaction, id);
+                if (req.success) {
+                    if (reactionState !== action) {
+                        const audio = new Audio("/Sound/likes-sound.mp3");
+                        audio.play();
+                        setReactionState(action);
+                    }
+                    else {
+                        setReactionState("");
+                    }
+                    router.refresh()
                 }
                 else {
-                    setReactionState("");
+                    toast.error(req.error);
                 }
+            } catch (error) {
+                toast.error(error.message)
             }
-            else {
-                toast.error(req.error);
-            }
-        } catch (error) {
-            toast.error(error.message)
         }
     }
 

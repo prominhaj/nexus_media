@@ -1,8 +1,9 @@
+"use client";
 import PopoverCus from '@/components/Homes/Popover/PopoverCus';
 import Link from 'next/link';
-import React from 'react';
 import Logout from '../Logout/Logout';
 import useAuth from '@/Hooks/useAuth';
+import { Avatar } from '@nextui-org/react';
 
 // Profile Items 
 const profileItems = [
@@ -16,8 +17,12 @@ const profileItems = [
     },
 ]
 
-const ProfileItems = ({ name, classes, bottom }) => {
+const ProfileItems = ({ classes, bottom }) => {
     const user = useAuth();
+
+    const name = <>
+        <Avatar isBordered color="success" src={user?.photoURL} />
+    </>
 
     return (
         <div>

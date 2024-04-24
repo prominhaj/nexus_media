@@ -1,17 +1,13 @@
-"use client"
-import Link from "next/link";
-import { MdAutorenew, MdOutlineChatBubbleOutline } from "react-icons/md";
+import { MdOutlineChatBubbleOutline } from "react-icons/md";
 import { BiSolidContact } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
-import useColor from "@/Hooks/useColor";
-import { motion } from 'framer-motion';
 import { SlSettings } from "react-icons/sl";
 import { IoAlertCircleSharp } from "react-icons/io5";
-import { HiArrowRightOnRectangle } from "react-icons/hi2";
 import { FaBookmark } from "react-icons/fa6";
-import { usePathname } from "next/navigation";
-import Logout from "../Logout/Logout";
-import useAuth from "@/Hooks/useAuth";
+import ReloadPageBtn from "./reloadPageBtn";
+import LeftMenuNavigation from "./LeftMenuNavigation";
+import LeftMenuLogout from "./LeftMenuLogout";
+import FramerMotion from "@/components/Global/Motion/FramerMotion";
 
 // Left Menu Items
 const leftMenuItems = [
@@ -43,18 +39,9 @@ const leftActionItems = [
         name: 'Account Setting',
         path: '/account/setting',
         icon: <div className='rounded-full bg-slate-200 dark:bg-gray-600'>
-            <motion.div
-                animate={{
-                    rotate: [0, 360],
-                }}
-                transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: 'linear'
-                }}
-            >
+            <FramerMotion>
                 <SlSettings className="text-2xl" />
-            </motion.div>
+            </FramerMotion>
         </div>
     },
     {
@@ -65,80 +52,28 @@ const leftActionItems = [
 ]
 
 const LeftMenu = () => {
-    const { color } = useColor();
-    const path = usePathname();
-    const user = useAuth();
-
-    const reloadPage = () => {
-        window.location.reload();
-    };
 
     return (
 
         <div className="h-screen transition-all duration-300 rounded-lg bg-light-menu-bg dark:bg-dark-menu-bg md:space-y-5">
             <div className='flex flex-col gap-2 p-3 bg-transparent rounded-lg md:bg-light-menu-bg md:dark:bg-dark-menu-bg'>
-                <button onClick={reloadPage} className="w-full px-3 hover:bg-[#F2F2F2] dark:text-gray-300 dark:hover:bg-[#3A3B3C] rounded-md py-2 text-[1.02rem transition-all duration-300">
-                    <span className="flex items-center gap-2 sm:gap-3">
-                        <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-2 ${color && color}`}>
-                            <MdAutorenew className="text-2xl" />
-                        </span>
-                        <span className="text-lg font-medium">
-                            Latest Feed
-                        </span>
-                    </span>
-                </button>
+                {/* Reload Button */}
+                <ReloadPageBtn />
+
                 {
-                    leftMenuItems.map(item =>
-                        <Link className={`${path === item.path && "dark:bg-[#3A3B3C] bg-[#F0F2F5]"} block px-3 hover:bg-[#F2F2F2] dark:text-gray-300 dark:hover:bg-[#3A3B3C] rounded-md py-2 text-[1.02rem transition-all duration-300`} href={item.path} key={item.path}>
-                            <span className="flex items-center gap-2 sm:gap-3">
-                                <span className={`${path === item.path && "dark:bg-[#1877F2] !bg-[#1877F2] text-[#ffffff]"} bg-gray-300 dark:bg-gray-600 rounded-full p-2 ${color && path === item.path || color}`}>
-                                    {item.icon}
-                                </span>
-                                <span className="text-lg font-medium">
-                                    {item.name}
-                                </span>
-                            </span>
-                        </Link>
+                    leftMenuItems.map((item, index) =>
+                        <LeftMenuNavigation key={index} item={item} />
                     )
                 }
             </div>
             <hr className="dark:border-t-gray-600 border-t-gray-300" />
             <div className='flex flex-col gap-2 p-3 bg-transparent rounded-lg md:bg-light-menu-bg md:dark:bg-dark-menu-bg'>
                 {
-                    leftActionItems.map(item =>
-                        <Link className={`${path === item.path && "dark:bg-[#3A3B3C] bg-[#F0F2F5]"} block px-3 hover:bg-[#F2F2F2] dark:text-gray-300 dark:hover:bg-[#3A3B3C] rounded-md py-2 text-[1.02rem transition-all duration-300`} href={item.path} key={item.path}>
-                            <span className="flex items-center gap-2 sm:gap-3">
-                                <span className={`${path === item.path && "dark:bg-[#1877F2] bg-[#1877F2] text-[#FFFFFF]"} bg-gray-300 dark:bg-gray-600 rounded-full p-2 ${color && path === item.path || color}`}>
-                                    {item.icon}
-                                </span>
-                                <span className="text-lg font-medium">
-                                    {item.name}
-                                </span>
-                            </span>
-                        </Link>
+                    leftActionItems.map((item, index) =>
+                        <LeftMenuNavigation key={index} item={item} />
                     )
                 }
-                {
-                    user ? <Logout>
-                        <button className='w-full px-3 hover:bg-[#F2F2F2] dark:text-gray-300 dark:hover:bg-[#3A3B3C] rounded-md py-2 text-[1.02rem transition-all duration-300'>
-                            <span className="flex items-center gap-2 sm:gap-3">
-                                <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-2 ${color && color}`}>
-                                    <HiArrowRightOnRectangle className="text-2xl" />
-                                </span>
-                                <span className="text-lg font-medium">
-                                    Logout
-                                </span>
-                            </span>
-                        </button>
-                    </Logout> : <Link className="w-full px-3 block hover:bg-[#F2F2F2] dark:text-gray-300 dark:hover:bg-[#3A3B3C] rounded-md py-2 text-[1.02rem transition-all duration-300" href="/login">
-                        <span className="flex items-center gap-2 sm:gap-3">
-                            <span className={`bg-gray-300 dark:bg-gray-600 rounded-full p-2 ${color && color}`}>
-                                <HiArrowRightOnRectangle className="text-2xl" />
-                            </span>
-                            <span className="text-lg font-medium">Login</span>
-                        </span>
-                    </Link>
-                }
+                <LeftMenuLogout />
             </div>
         </div >
     );

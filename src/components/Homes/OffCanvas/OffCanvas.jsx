@@ -1,8 +1,16 @@
-"use client"
-import React, { useState } from 'react';
-import LeftMenu from '../../Shared/LeftMenu/LeftMenu';
+"use client";
+import { useState } from 'react';
 import { HiMiniBars3BottomRight, HiXMark } from "react-icons/hi2";
 import useColor from '@/Hooks/useColor';
+import dynamic from 'next/dynamic';
+
+// Dynamic Import
+const LeftMenu = dynamic(
+    () => import('../../Shared/LeftMenu/LeftMenu'),
+    {
+        loading: () => <p>Loading...</p>,
+    }
+)
 
 const OffCanvas = ({ children }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
