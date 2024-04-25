@@ -41,8 +41,8 @@ const AddStory = ({ addStory }) => {
             return toast.error("Please select an image")
         }
 
+        setLoading(true);
         try {
-            setLoading(true);
             const image = await imageUpload(selectedFile, true);
 
             if (image.success) {

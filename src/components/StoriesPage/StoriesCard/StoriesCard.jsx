@@ -1,49 +1,52 @@
+"use client";
+import Intersection from "@/components/InfinityScroll/Intersection/Intersection";
 import StoriesModalCard from "../StoriesModal/StoriesModalCard";
+import { useState } from "react";
+import { getStories } from "@/server/story";
+import StoryLoading from "@/components/Loading/StoryLoading/StoryLoading";
 
-// Feck Stories
-const stories = [
-    {
-        id: 1,
-        image: 'https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        name: "John Smith",
-    },
-    {
-        id: 2,
-        image: 'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        name: "Jiny Sonhara",
-    },
-    {
-        id: 3,
-        image: 'https://images.pexels.com/photos/1559486/pexels-photo-1559486.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        name: "Md Jahid Khan"
-    },
-    {
-        id: 4,
-        image: 'https://images.pexels.com/photos/1080213/pexels-photo-1080213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        name: "Khalid Khan"
-    },
-    {
-        id: 5,
-        image: 'https://images.pexels.com/photos/343717/pexels-photo-343717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        name: "Johir Khan"
-    },
-    {
-        id: 6,
-        image: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        name: "Holid Aliases"
-    },
-]
+// Posts Limit
+const storiesLimit = 12;
 
 const StoriesCard = () => {
+    // Load all posts
+    const [page, setPage] = useState(0);
+    const [stories, setStories] = useState([]);
+    const [hasMore, setHasMore] = useState(true);
+
+    const fetchingStories = async () => {
+        const data = await getStories(storiesLimit, page * storiesLimit)
+
+        if (data.length === 0) {
+            setHasMore(false)
+        }
+        else {
+            setStories(prev => [...prev, ...data])
+            setPage(prev => prev + 1)
+        }
+    }
 
     return (
-        <div className='grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4'>
-            {
-                stories.map(s => (
-                    <StoriesModalCard key={s.id} story={s} />
-                ))
-            }
-        </div>
+        <>
+            <div className='grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4'>
+                {
+                    stories.map(s => (
+                        <StoriesModalCard key={s._id} story={s} />
+                    ))
+                }
+            </div>
+
+            {hasMore && (
+                <Intersection fetchingData={fetchingStories} hasMore={hasMore} page={page}>
+                    <div className="grid items-center justify-center grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 lg:grid-cols-4">
+                        <StoryLoading />
+                        <StoryLoading />
+                        <StoryLoading />
+                        <StoryLoading />
+                    </div>
+                </Intersection>
+            )}
+        </>
     );
 };
 

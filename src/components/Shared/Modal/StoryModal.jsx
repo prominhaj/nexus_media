@@ -1,5 +1,4 @@
 "use client";
-import { getSingleStory } from '@/server/story';
 import { Avatar } from '@nextui-org/react';
 import moment from 'moment';
 import Image from 'next/image';
@@ -8,15 +7,6 @@ import ReactDOM from 'react-dom';
 
 const StoryModal = ({ card, item }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [story, setStory] = useState({})
-
-    const handleStoryModal = async (item) => {
-        setIsOpen(true)
-
-        // Find Single Story
-        const data = await getSingleStory(item._id);
-        setStory(data)
-    }
 
     const closeModal = () => {
         setIsOpen(false);
@@ -43,7 +33,7 @@ const StoryModal = ({ card, item }) => {
     return (
         <>
             {/* Story Modal Button */}
-            <div onClick={() => handleStoryModal(item)} className='w-full h-full transition-all duration-300 cursor-pointer max-h-58 md:max-h-62'>
+            <div onClick={() => setIsOpen(true)} className='w-full h-full transition-all duration-300 cursor-pointer max-h-58 md:max-h-62'>
                 {card}
             </div>
 
@@ -55,10 +45,10 @@ const StoryModal = ({ card, item }) => {
                             <div className='relative flex items-center justify-center w-full h-full'>
                                 <div className='absolute top-0 left-0 flex items-center justify-between w-full p-3 rounded-md text-light-text bg-light-bg dark:text-dark-text dark:bg-dark-bg'>
                                     <div className='flex items-center gap-3'>
-                                        <Avatar isBordered src={story?.profilePhoto} />
+                                        <Avatar isBordered src={item?.profilePhoto} />
                                         <div>
-                                            <h2>{story?.name}</h2>
-                                            <p>{moment(story?.Date).format('MMM DD, YYYY h:mm A')}</p>
+                                            <h2>{item?.name}</h2>
+                                            <p>{moment(item?.Date).format('MMM DD, YYYY h:mm A')}</p>
                                         </div>
                                     </div>
 

@@ -1,7 +1,6 @@
 import AddStory from '@/components/Homes/AddStory/AddStory';
 import StoriesCard from '@/components/StoriesPage/StoriesCard/StoriesCard';
 import { Avatar } from '@nextui-org/react';
-import React from 'react';
 
 const StoriesPage = () => {
     const addStoryBtn = (
