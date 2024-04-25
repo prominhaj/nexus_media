@@ -3,13 +3,25 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
-import StoryModal from '../Shared/Modal/StoryModal';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import StorySliderLoading from './StorySliderLoading';
-import getAllStory from '@/utils/getAllStory';
-import Intersection from '../InfinityScroll/Intersection/Intersection';
+import { useState } from 'react';
 import { getStories } from '@/server/story';
+import dynamic from 'next/dynamic';
+import { Spinner } from '@nextui-org/react';
+
+// Dynamic Import
+const StoryModal = dynamic(
+    () => import('../Shared/Modal/StoryModal'),
+    {
+        loading: () => <Spinner size="sm" />,
+    }
+)
+const Intersection = dynamic(
+    () => import('../InfinityScroll/Intersection/Intersection'),
+    {
+        loading: () => <Spinner size="sm" />,
+    }
+)
 
 // Posts Limit
 const storiesLimit = 10;
@@ -19,7 +31,6 @@ const StorySlider = () => {
     const [page, setPage] = useState(0);
     const [stories, setStories] = useState([]);
     const [hasMore, setHasMore] = useState(true);
-    const [loading, setLoading] = useState(false);
 
     const fetchingStories = async () => {
         const data = await getStories(storiesLimit, page * storiesLimit)
@@ -32,36 +43,6 @@ const StorySlider = () => {
             setPage(prev => prev + 1)
         }
     }
-
-    const sliderRef = useRef(null);
-
-    const scrollLeft = () => {
-        if (sliderRef.current) {
-            sliderRef.current.scrollBy({
-                left: -200, // Adjust scroll speed as needed
-                behavior: 'smooth',
-            });
-        }
-    };
-
-    const scrollRight = () => {
-        if (sliderRef.current) {
-            sliderRef.current.scrollBy({
-                left: 200, // Adjust scroll speed as needed
-                behavior: 'smooth',
-            });
-        }
-    };
-
-    // useEffect(() => {
-    //     setLoading(true)
-    //     const story = async () => {
-    //         const result = await getAllStory();
-    //         setStories(result);
-    //         setLoading(false);
-    //     }
-    //     story()
-    // }, [])
 
     return (
         <div className='flex overflow-x-hidden'>
@@ -123,7 +104,7 @@ const StorySlider = () => {
 
             {hasMore && (
                 <Intersection fetchingData={fetchingStories} hasMore={hasMore} page={page}>
-                    Loading...
+                    <Spinner size="md" />
                 </Intersection>
             )}
         </div>

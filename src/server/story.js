@@ -12,15 +12,35 @@ export const getStories = async (limit, skip) => {
         const stories = await Story.find()
             .limit(parseInt(limit))
             .skip(parseInt(skip))
-            .sort({ date: -1 });
+            .sort({ Date: -1 })
+            .select({ _id: 1, storyPhoto: 1 });
 
-        const modifiedStories = stories.map((post) => ({
-            ...post.toObject(),
-            _id: post._id.toString() // Convert ObjectId to string
+        const modifiedStories = stories.map((story) => ({
+            ...story.toObject(),
+            _id: story._id.toString()
         }));
 
         return modifiedStories;
     } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+// Get Single Story
+export const getSingleStory = async (id) => {
+    try {
+        // Connect to the database
+        await connectDB();
+
+        // Find Single Story
+        const story = await Story.findById(id).select({
+            name: 1,
+            email: 1,
+            profilePhoto: 1,
+            Date: 1
+        });
+        return story;
+    } catch (error) {
         throw new Error(err.message);
     }
 };

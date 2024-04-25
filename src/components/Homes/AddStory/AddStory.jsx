@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import useAuth from "@/Hooks/useAuth";
 import { createStory } from "@/server/story";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 
 // Dynamic Import
 const UploadFile = dynamic(() => import('@/components/UploadFile/UploadFile'),
@@ -30,6 +31,7 @@ const addStoryBtn = <>
 const AddStory = ({ addStory }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
     const user = useAuth();
 
     // add new Story
@@ -56,7 +58,7 @@ const AddStory = ({ addStory }) => {
                 if (addStoryData.success) {
                     setSelectedFile("")
                     toast.success('Story Added successfully');
-
+                    router.refresh();
                 }
                 else {
                     toast.error("Something went wrong");
