@@ -1,3 +1,4 @@
+"use client";
 
 const PostAction = ({ icon, title, text, onClick }) => {
     return (
