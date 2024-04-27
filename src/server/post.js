@@ -4,11 +4,11 @@ import connectDB from '@/lib/mongodb';
 import Post from '@/models/Post';
 import { revalidatePath } from 'next/cache';
 
+// Connect to the database
+connectDB();
+
 export const getPosts = async (limit, skip) => {
     try {
-        // Connect to the database
-        await connectDB();
-
         const posts = await Post.find()
             .limit(parseInt(limit))
             .skip(parseInt(skip))
@@ -27,9 +27,6 @@ export const getPosts = async (limit, skip) => {
 
 export const createPost = async (newPost) => {
     try {
-        // Connect to the database
-        await connectDB();
-
         await Post.create(newPost);
         // Revalidate Path
         revalidatePath('/');

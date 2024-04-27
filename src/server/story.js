@@ -4,11 +4,11 @@ import connectDB from '@/lib/mongodb';
 import Story from '@/models/Story';
 import { revalidatePath } from 'next/cache';
 
+// Connect to the database
+connectDB();
+
 export const getStories = async (limit, skip) => {
     try {
-        // Connect to the database
-        await connectDB();
-
         const stories = await Story.find()
             .limit(parseInt(limit))
             .skip(parseInt(skip))
@@ -27,9 +27,6 @@ export const getStories = async (limit, skip) => {
 
 export const createStory = async (newStory) => {
     try {
-        // Connect to the database
-        await connectDB();
-
         await Story.create(newStory);
         revalidatePath('/');
         return { success: true };

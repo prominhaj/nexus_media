@@ -4,11 +4,11 @@ import connectDB from '@/lib/mongodb';
 import Post from '@/models/Post';
 import { revalidatePath } from 'next/cache';
 
+// Connect to the database
+connectDB();
+
 export const postComment = async (comment, id) => {
     try {
-        // Connect to the database
-        await connectDB();
-
         // Find the post by ID
         const post = await Post.findById(id);
 
