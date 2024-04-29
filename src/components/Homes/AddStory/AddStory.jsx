@@ -4,9 +4,9 @@ import { GoPlus } from "react-icons/go";
 import imageUpload from "@/utils/imageUpload";
 import { toast } from "sonner";
 import useAuth from "@/Hooks/useAuth";
-import { createStory } from "@/server/story";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
+import { createStory } from "@/server";
 
 // Dynamic Import
 const UploadFile = dynamic(() => import('@/components/UploadFile/UploadFile'),

@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 import useAuth from '@/Hooks/useAuth';
 import { toast } from 'sonner'
-import { createPost } from '@/server/post';
 import imageUpload from '@/utils/imageUpload';
 import dynamic from 'next/dynamic';
+import { createPost } from '@/server';
 
 // Dynamic Import
 const ModalCus = dynamic(() => import('../../Homes/ModalCus/ModalCus'))

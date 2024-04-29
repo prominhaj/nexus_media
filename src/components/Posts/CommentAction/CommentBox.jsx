@@ -1,10 +1,10 @@
 "use client";
-
 import useAuth from '@/Hooks/useAuth';
-import { postComment } from '@/server/postComment';
+import { postComment } from '@/server';
 import { Avatar } from '@nextui-org/react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { GrEmoji } from "react-icons/gr";
 import { IoSend } from 'react-icons/io5';
@@ -13,14 +13,16 @@ import { toast } from 'sonner';
 // Dynamic Import
 const EmojiSlider = dynamic(() => import('@/components/SliderCus/EmojiSlider'), {
     loading: () => <p>Loading...</p>,
-})
+});
 
 const CommentBox = ({ id }) => {
     const [comment, setComment] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
+    const router = useRouter();
     const user = useAuth();
 
-    const handleComment = async () => {
+    const handleComment = async (e) => {
+        e.preventDefault();
         try {
             const newComment = {
                 comment: comment,
@@ -34,6 +36,7 @@ const CommentBox = ({ id }) => {
 
             const req = await postComment(newComment, id);
             if (req.success) {
+                router.refresh();
                 toast.success(req.message)
                 setComment("")
             }
@@ -52,7 +55,7 @@ const CommentBox = ({ id }) => {
                 </Link>
             </div>
             <div className='sm:col-span-11 relative bg-[#F0F2F5] dark:bg-[#3A3B3C] rounded-2xl'>
-                <form action={handleComment}>
+                <form onSubmit={handleComment}>
                     {/* Comment TextBox */}
                     <input value={comment} onChange={e => setComment(e.target.value)} id='comment' className='w-full pr-[4.5rem] focus:outline focus:outline-offset-2 focus:outline-blue-500 bg-transparent rounded-2xl px-3 py-2 outline-none dark:text-[#E4E6EB] text-[#050505]' type="text" placeholder='Write a comments...' />
 

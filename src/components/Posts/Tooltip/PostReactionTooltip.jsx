@@ -14,8 +14,8 @@ import wow from '@/assets/Reactions/wow.svg';
 import useAuth from '@/Hooks/useAuth';
 import { toast } from 'sonner';
 import Tooltip from "./Tooltip";
-import { postReaction } from "@/server/reaction";
 import { useRouter } from "next/navigation";
+import { postReaction } from "@/server";
 
 const PostReactionTooltip = ({ id, reactions }) => {
     const user = useAuth();
@@ -53,7 +53,7 @@ const PostReactionTooltip = ({ id, reactions }) => {
                     else {
                         setReactionState("");
                     }
-                    router.refresh()
+                    router.refresh();
                 }
                 else {
                     toast.error(req.error);

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Post from '../Post/Post';
 import PostLoading from '../../Loading/PostLoading/PostLoading';
 import Intersection from '@/components/InfinityScroll/Intersection/Intersection';
-import { getPosts } from '@/server/post';
+import { getPosts } from '@/server';
 
 // Posts Limit
 const postsLimit = 4;
@@ -15,15 +15,6 @@ const AllPosts = () => {
     const [hasMore, setHasMore] = useState(true);
 
     const fetchingPosts = async () => {
-        // const res = await fetch(`${domain}/api/post?limit=${postsLimit}&skip=${page * postsLimit}`, {
-        //     next: {
-        //         tags: ['posts']
-        //     },
-        //     cache: "no-store"
-        // });
-        // const data = await res.json();
-        // const data = await getAllPosts(postsLimit, page)
-
         const data = await getPosts(postsLimit, page * postsLimit)
 
         if (data) {

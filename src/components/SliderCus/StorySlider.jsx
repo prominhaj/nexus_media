@@ -5,9 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Image from 'next/image';
 import { useState } from 'react';
-import { getStories } from '@/server/story';
 import dynamic from 'next/dynamic';
 import { Spinner } from '@nextui-org/react';
+import { getStories } from '@/server';
 
 // Dynamic Import
 const StoryModal = dynamic(
