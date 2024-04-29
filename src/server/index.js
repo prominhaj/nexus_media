@@ -36,6 +36,7 @@ const createPost = async (newPost) => {
     }
 };
 
+// Post Comment
 const postComment = async (comment, id) => {
     try {
         // Find the post by ID
