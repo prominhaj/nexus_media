@@ -2,8 +2,8 @@
 import Intersection from "@/components/InfinityScroll/Intersection/Intersection";
 import StoriesModalCard from "../StoriesModal/StoriesModalCard";
 import { useState } from "react";
-import { getStories } from "@/server/story";
 import StoryLoading from "@/components/Loading/StoryLoading/StoryLoading";
+import { getStories } from "@/server";
 
 // Posts Limit
 const storiesLimit = 12;
