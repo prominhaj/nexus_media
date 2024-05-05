@@ -7,7 +7,7 @@ const PopoverCus = ({ name, children, classes, buttonClass, bottom }) => {
         <div>
             <Menu as="div" className="relative text-left">
                 <div>
-                    <Menu.Button className={`flex justify-center ${buttonClass}`}>
+                    <Menu.Button className={`flex justify-center ${buttonClass && buttonClass}`}>
                         {name}
                     </Menu.Button>
                 </div>

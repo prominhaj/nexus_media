@@ -10,7 +10,7 @@ const HeaderSetting = () => {
     const settings = <>
         <span className='p-3 lg:p-[10px] rounded-full bg-light-bg dark:bg-dark-bg dark:hover:bg-dark-bg-hover hover:bg-light-bg-hover duration-250'>
             <FramerMotion>
-                <HiOutlineCog8Tooth className={`text-2xl lg:text-3xl ${color && color}`} />
+                <HiOutlineCog8Tooth className={`text-2xl lg:text-3xl ${color ? color : ""}`} />
             </FramerMotion>
         </span>
     </>

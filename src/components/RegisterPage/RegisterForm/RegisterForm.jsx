@@ -1,12 +1,11 @@
 "use client"
 import { AuthContext } from '@/Providers/AuthProvider';
-import Button from '@/components/Global/cookies/Button/Button';
 import FormControl from '@/components/RegisterPage/FormControl/FormControl';
 import FormPassword from '@/components/RegisterPage/FormControl/FormPassword';
 import FormHading from '@/components/RegisterPage/FormHading/FormHading';
 import createNewAccount from '@/utils/createNewAccout';
 import imageUpload from '@/utils/imageUpload';
-import { Spinner } from '@nextui-org/react';
+import { Button, Spinner } from '@radix-ui/themes';
 import { useRouter } from 'next/navigation';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -113,22 +112,22 @@ const RegisterForm = () => {
                         placeholder='Enter Your Password'
                     >
                         {errors.password?.type === "required" && (
-                            <p className="text-red-600 dark:text-red-400">
+                            <p className="text-red-500">
                                 <small>Password is required</small>
                             </p>
                         )}
                         {errors.password?.type === "minLength" && (
-                            <p className="text-red-600 dark:text-red-400">
+                            <p className="text-red-500">
                                 <small>Password is Min 10 Character</small>
                             </p>
                         )}
                         {errors.password?.type === "maxLength" && (
-                            <p className="text-red-600 dark:text-red-400">
+                            <p className="text-red-500">
                                 <small>Password is Mix 15 Character</small>
                             </p>
                         )}
                         {errors.password?.type === "pattern" && (
-                            <p className="text-red-600 dark:text-red-400">
+                            <p className="text-red-500">
                                 <small>
                                     Password must have one uppercase one lower case, one
                                     number and one special characters
@@ -139,15 +138,10 @@ const RegisterForm = () => {
                     </FormPassword>
                 </div>
 
-                {loading ? (
-                    <div className='flex items-center justify-center'>
-                        <Spinner color="primary" />
-                    </div>
-                ) : (
-                    <Button type="submit" className='w-full mt-2 hover:opacity-75 bg-gradient-to-r from-violet-500 to-fuchsia-500'>
-                        Register
-                    </Button>
-                )}
+                <Button className='!w-full' disabled={loading} variant="solid">
+                    {loading && <Spinner loading />}
+                    Submit
+                </Button>
             </form>
         </div>
     );
