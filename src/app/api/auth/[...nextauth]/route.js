@@ -48,7 +48,7 @@ const options = NextAuth({
         signIn: '/login'
     },
     callbacks: {
-        async signIn({ account, profile }) {
+        async signIn({ account, profile, session }) {
             if (account.provider === 'google') {
                 // Connect DB
                 await connectDB();
@@ -68,8 +68,35 @@ const options = NextAuth({
                 return true;
             }
             return true;
+        },
+        async session(session, user) {
+            try {
+                // Connect DB
+                await connectDB();
+                // Fetch additional user data from MongoDB using Mongoose
+                const userData = await User.findOne({ email: session.session.user.email })
+                    .select({
+                        email: 1,
+                        name: 1,
+                        image: 1,
+                        _id: 1,
+                        role: 1
+                    })
+                    .lean();
+
+                const { _id, ...updatedObj } = { ...userData, id: userData._id.toString() };
+
+                session.user = {
+                    ...session.user,
+                    ...updatedObj
+                };
+            } catch (error) {
+                console.error('Error fetching user session data:', error);
+            }
+            return session;
         }
     },
+
     secret: process.env.NEXTAUTH_SECRET
 });
 

@@ -27,7 +27,7 @@ export const createNewUser = async (formData) => {
         const newUser = {
             name: formData.name,
             email: formData.email,
-            photo: {
+            image: {
                 profileURL: photo.secure_url,
                 publicId: photo.public_id
             },

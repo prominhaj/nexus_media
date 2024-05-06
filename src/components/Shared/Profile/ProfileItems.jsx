@@ -3,7 +3,7 @@ import PopoverCus from '@/components/Homes/Popover/PopoverCus';
 import Link from 'next/link';
 import Logout from '../Logout/Logout';
 import useAuth from '@/Hooks/useAuth';
-import { Avatar } from '@nextui-org/react';
+import { Avatar } from '@radix-ui/themes';
 
 // Profile Items 
 const profileItems = [
@@ -18,10 +18,11 @@ const profileItems = [
 ]
 
 const ProfileItems = ({ classes, bottom }) => {
-    const user = useAuth();
+    const { status, user } = useAuth();
 
+    console.log(status, user);
     const name = <>
-        <Avatar isBordered color="success" src={user?.photoURL} />
+        <Avatar src="" variant="solid" radius='full' color="cyan" fallback="A" />
     </>
 
     return (

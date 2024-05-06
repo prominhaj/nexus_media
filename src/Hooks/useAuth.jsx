@@ -1,10 +1,10 @@
-"use client"
-import { AuthContext } from '@/Providers/AuthProvider';
-import { useContext } from 'react';
+"use client";
+import { useSession } from 'next-auth/react';
 
 const useAuth = () => {
-    const { user } = useContext(AuthContext);
-    return user;
+    const { data, status } = useSession();
+    const user = data?.user;
+    return { status, user };
 };
 
 export default useAuth;

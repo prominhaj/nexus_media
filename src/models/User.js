@@ -5,7 +5,7 @@ const usersSchema = new Schema(
     {
         name: { type: String, required: true },
         email: { type: String, unique: true, required: true },
-        photo: {
+        image: {
             profileURL: { type: String, required: false },
             publicId: { type: String, required: false }
         },
