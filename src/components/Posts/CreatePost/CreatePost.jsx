@@ -13,7 +13,7 @@ const ModalCus = dynamic(() => import('../../Homes/ModalCus/ModalCus'))
 const UploadFile = dynamic(() => import('@/components/UploadFile/UploadFile'), {
     loading: () => <p>Loading...</p>,
 })
-const SubmitButton = dynamic(() => import('@/components/Global/cookies/Button/SubmitButton'))
+const SubmitButton = dynamic(() => import('@/components/Global/Button/SubmitButton'))
 const Emoji = dynamic(() => import('../../SliderCus/Emoji'))
 
 

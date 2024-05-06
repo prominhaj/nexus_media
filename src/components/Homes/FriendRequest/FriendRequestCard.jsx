@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import Button from '../../Global/cookies/Button/Button';
+import Button from '../../Global/Button/Button';
 import { Avatar } from '@nextui-org/react';
 
 const FriendRequestCard = () => {

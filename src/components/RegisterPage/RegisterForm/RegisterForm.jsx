@@ -1,147 +1,97 @@
 "use client"
-import { AuthContext } from '@/Providers/AuthProvider';
+import SubmitButton from '@/components/Global/Button/SubmitButton';
 import FormControl from '@/components/RegisterPage/FormControl/FormControl';
 import FormPassword from '@/components/RegisterPage/FormControl/FormPassword';
 import FormHading from '@/components/RegisterPage/FormHading/FormHading';
-import createNewAccount from '@/utils/createNewAccout';
-import imageUpload from '@/utils/imageUpload';
-import { Button, Spinner } from '@radix-ui/themes';
-import { useRouter } from 'next/navigation';
-import { useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { UserSchema } from '@/lib/ZodSchemas/UserSchema';
+import { createNewUser } from '@/server/register';
 import { toast } from 'sonner';
 
 const RegisterForm = () => {
-    const { createAccount, nameAndPhoto } = useContext(AuthContext);
-    const [loading, setLoading] = useState(false);
-    const router = useRouter();
-
-    // Hook Form to register
-    const {
-        register,
-        formState: { errors },
-        handleSubmit
-    } = useForm();
 
     // Form Handler
-    const onSubmit = async (form) => {
-        // Loading State
-        setLoading(true)
-        // Form Data
-        const { name, email, photo, password } = form;
-
+    const handleRegister = async (formData) => {
+        const newUsers = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            password: formData.get('password')
+        }
         try {
-            // Image upload
-            const imageHost = await imageUpload(photo);
+            // Zod Validation
+            UserSchema.parse(newUsers);
 
-            if (imageHost.success) {
-                // Firebase Create new Account
-                const singUp = await createAccount(email, password);
-                // Firebase Name And Photo Add
-                await nameAndPhoto(name, imageHost.data.display_url);
-                // Check User SingUp
-                if (singUp.user) {
-                    const user = {
-                        name,
-                        email,
-                        photo: imageHost.data.display_url,
-                    }
-
-                    // API request
-                    const singUpData = await createNewAccount(user);
-                    // Check User SingUp Save DataBase
-                    if (singUpData.success) {
-                        router.push("/")
-                        toast.success('Account Created Successfully');
-                    }
-                }
-
+            // Convert FormData to plain object
+            const newUser = {};
+            for (const [key, value] of formData.entries()) {
+                newUser[key] = value;
             }
-        }
-        catch (err) {
-            // Handle error
-            toast.error(err.message.substr(10));
-        }
-        finally {
-            // Loading State FALSE
-            setLoading(false);
+
+            // Handle photo separately if needed
+            const photoFile = formData.get("photo");
+            if (photoFile) {
+                const arrayBuffer = await photoFile.arrayBuffer();
+                const photo = new Uint8Array(arrayBuffer);
+                newUser.photo = photo;
+            }
+
+            // Call the server function to create a new user
+            const user = await createNewUser(newUser);
+            if (user?.error) {
+                toast.error(user.error)
+                return
+            }
+            else {
+                toast.success('User Created Successfully');
+            }
+        } catch (validationError) {
+            if (Array.isArray(validationError?.issues)) {
+                const errorMessages = validationError.errors.map((error) => error.message);
+                toast.error(errorMessages.join(', '));
+            }
+            else {
+                if (validationError?.message?.split('\n')[0] === "Body exceeded 5mb limit.") {
+                    toast.error(validationError.message.split('\n')[0]);
+                }
+                else {
+                    toast.error(validationError.message);
+                }
+            }
         }
     };
 
+
     return (
         <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <FormHading>Create a new account</FormHading>
+            <form action={handleRegister}>
+                <FormHading>Register</FormHading>
                 <div className='py-3'>
-                    <FormControl register={register} label='Name' id='name' type='text' placeholder='Enter Your Name'>
-                        {errors.name?.type === "required" && (
-                            <p className='mt-1 text-sm text-red-500'>Name is required</p>
-                        )}
-                    </FormControl>
+                    <FormControl label='Name' id='name' type='text' placeholder='Enter Your Name' />
                     <FormControl
-                        register={register}
                         label='Email'
                         id='email'
                         type='email'
                         placeholder='example@gmail.com'
-                    >
-                        {errors.email?.type === "required" && (
-                            <p className='mt-1 text-sm text-red-500'>Email is required</p>
-                        )}
-                    </FormControl>
+                    />
 
                     {/* Image Uploader */}
                     <FormControl
-                        register={register}
                         className="file:bg-indigo-500 file:rounded-md file:border-none"
                         label='Profile Photo'
                         id='photo'
                         type='file'
                         placeholder="Upload Profile Photo..."
-                    >
-                        {errors.photo?.type === "required" && (
-                            <p className='mt-1 text-sm text-red-500'>Profile Photo is required</p>
-                        )}
-                    </FormControl>
+                    />
 
                     {/* Form Password Control */}
                     <FormPassword
-                        register={register}
                         label='Password'
                         id='password'
                         placeholder='Enter Your Password'
-                    >
-                        {errors.password?.type === "required" && (
-                            <p className="text-red-500">
-                                <small>Password is required</small>
-                            </p>
-                        )}
-                        {errors.password?.type === "minLength" && (
-                            <p className="text-red-500">
-                                <small>Password is Min 10 Character</small>
-                            </p>
-                        )}
-                        {errors.password?.type === "maxLength" && (
-                            <p className="text-red-500">
-                                <small>Password is Mix 15 Character</small>
-                            </p>
-                        )}
-                        {errors.password?.type === "pattern" && (
-                            <p className="text-red-500">
-                                <small>
-                                    Password must have one uppercase one lower case, one
-                                    number and one special characters
-                                </small>
-                            </p>
-                        )}
-
-                    </FormPassword>
+                    />
                 </div>
 
-                <Button className='!w-full' disabled={loading} variant="solid">
-                    {loading && <Spinner loading />}
-                    Submit
-                </Button>
+                <SubmitButton className="!w-full">Register</SubmitButton>
+
             </form>
         </div>
     );
