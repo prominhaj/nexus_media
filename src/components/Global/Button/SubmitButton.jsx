@@ -2,11 +2,11 @@
 import { Button, Spinner } from "@radix-ui/themes";
 import { useFormStatus } from 'react-dom';
 
-const SubmitButton = ({ className, children }) => {
+const SubmitButton = ({ loading, className, children }) => {
     const { pending } = useFormStatus()
     return (
-        <Button className={`${className} !cursor-pointer`} disabled={pending} variant="solid">
-            {pending && <Spinner loading />}
+        <Button className={`${className} !cursor-pointer`} disabled={loading || pending} variant="solid">
+            {loading || pending && <Spinner loading />}
             {children ? children : "Submit"}
         </Button>
     );

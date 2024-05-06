@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 export default function middleware(req) {
-    const authToken = cookies().get('auth-token')?.value;
+    const authToken = cookies().get('next-auth.session-token')?.value;
 
     const loggedInUserNotAccessPaths =
         req.nextUrl.pathname === '/login' || req.nextUrl.pathname === '/register';
