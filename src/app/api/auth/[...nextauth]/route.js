@@ -1,9 +1,13 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import bcrypt from 'bcrypt';
 import GoogleProvider from 'next-auth/providers/google';
+import GitHubProvider from 'next-auth/providers/github';
 import connectDB from '@/lib/mongodb';
 import User from '@/models/User';
+import bcrypt from 'bcrypt';
+
+// Establish database connection
+connectDB();
 
 const options = NextAuth({
     session: {
@@ -12,9 +16,6 @@ const options = NextAuth({
     providers: [
         CredentialsProvider({
             async authorize(credentials, req) {
-                // Connect DB
-                await connectDB();
-
                 const { email, password } = credentials;
 
                 const user = await User.findOne({ email });
@@ -35,15 +36,19 @@ const options = NextAuth({
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        }),
+        GitHubProvider({
+            clientId: process.env.GITHUB_ID,
+            clientSecret: process.env.GITHUB_SECRET
         })
     ],
     pages: {
         signIn: '/login'
     },
     callbacks: {
-        async signIn({ account, profile, session }) {
+        async signIn({ account, profile }) {
             if (account.provider === 'google' || account.provider === 'github') {
-                // Connect DB
+                // Establish database connection
                 await connectDB();
                 try {
                     const user = await User.findOne({ email: profile.email });
@@ -53,13 +58,15 @@ const options = NextAuth({
                             name: profile.name,
                             email: profile.email,
                             image: {
-                                profileURL: profile.image
+                                profileURL: profile.picture
                             }
                         };
+
                         await User.create(newUser);
                     }
                 } catch (error) {
-                    throw new Error(error);
+                    console.error('Error signing in:', error);
+                    return false;
                 }
                 return true;
             }
@@ -67,8 +74,6 @@ const options = NextAuth({
         },
         async session(session, user) {
             try {
-                // Connect DB
-                await connectDB();
                 // Fetch additional user data from MongoDB using Mongoose
                 const userData = await User.findOne({ email: session.session.user.email })
                     .select({
