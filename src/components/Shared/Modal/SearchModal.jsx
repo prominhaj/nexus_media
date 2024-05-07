@@ -1,4 +1,4 @@
-import useColor from '@/Hooks/useColor';
+"use client";
 import { Dialog, Transition } from '@headlessui/react';
 import dynamic from 'next/dynamic';
 import { Fragment, useState } from 'react';
@@ -14,7 +14,6 @@ const SearchCombobox = dynamic(
 
 const SearchModal = ({ data, search }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const { color } = useColor();
 
     return (
         <>
@@ -24,7 +23,7 @@ const SearchModal = ({ data, search }) => {
                     onClick={() => setIsOpen(true)}
                     className="p-3 rounded-full bg-light-bg dark:bg-dark-bg"
                 >
-                    <IoSearch className={`text-2xl font-semibold ${color ? color : "text-light-text dark:text-dark-text"}`} />
+                    <IoSearch className="text-2xl font-semibold text-light-text dark:text-dark-text" />
                 </button>
             }
 

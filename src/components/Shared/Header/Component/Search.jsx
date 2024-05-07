@@ -1,7 +1,6 @@
 "use client";
 import { FaSearch } from "react-icons/fa";
 import SearchModal from "../../Modal/SearchModal";
-import useColor from "@/Hooks/useColor";
 
 // face data for search
 const people = [
@@ -14,12 +13,11 @@ const people = [
 ]
 
 const Search = ({ mobile }) => {
-    const { color } = useColor();
 
     // Search Button
     const search = <>
         <div className='flex items-center gap-2 px-3 rounded-md cursor-pointer bg-light-bg dark:bg-dark-bg hover:bg-light-bg-hover dark:hover:bg-dark-bg-hover'>
-            <FaSearch className={`${color ? color : 'text-light-text dark:text-dark-text'}`} />
+            <FaSearch className="text-light-text dark:text-dark-text" />
             <input className='py-2 bg-transparent outline-none cursor-pointer' type="text" placeholder="Search" />
         </div>
     </>
