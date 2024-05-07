@@ -5,7 +5,7 @@ import { useFormStatus } from 'react-dom';
 const SubmitButton = ({ loading, className, children }) => {
     const { pending } = useFormStatus()
     return (
-        <Button className={`${className} !cursor-pointer`} disabled={loading || pending} variant="solid">
+        <Button type="submit" className={`${className} !cursor-pointer`} disabled={loading || pending} variant="solid">
             {loading || pending && <Spinner loading />}
             {children ? children : "Submit"}
         </Button>

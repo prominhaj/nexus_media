@@ -1,13 +1,36 @@
-"use client"
-import React from 'react';
-import { Modal, ModalContent, ModalHeader, ModalBody, Button, useDisclosure } from "@nextui-org/react";
+"use client";
+import { IoMdClose } from "react-icons/io";
+import { Dialog } from '@radix-ui/themes';
 
-const ModalCus = ({ name, modalTitle, children, classes, }) => {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+const ModalCus = ({ name, modalTitle, submitButton, children }) => {
 
     return (
         <>
-            <Button className={`!px-0 !py-0 bg-transparent !min-w-full !h-full ${classes && classes}`} onPress={onOpen}>{name}</Button>
+            <Dialog.Root>
+                <Dialog.Trigger>
+                    <button className="w-full">
+                        {name}
+                    </button>
+                </Dialog.Trigger>
+
+                <Dialog.Content className="relative" size="3" maxWidth="500px">
+                    <div className='flex items-start justify-between'>
+                        <Dialog.Title>{modalTitle}</Dialog.Title>
+                        <div className='absolute top-2 right-2'>
+                            <Dialog.Close>
+                                <button className="p-2 duration-300 rounded-full hover:bg-gray-500">
+                                    <IoMdClose className="text-2xl" />
+                                </button>
+                            </Dialog.Close>
+                        </div>
+                    </div>
+                    <div className='pt-2'>
+                        {children}
+                    </div>
+                </Dialog.Content>
+            </Dialog.Root>
+
+            {/* <Button className={`!px-0 !py-0 bg-transparent !min-w-full !h-full ${classes && classes}`} onPress={onOpen}>{name}</Button>
             <Modal
                 backdrop="opaque"
                 isOpen={isOpen}
@@ -32,7 +55,7 @@ const ModalCus = ({ name, modalTitle, children, classes, }) => {
                         </>
                     )}
                 </ModalContent>
-            </Modal>
+            </Modal> */}
         </>
     );
 };

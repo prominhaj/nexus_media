@@ -1,4 +1,3 @@
-"use client"
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
 import Logout from "../Logout/Logout";
 
