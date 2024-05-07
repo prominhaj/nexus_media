@@ -17,17 +17,17 @@ const profileItems = [
     },
 ]
 
-const ProfileItems = ({ classes, bottom }) => {
+const ProfileItems = () => {
     const { status, user } = useAuth();
 
     const name = <>
-        {status === 'loading' ? <Spinner size="3" /> : <Avatar src={user?.image?.profileURL} variant="solid" radius='full' color="cyan" fallback={user?.name.slice(0, 1)} />}
+        {status === 'loading' ? <Spinner size="3" /> : <Avatar className='p-1 sm:p-0' src={user?.image?.profileURL} variant="solid" radius='full' color="cyan" fallback={user?.name.slice(0, 1)} />}
     </>
 
     return (
         <div>
-            <PopoverCus classes={classes} name={name} bottom={bottom}>
-                <div className='px-3 py-2'>
+            <PopoverCus name={name}>
+                <>
                     <div className='flex flex-col'>
                         {
                             profileItems.map(item =>
@@ -41,7 +41,7 @@ const ProfileItems = ({ classes, bottom }) => {
                         }
 
                     </div>
-                </div>
+                </>
             </PopoverCus>
         </div>
     );

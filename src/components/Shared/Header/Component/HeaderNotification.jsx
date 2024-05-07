@@ -1,9 +1,7 @@
 "use client";
-
 import PopoverCus from "@/components/Homes/Popover/PopoverCus";
 import { HiOutlineBellAlert } from "react-icons/hi2";
 import { useState } from "react";
-import useColor from "@/Hooks/useColor";
 import ReactDOM from 'react-dom';
 import dynamic from "next/dynamic";
 
@@ -22,17 +20,16 @@ const Notification = dynamic(
 )
 
 const HeaderNotification = () => {
-    const { color } = useColor();
     const [modal, setModal] = useState(false);
 
     const notification = <>
-        <span className={`p-3 rounded-full bg-light-bg dark:bg-dark-bg dark:hover:bg-dark-bg-hover hover:bg-light-bg-hover duration-250 ${color ? color : 'dark:text-dark-text'}`}>
+        <span className="flex items-center justify-center p-3 rounded-full bg-light-bg dark:bg-dark-bg dark:hover:bg-dark-bg-hover hover:bg-light-bg-hover duration-250 dark:text-dark-text">
             <HiOutlineBellAlert className='text-2xl' />
         </span>
     </>
     return (
         <>
-            <PopoverCus name={notification} classes="w-72">
+            <PopoverCus name={notification}>
                 <Notification modal={modal} setModal={setModal} />
             </PopoverCus>
 

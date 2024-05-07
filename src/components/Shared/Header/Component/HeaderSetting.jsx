@@ -1,22 +1,18 @@
 "use client";
-import FramerMotion from "@/components/Global/Motion/FramerMotion";
-import PopoverCus from "@/components/Homes/Popover/PopoverCus";
-import Setting from "@/components/Homes/SettingComp/Setting";
-import { HiOutlineCog8Tooth } from "react-icons/hi2";
+import { ThemeContext } from "@/Providers/ThemeContext";
+import { useContext } from "react";
+import { IoIosMoon } from "react-icons/io";
+import { MdSunny } from "react-icons/md";
 
 const HeaderSetting = () => {
-    const settings = <>
-        <span className='p-3 lg:p-[10px] rounded-full bg-light-bg dark:bg-dark-bg dark:hover:bg-dark-bg-hover hover:bg-light-bg-hover duration-250'>
-            <FramerMotion>
-                <HiOutlineCog8Tooth className="text-2xl lg:text-3xl" />
-            </FramerMotion>
-        </span>
-    </>
+    const [theme, toggleButton] = useContext(ThemeContext);
 
     return (
-        <PopoverCus name={settings}>
-            <Setting />
-        </PopoverCus>
+        <>
+            <button className='text-light-text text-2xl dark:text-dark-text bg-light-bg hover:bg-light-bg-hover dark:hover:bg-dark-bg-hover dark:bg-dark-bg p-2.5 rounded-full' onClick={toggleButton}>
+                {theme === "dark" ? <MdSunny /> : <IoIosMoon />}
+            </button>
+        </>
     );
 };
 

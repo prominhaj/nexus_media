@@ -98,7 +98,7 @@ const Header = () => {
                         {
                             headerModeItems.map((item, index) => <HeaderNavigation key={index} item={item} />)
                         }
-                        <ProfileItems classes={"bottom-12"} bottom={true} />
+                        <ProfileItems />
                     </div>
                 </div>
             </div>
