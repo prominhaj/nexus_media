@@ -3,7 +3,7 @@ import PopoverCus from '@/components/Homes/Popover/PopoverCus';
 import Link from 'next/link';
 import Logout from '../Logout/Logout';
 import useAuth from '@/Hooks/useAuth';
-import { Avatar } from '@radix-ui/themes';
+import { Avatar, Spinner } from '@radix-ui/themes';
 
 // Profile Items 
 const profileItems = [
@@ -20,9 +20,8 @@ const profileItems = [
 const ProfileItems = ({ classes, bottom }) => {
     const { status, user } = useAuth();
 
-    console.log(status, user);
     const name = <>
-        <Avatar src="" variant="solid" radius='full' color="cyan" fallback="A" />
+        {status === 'loading' ? <Spinner size="3" /> : <Avatar src={user?.image?.profileURL} variant="solid" radius='full' color="cyan" fallback={user?.name.slice(0, 1)} />}
     </>
 
     return (

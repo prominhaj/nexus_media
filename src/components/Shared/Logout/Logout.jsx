@@ -1,16 +1,14 @@
 "use client";
-import { AuthContext } from '@/Providers/AuthProvider';
 import { useRouter } from 'next/navigation';
-import { useContext } from 'react';
 import { toast } from 'sonner';
+import { signOut } from "next-auth/react";
 
 const Logout = ({ children }) => {
-    const { logout } = useContext(AuthContext);
     const router = useRouter();
 
     const handleLogout = async () => {
         try {
-            await logout();
+            await signOut();
             router.push('/login');
             toast.success("Logout successfully");
         } catch (error) {

@@ -37,8 +37,7 @@ export const createNewUser = async (formData) => {
         await User.create(newUser);
 
         // Send Email From User
-        const email = await resendEmail(newUser.email, newUser.name);
-        console.log(email);
+        await resendEmail(newUser.email, newUser.name);
     } catch (error) {
         return { error: error.message };
     }

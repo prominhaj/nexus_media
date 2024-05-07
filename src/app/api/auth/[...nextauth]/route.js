@@ -34,14 +34,7 @@ const options = NextAuth({
         }),
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            authorization: {
-                params: {
-                    prompt: 'consent',
-                    access_type: 'offline',
-                    response_type: 'code'
-                }
-            }
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
         })
     ],
     pages: {
@@ -49,7 +42,7 @@ const options = NextAuth({
     },
     callbacks: {
         async signIn({ account, profile, session }) {
-            if (account.provider === 'google') {
+            if (account.provider === 'google' || account.provider === 'github') {
                 // Connect DB
                 await connectDB();
                 try {
@@ -58,12 +51,15 @@ const options = NextAuth({
                     if (!user) {
                         const newUser = {
                             name: profile.name,
-                            email: profile.email
+                            email: profile.email,
+                            image: {
+                                profileURL: profile.image
+                            }
                         };
                         await User.create(newUser);
                     }
                 } catch (error) {
-                    throw new Error(error.message);
+                    throw new Error(error);
                 }
                 return true;
             }
@@ -86,8 +82,7 @@ const options = NextAuth({
 
                 const { _id, ...updatedObj } = { ...userData, id: userData._id.toString() };
 
-                session.user = {
-                    ...session.user,
+                session.session.user = {
                     ...updatedObj
                 };
             } catch (error) {

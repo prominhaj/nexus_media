@@ -6,8 +6,8 @@ const usersSchema = new Schema(
         name: { type: String, required: true },
         email: { type: String, unique: true, required: true },
         image: {
-            profileURL: { type: String, required: false },
-            publicId: { type: String, required: false }
+            profileURL: { type: String, required: true },
+            publicId: { type: String, default: '', required: false }
         },
         password: { type: String, required: false },
         gender: { type: String, default: '', required: false },

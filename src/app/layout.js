@@ -3,7 +3,6 @@ import { Poppins } from 'next/font/google';
 import NextProvider from '@/Providers/NextProvider';
 import ThemeProvider from '../Providers/ThemeContext';
 import ColorProvider from '@/Providers/ColorProvider';
-import AuthProvider from '@/Providers/AuthProvider';
 import { Toaster } from 'sonner';
 import RadixThemeProvider from '@/Providers/RadixThemeProvider';
 import SessionProvider from '@/Providers/SessionProvider';
@@ -27,12 +26,10 @@ export default function RootLayout({ children }) {
                     <ColorProvider>
                         <ThemeProvider>
                             <SessionProvider>
-                                <AuthProvider>
-                                    <RadixThemeProvider>
-                                        {children}
-                                        <Toaster position='top-right' />
-                                    </RadixThemeProvider>
-                                </AuthProvider>
+                                <RadixThemeProvider>
+                                    {children}
+                                    <Toaster position='top-right' />
+                                </RadixThemeProvider>
                             </SessionProvider>
                         </ThemeProvider>
                     </ColorProvider>
