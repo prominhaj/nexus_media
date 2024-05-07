@@ -3,6 +3,18 @@
 import connectDB from '@/lib/mongodb';
 import Post from '@/models/Post';
 import Story from '@/models/Story';
+import { fileUploader } from './fileUploader';
+import { revalidatePath } from 'next/cache';
+import User from '@/models/User';
+
+// Utils functions
+const modifiedObject = (array) => {
+    const modifiedData = array.map((o) => ({
+        ...o,
+        _id: o._id.toString()
+    }));
+    return modifiedData;
+};
 
 // Connect to the database
 connectDB();
@@ -133,27 +145,60 @@ const getStories = async (limit, skip) => {
         const stories = await Story.find()
             .limit(parseInt(limit))
             .skip(parseInt(skip))
-            .sort({ Date: -1 });
+            .sort({ Date: -1 })
+            .lean();
 
-        const modifiedStories = stories.map((story) => ({
-            ...story.toObject(),
-            _id: story._id.toString()
+        // Find the users corresponding to the userIds
+        const users = await User.find()
+            .select({
+                email: 1,
+                name: 1,
+                image: 1,
+                _id: 1
+            })
+            .limit(parseInt(limit))
+            .skip(parseInt(skip))
+            .sort({ Date: -1 })
+            .lean();
+
+        // Modified Data
+        const modifiedStories = modifiedObject(stories);
+        const modifiedUsers = modifiedObject(users);
+
+        const allStories = modifiedStories.map((story) => ({
+            ...story,
+            ...modifiedUsers.find((user) => user._id === story.userId)
         }));
 
-        return modifiedStories;
+        return allStories;
     } catch (err) {
         throw new Error(err.message);
     }
 };
 
 // Create a new story
-const createStory = async (newStory) => {
+const createStory = async ({ photo, userId }) => {
     try {
+        // Image Upload
+        const { secure_url, public_id } = await fileUploader(photo, 'Stories');
+
+        // Add the new story
+        const newStory = {
+            userId,
+            storyImage: {
+                photoUrl: secure_url,
+                publicId: public_id
+            }
+        };
         await Story.create(newStory);
-        return { success: true };
     } catch (err) {
-        throw new Error(err.message);
+        throw new Error(err);
     }
+
+    // Revalidate the page
+    revalidatePath('/');
+
+    return { success: true };
 };
 
 export { getPosts, createPost, postComment, postReaction, getStories, createStory };

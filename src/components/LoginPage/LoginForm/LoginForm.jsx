@@ -26,9 +26,9 @@ const LoginForm = () => {
                 password
             });
 
-            console.log(data);
             if (data.ok) {
                 router.push('/');
+                toast.success("Login successful")
             }
             else if (data.error) {
                 toast.error(data.error)

@@ -3,7 +3,8 @@ import { Button, Spinner } from "@radix-ui/themes";
 import { useFormStatus } from 'react-dom';
 
 const SubmitButton = ({ loading, className, children }) => {
-    const { pending } = useFormStatus()
+    const { pending } = useFormStatus();
+
     return (
         <Button type="submit" className={`${className} !cursor-pointer`} disabled={loading || pending} variant="solid">
             {loading || pending && <Spinner loading />}

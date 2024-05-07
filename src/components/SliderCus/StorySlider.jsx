@@ -35,7 +35,7 @@ const StorySlider = () => {
     const fetchingStories = async () => {
         const data = await getStories(storiesLimit, page * storiesLimit)
 
-        if (data.length === 0) {
+        if (data?.length === 0) {
             setHasMore(false)
         }
         else {
@@ -90,7 +90,7 @@ const StorySlider = () => {
                         <StoryModal
                             item={item}
                             card={<Image
-                                src={item.storyPhoto}
+                                src={item?.storyImage?.photoUrl}
                                 width={50}
                                 height={50}
                                 loading='lazy'

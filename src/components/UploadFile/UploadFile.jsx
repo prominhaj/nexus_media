@@ -1,5 +1,5 @@
+import { Card } from '@radix-ui/themes';
 import Image from 'next/image';
-import React from 'react';
 import { CiImageOn } from 'react-icons/ci';
 import { HiOutlineTrash } from 'react-icons/hi2';
 
@@ -8,20 +8,22 @@ const UploadFile = ({ imageState, setImageState, className }) => {
         <div>
             {
                 !imageState && <div className="flex items-center justify-center">
-                    <label className="flex flex-col items-center w-full px-4 py-6 tracking-wide uppercase bg-white border rounded-lg shadow-lg cursor-pointer dark:border-gray-600 dark:bg-gray-800 text-blue border-blue hover:bg-blue">
-                        <div>
-                            <CiImageOn className="text-4xl" />
-                        </div>
-                        <span className="mt-2 text-base font-medium leading-normal text-gray-600 dark:text-gray-300">
-                            Select a Image
-                        </span>
-                        <input
-                            type="file"
-                            hidden
-                            accept="image/*"
-                            onChange={e => setImageState(e.target.files[0])}
-                        />
-                    </label>
+                    <Card className='w-full'>
+                        <label className="flex flex-col items-center w-full py-6 uppercase cursor-pointer">
+                            <div>
+                                <CiImageOn className="text-4xl" />
+                            </div>
+                            <span className="mt-2 text-base font-medium leading-normal text-gray-600 dark:text-gray-300">
+                                Select a Image
+                            </span>
+                            <input
+                                type="file"
+                                hidden
+                                accept="image/*"
+                                onChange={e => setImageState(e.target.files[0])}
+                            />
+                        </label>
+                    </Card>
                 </div>
             }
             {imageState && (

@@ -1,10 +1,12 @@
 "use client";
+import { useRouter } from 'next/navigation';
 import { MdAutorenew } from 'react-icons/md';
 
 const ReloadPageBtn = () => {
+    const router = useRouter();
 
     const reloadPage = () => {
-        window.location.reload();
+        router.refresh()
     };
 
     return (

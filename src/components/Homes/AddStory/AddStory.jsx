@@ -1,22 +1,21 @@
 "use client";
 import { useState } from "react";
 import { GoPlus } from "react-icons/go";
-import imageUpload from "@/utils/imageUpload";
 import { toast } from "sonner";
 import useAuth from "@/Hooks/useAuth";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
 import { createStory } from "@/server";
+import { Spinner } from "@radix-ui/themes";
 
 // Dynamic Import
 const UploadFile = dynamic(() => import('@/components/UploadFile/UploadFile'),
     {
-        loading: () => <p>Loading...</p>,
+        loading: () => <Spinner size="3" />,
     }
 );
 const ModalCus = dynamic(() => import('../ModalCus/ModalCus'),
     {
-        loading: () => <p>Loading...</p>,
+        loading: () => <Spinner size="3" />,
     }
 );
 const SubmitButton = dynamic(() => import('@/components/Global/Button/SubmitButton'));
@@ -30,9 +29,7 @@ const addStoryBtn = <>
 
 const AddStory = ({ addStory }) => {
     const [selectedFile, setSelectedFile] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const router = useRouter();
-    const user = useAuth();
+    const { user } = useAuth();
 
     // add new Story
     const handleStory = async () => {
@@ -41,34 +38,33 @@ const AddStory = ({ addStory }) => {
             return toast.error("Please select an image")
         }
 
-        setLoading(true);
         try {
-            const image = await imageUpload(selectedFile, true);
 
-            if (image.success) {
-                const newStory = {
-                    name: user?.displayName,
-                    email: user?.email,
-                    profilePhoto: user?.photoURL,
-                    storyPhoto: image.data.display_url
-                }
+            // Convert FormData to plain object
+            const newUser = {
+                userId: user?.id
+            };
 
-                // Add the new story
-                const addStoryData = await createStory(newStory);
-                if (addStoryData.success) {
-                    setSelectedFile("")
-                    toast.success('Story Added successfully');
-                    router.refresh();
-                }
-                else {
-                    toast.error("Something went wrong");
-                }
+            // Handle photo separately if needed
+            if (selectedFile) {
+                const arrayBuffer = await selectedFile.arrayBuffer();
+                const photo = new Uint8Array(arrayBuffer);
+                newUser.photo = photo;
             }
+
+
+            // Add the new story
+            const addStoryData = await createStory(newUser);
+            if (addStoryData.success) {
+                setSelectedFile("")
+                toast.success('Story Added successfully');
+            }
+            else {
+                toast.error("Something went wrong");
+            }
+
         } catch (error) {
             toast.error(error.message)
-        }
-        finally {
-            setLoading(false);
         }
     }
 
@@ -78,8 +74,8 @@ const AddStory = ({ addStory }) => {
             <ModalCus name={addStory || addStoryBtn} modalTitle="Upload an Image">
                 <form action={handleStory}>
                     <UploadFile imageState={selectedFile} setImageState={setSelectedFile} />
-                    <div className="flex justify-end mt-3">
-                        <SubmitButton loading={loading} />
+                    <div className="flex justify-end mt-4">
+                        <SubmitButton className="!w-full" />
                     </div>
                 </form>
             </ModalCus>

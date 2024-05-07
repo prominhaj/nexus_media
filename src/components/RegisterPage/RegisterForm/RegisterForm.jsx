@@ -21,18 +21,15 @@ const RegisterForm = () => {
             UserSchema.parse(newUsers);
 
             // Convert FormData to plain object
-            const newUser = {};
-            for (const [key, value] of formData.entries()) {
-                newUser[key] = value;
-            }
+            const newUser = Object.fromEntries(formData.entries());
 
             // Handle photo separately if needed
             const photoFile = formData.get("photo");
             if (photoFile) {
                 const arrayBuffer = await photoFile.arrayBuffer();
-                const photo = new Uint8Array(arrayBuffer);
-                newUser.photo = photo;
+                newUser.photo = new Uint8Array(arrayBuffer);
             }
+
 
             // Call the server function to create a new user
             const user = await createNewUser(newUser);
