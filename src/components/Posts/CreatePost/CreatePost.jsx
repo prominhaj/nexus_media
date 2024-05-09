@@ -68,7 +68,7 @@ const CreatePost = () => {
         <>
             <Card>
                 <div className='flex items-start gap-3'>
-                    <Link className='block' href={"/profile"}>
+                    <Link className='block' href={`/profile/${user?.id}`}>
                         {status === "loading" ? <Spinner className='mt-2.5' loading /> : <Avatar src={user?.image?.profileURL} radius="full" fallback={user?.name?.slice(0.1)} />}
                     </Link>
                     <div className='flex flex-1'>

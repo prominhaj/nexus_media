@@ -2,7 +2,7 @@ import CreatePost from '@/components/Posts/CreatePost/CreatePost';
 import HomeStory from '@/components/Homes/HomeStory/HomeStory';
 import AllPosts from '@/components/Posts/AllPosts/AllPosts';
 
-const HomePage = () => {
+const HomePage = async () => {
     return (
         <>
             {/* Home Page Main Content */}

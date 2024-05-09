@@ -1,14 +1,11 @@
-"use client"
+"use client";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
 import Image from 'next/image';
-import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { getStories } from '@/server';
 import { Spinner } from '@radix-ui/themes';
-import domain from '@/Domain/domain.config';
 
 // Dynamic Import
 const StoryModal = dynamic(
@@ -17,42 +14,9 @@ const StoryModal = dynamic(
         loading: () => <Spinner size="1" loading />,
     }
 )
-const Intersection = dynamic(
-    () => import('../InfinityScroll/Intersection/Intersection'),
-    {
-        loading: () => <Spinner size="1" loading />,
-    }
-)
 
-// Posts Limit
-const storiesLimit = 10;
+const StorySlider = ({ data }) => {
 
-const StorySlider = () => {
-    // Load all posts
-    const [page, setPage] = useState(0);
-    const [stories, setStories] = useState([]);
-    const [hasMore, setHasMore] = useState(true);
-
-    const fetchingStories = async () => {
-        const req = await fetch(`${domain}/api/story?limit=${storiesLimit}&skip=${page * storiesLimit}`, {
-            cache: "no-store",
-            next: {
-                tags: ['stories'],
-            }
-        })
-        const data = await req.json();
-        // const data = await getStories(storiesLimit, page * storiesLimit)
-
-        if (data?.length === 0) {
-            setHasMore(false)
-        }
-        else {
-            setStories(prev => [...prev, ...data])
-            setPage(prev => prev + 1)
-        }
-    }
-
-    console.log(stories);
     return (
         <div className='flex'>
 
@@ -94,28 +58,14 @@ const StorySlider = () => {
                     },
                 }}
             >
-                {stories?.map((item, index) =>
+                {data?.map((item) =>
                 (
-                    <SwiperSlide className='!flex' key={index}>
-                        <StoryModal
-                            item={item}
-                            card={<Image
-                                src={item?.storyImage?.photoUrl}
-                                width={50}
-                                height={50}
-                                className='rounded-full transition-all duration-300 w-[3.125rem] h-[3.125rem] border-[3px] border-blue-400 dark:border-blue-500'
-                                alt="Image"
-                            />} />
+                    <SwiperSlide className='!flex' key={item._id}>
+                        <StoryModal item={item} />
                     </SwiperSlide>
                 )
                 )}
             </Swiper>
-
-            {hasMore && (
-                <Intersection fetchingData={fetchingStories} hasMore={hasMore} page={page}>
-                    <Spinner size="3" loading />
-                </Intersection>
-            )}
         </div>
     );
 };
