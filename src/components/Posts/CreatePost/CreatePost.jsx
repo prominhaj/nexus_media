@@ -1,5 +1,4 @@
 "use client";
-import { Avatar, Textarea } from '@nextui-org/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import useAuth from '@/Hooks/useAuth';
@@ -7,7 +6,7 @@ import { toast } from 'sonner'
 import imageUpload from '@/utils/imageUpload';
 import dynamic from 'next/dynamic';
 import { createPost } from '@/server';
-import { Card } from '@radix-ui/themes';
+import { Avatar, Card, Spinner, TextArea } from '@radix-ui/themes';
 
 // Dynamic Import
 const ModalCus = dynamic(() => import('../../Homes/ModalCus/ModalCus'))
@@ -20,7 +19,7 @@ const Emoji = dynamic(() => import('../../SliderCus/Emoji'))
 
 // Create Post Button
 const createPostBtn = <>
-    <div className='hover:bg-[#c8c8c9] dark:hover:bg-[#424343] duration-300 cursor-pointer text-start bg-[#dbdbdc] dark:bg-[#313030] text-[#65676B] dark:text-[#B0B3B8] py-2 px-3 rounded-2xl w-full'>
+    <div className='hover:bg-[#c8c8c9] dark:hover:bg-[#424343] duration-300 cursor-pointer text-start bg-[#dbdbdc] dark:bg-[#2a2929] text-[#65676B] dark:text-[#B0B3B8] py-2 px-3 rounded-xl w-full'>
         <span>Create Post...</span>
     </div>
 </>
@@ -29,7 +28,7 @@ const CreatePost = () => {
     const [image, setImage] = useState(null);
     const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(false);
-    const user = useAuth();
+    const { user, status } = useAuth();
 
     const handleCreatePost = async () => {
         // Check Empty State
@@ -69,8 +68,8 @@ const CreatePost = () => {
         <>
             <Card>
                 <div className='flex items-start gap-3'>
-                    <Link href={"/profile"}>
-                        <Avatar src={user?.photoURL} />
+                    <Link className='block' href={"/profile"}>
+                        {status === "loading" ? <Spinner className='mt-2.5' loading /> : <Avatar src={user?.image?.profileURL} radius="full" fallback={user?.name?.slice(0.1)} />}
                     </Link>
                     <div className='flex flex-1'>
                         <ModalCus name={createPostBtn} modalTitle="Create Post" buttonClass="w-full">
@@ -84,19 +83,12 @@ const CreatePost = () => {
 
                                 {/* Description */}
                                 <div className='relative pt-5'>
-                                    <Textarea
+                                    <TextArea
                                         onChange={e => setDescription(e.target.value)}
                                         value={description}
-                                        label="Description"
-                                        labelPlacement="outside"
-                                        placeholder="Enter your description..."
-                                        className="w-full"
-                                        classNames={
-                                            {
-                                                inputWrapper: "border rounded-lg border-gray-200 dark:border-gray-600"
-                                            }
-                                        }
-                                    />
+                                        placeholder="Enter your description..." />
+
+                                    {/* Emoji */}
                                     <Emoji setDescription={setDescription} />
                                 </div>
                                 <div className='flex justify-end mt-3'>
