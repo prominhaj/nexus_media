@@ -12,7 +12,7 @@ const StoryModal = ({ card, item }) => {
                 className='object-cover border-2 border-gray-500'
                 radius='full'
                 src={item?.image?.profileURL}
-                fallback={item.name.slice(0, 1)}
+                fallback={item?.name?.slice(0, 1)}
             />
             <div className='text-sm font-normal'>
                 <h2 className='font-medium'>{item?.name}</h2>
@@ -27,8 +27,8 @@ const StoryModal = ({ card, item }) => {
 
     return (
         <>
-            <ModalCus name={card} modalTitle={modalTitle} closeHidden={true}>
-                <Image src={item?.storyImage?.photoUrl} width={600} loading='lazy' height={600} className='object-cover w-full h-full transition-all duration-300 rounded-md ' alt='Image' />
+            <ModalCus buttonClass="w-full" name={card} modalTitle={modalTitle} closeHidden={true}>
+                <Image src={item?.storyImage?.photoUrl} width={400} loading='lazy' height={400} className='object-cover w-full min-h-[18rem] md:min-h-[20rem] max-h-[20rem] md:max-h-[25rem] transition-all duration-300 rounded-md' alt='Image' />
             </ModalCus>
         </>
     );

@@ -8,9 +8,7 @@ const HomePage = () => {
             {/* Home Page Main Content */}
             <div className='lg:px-5 xl:px-10'>
                 {/* Home Story */}
-                <div className='shadow dark:shadow-2xl'>
-                    <HomeStory />
-                </div>
+                <HomeStory />
 
                 <div>
                     {/* Create Post */}

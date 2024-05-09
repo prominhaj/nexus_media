@@ -4,8 +4,8 @@ import connectDB from '@/lib/mongodb';
 import Post from '@/models/Post';
 import Story from '@/models/Story';
 import { fileUploader } from './fileUploader';
-import { revalidatePath } from 'next/cache';
 import User from '@/models/User';
+import { revalidateTag } from 'next/cache';
 
 // Utils functions
 const modifiedObject = (array) => {
@@ -145,7 +145,9 @@ const getStories = async (limit, skip) => {
         const stories = await Story.find()
             .limit(parseInt(limit))
             .skip(parseInt(skip))
-            .sort({ Date: -1 })
+            .sort({
+                createdAt: -1
+            })
             .lean();
 
         // Find the users corresponding to the userIds
@@ -158,17 +160,23 @@ const getStories = async (limit, skip) => {
             })
             .limit(parseInt(limit))
             .skip(parseInt(skip))
-            .sort({ Date: -1 })
+            .sort({
+                createdAt: -1
+            })
             .lean();
 
         // Modified Data
         const modifiedStories = modifiedObject(stories);
         const modifiedUsers = modifiedObject(users);
 
-        const allStories = modifiedStories.map((story) => ({
-            ...story,
-            ...modifiedUsers.find((user) => user._id === story.userId)
-        }));
+        const allStories = modifiedStories.map((story) => {
+            const user = modifiedUsers.find((user) => user._id === story.userId);
+            if (user) {
+                const { _id, ...userData } = user;
+                return { ...story, ...userData };
+            }
+            return story;
+        });
 
         return allStories;
     } catch (err) {
@@ -196,7 +204,7 @@ const createStory = async ({ photo, userId }) => {
     }
 
     // Revalidate the page
-    revalidatePath('/');
+    revalidateTag('stories');
 
     return { success: true };
 };

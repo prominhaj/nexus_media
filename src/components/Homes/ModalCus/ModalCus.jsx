@@ -2,13 +2,13 @@
 import { IoMdClose } from "react-icons/io";
 import { Button, Dialog } from '@radix-ui/themes';
 
-const ModalCus = ({ name, modalTitle, closeHidden, children }) => {
+const ModalCus = ({ name, modalTitle, closeHidden, buttonClass, children }) => {
 
     return (
         <>
             <Dialog.Root>
                 <Dialog.Trigger>
-                    <button className="w-full">
+                    <button className='w-full'>
                         {name}
                     </button>
                 </Dialog.Trigger>

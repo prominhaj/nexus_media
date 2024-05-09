@@ -7,6 +7,7 @@ import { toast } from 'sonner'
 import imageUpload from '@/utils/imageUpload';
 import dynamic from 'next/dynamic';
 import { createPost } from '@/server';
+import { Card } from '@radix-ui/themes';
 
 // Dynamic Import
 const ModalCus = dynamic(() => import('../../Homes/ModalCus/ModalCus'))
@@ -19,7 +20,7 @@ const Emoji = dynamic(() => import('../../SliderCus/Emoji'))
 
 // Create Post Button
 const createPostBtn = <>
-    <div className='hover:bg-[#c8c8c9] dark:hover:bg-[#4E4F50] duration-300 cursor-pointer text-start bg-[#dbdbdc] dark:bg-[#313030] text-[#65676B] dark:text-[#B0B3B8] py-2 px-3 rounded-2xl w-full'>
+    <div className='hover:bg-[#c8c8c9] dark:hover:bg-[#424343] duration-300 cursor-pointer text-start bg-[#dbdbdc] dark:bg-[#313030] text-[#65676B] dark:text-[#B0B3B8] py-2 px-3 rounded-2xl w-full'>
         <span>Create Post...</span>
     </div>
 </>
@@ -65,46 +66,48 @@ const CreatePost = () => {
     }
 
     return (
-        <div className='p-3 rounded-lg shadow-md md:p-5 bg-light-post-bg dark:bg-dark-post-bg'>
-            <div className='flex items-start gap-3'>
-                <Link href={"/profile"}>
-                    <Avatar src={user?.photoURL} />
-                </Link>
-                <div className='flex flex-1'>
-                    <ModalCus name={createPostBtn} modalTitle="Create Post" classes={"w-full"}>
+        <>
+            <Card>
+                <div className='flex items-start gap-3'>
+                    <Link href={"/profile"}>
+                        <Avatar src={user?.photoURL} />
+                    </Link>
+                    <div className='flex flex-1'>
+                        <ModalCus name={createPostBtn} modalTitle="Create Post" buttonClass="w-full">
 
-                        {/* Modal Create Post Form */}
-                        <form action={handleCreatePost}>
-                            {/* Image Upload  */}
-                            <div>
-                                <UploadFile imageState={image} setImageState={setImage} />
-                            </div>
+                            {/* Modal Create Post Form */}
+                            <form action={handleCreatePost}>
+                                {/* Image Upload  */}
+                                <div>
+                                    <UploadFile imageState={image} setImageState={setImage} />
+                                </div>
 
-                            {/* Description */}
-                            <div className='relative pt-5'>
-                                <Textarea
-                                    onChange={e => setDescription(e.target.value)}
-                                    value={description}
-                                    label="Description"
-                                    labelPlacement="outside"
-                                    placeholder="Enter your description..."
-                                    className="w-full"
-                                    classNames={
-                                        {
-                                            inputWrapper: "border rounded-lg border-gray-200 dark:border-gray-600"
+                                {/* Description */}
+                                <div className='relative pt-5'>
+                                    <Textarea
+                                        onChange={e => setDescription(e.target.value)}
+                                        value={description}
+                                        label="Description"
+                                        labelPlacement="outside"
+                                        placeholder="Enter your description..."
+                                        className="w-full"
+                                        classNames={
+                                            {
+                                                inputWrapper: "border rounded-lg border-gray-200 dark:border-gray-600"
+                                            }
                                         }
-                                    }
-                                />
-                                <Emoji setDescription={setDescription} />
-                            </div>
-                            <div className='flex justify-end mt-3'>
-                                <SubmitButton loading={loading} />
-                            </div>
-                        </form>
-                    </ModalCus>
+                                    />
+                                    <Emoji setDescription={setDescription} />
+                                </div>
+                                <div className='flex justify-end mt-3'>
+                                    <SubmitButton loading={loading} />
+                                </div>
+                            </form>
+                        </ModalCus>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </Card>
+        </>
     );
 };
 

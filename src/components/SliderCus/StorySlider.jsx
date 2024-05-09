@@ -6,20 +6,21 @@ import 'swiper/css';
 import Image from 'next/image';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Spinner } from '@nextui-org/react';
 import { getStories } from '@/server';
+import { Spinner } from '@radix-ui/themes';
+import domain from '@/Domain/domain.config';
 
 // Dynamic Import
 const StoryModal = dynamic(
     () => import('../Shared/Modal/StoryModal'),
     {
-        loading: () => <Spinner size="sm" />,
+        loading: () => <Spinner size="1" loading />,
     }
 )
 const Intersection = dynamic(
     () => import('../InfinityScroll/Intersection/Intersection'),
     {
-        loading: () => <Spinner size="sm" />,
+        loading: () => <Spinner size="1" loading />,
     }
 )
 
@@ -33,7 +34,14 @@ const StorySlider = () => {
     const [hasMore, setHasMore] = useState(true);
 
     const fetchingStories = async () => {
-        const data = await getStories(storiesLimit, page * storiesLimit)
+        const req = await fetch(`${domain}/api/story?limit=${storiesLimit}&skip=${page * storiesLimit}`, {
+            cache: "no-store",
+            next: {
+                tags: ['stories'],
+            }
+        })
+        const data = await req.json();
+        // const data = await getStories(storiesLimit, page * storiesLimit)
 
         if (data?.length === 0) {
             setHasMore(false)
@@ -44,8 +52,10 @@ const StorySlider = () => {
         }
     }
 
+    console.log(stories);
     return (
-        <div className='flex overflow-x-hidden'>
+        <div className='flex'>
+
             <Swiper
                 slidesPerView={1}
                 spaceBetween={10}
@@ -93,7 +103,6 @@ const StorySlider = () => {
                                 src={item?.storyImage?.photoUrl}
                                 width={50}
                                 height={50}
-                                loading='lazy'
                                 className='rounded-full transition-all duration-300 w-[3.125rem] h-[3.125rem] border-[3px] border-blue-400 dark:border-blue-500'
                                 alt="Image"
                             />} />
@@ -104,7 +113,7 @@ const StorySlider = () => {
 
             {hasMore && (
                 <Intersection fetchingData={fetchingStories} hasMore={hasMore} page={page}>
-                    <Spinner size="md" />
+                    <Spinner size="3" loading />
                 </Intersection>
             )}
         </div>
