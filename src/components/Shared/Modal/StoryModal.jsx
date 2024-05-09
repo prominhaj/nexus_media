@@ -15,7 +15,6 @@ const StoryModal = ({ item }) => {
         const singleStory = await getSingleStory(id);
         setStory(singleStory);
         setLoading(false);
-        console.log(singleStory);
     }
 
     const storyButton = <>

@@ -9,6 +9,9 @@ export const GET = async (_req) => {
     await connectDB();
     try {
         const stories = await Story.find()
+            .sort({
+                createdAt: -1
+            })
             .select({
                 _id: 1,
                 storyImage: {
@@ -16,6 +19,7 @@ export const GET = async (_req) => {
                 }
             })
             .lean();
+
         const modifiedStories = modifiedData(stories);
         return NextResponse.json(modifiedStories);
     } catch (error) {
