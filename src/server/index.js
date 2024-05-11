@@ -188,7 +188,7 @@ const getStories = async (limit, skip) => {
 const createStory = async ({ photo, userId }) => {
     try {
         // Image Upload
-        const { secure_url, public_id } = await fileUploader(photo, 'Stories');
+        const { secure_url, public_id } = await fileUploader(photo.get('image'), 'Stories');
 
         // Add the new story
         const newStory = {

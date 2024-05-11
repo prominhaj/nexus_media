@@ -9,9 +9,10 @@ cloudinary.config({
 
 export const fileUploader = async (file, folder) => {
     try {
-        const buffer = new Uint8Array(file);
+        const arrayBuffer = await file.arrayBuffer();
+        const buffer = new Uint8Array(arrayBuffer);
         const result = await new Promise(async (resolve, reject) => {
-            await cloudinary.uploader
+            cloudinary.uploader
                 .upload_stream(
                     {
                         folder: `Nexus Media App/${folder}`,

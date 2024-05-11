@@ -1,5 +1,5 @@
 
-const FormControl = ({ id, label, type, placeholder, className }) => {
+const FormControl = ({ id, label, type, placeholder, className, children }) => {
     return (
         <div className="flex flex-col gap-2 py-2">
             <label htmlFor={id} className='text-base font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>{label}</label>
@@ -11,6 +11,9 @@ const FormControl = ({ id, label, type, placeholder, className }) => {
                 required
                 accept="image/*"
                 placeholder={placeholder} />
+            <>
+                {children}
+            </>
         </div>
     );
 };

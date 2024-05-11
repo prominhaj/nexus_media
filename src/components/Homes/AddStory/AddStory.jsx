@@ -38,20 +38,16 @@ const AddStory = ({ addStory }) => {
             return toast.error("Please select an image")
         }
 
+        const formData = new FormData();
+        formData.append("image", selectedFile);
+
         try {
 
             // Convert FormData to plain object
             const newUser = {
-                userId: user?.id
+                userId: user?.id,
+                photo: formData
             };
-
-            // Handle photo separately if needed
-            if (selectedFile) {
-                const arrayBuffer = await selectedFile.arrayBuffer();
-                const photo = new Uint8Array(arrayBuffer);
-                newUser.photo = photo;
-            }
-
 
             // Add the new story
             const addStoryData = await createStory(newUser);

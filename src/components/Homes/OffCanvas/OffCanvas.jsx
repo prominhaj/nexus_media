@@ -18,11 +18,11 @@ const OffCanvas = () => {
         <div className="flex">
             <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? (<>
-                    <button className='p-3 duration-300 rounded-full bg-slate-200 dark:bg-gray-600'>
+                    <button className='duration-300 text-light-text text-2xl dark:text-dark-text bg-light-bg hover:bg-light-bg-hover dark:hover:bg-dark-bg-hover dark:bg-dark-bg p-2.5 rounded-full'>
                         <HiXMark className='text-2xl' />
                     </button>
                 </>) : <>
-                    <button className='p-3 duration-300 rounded-full bg-slate-200 dark:bg-gray-600'>
+                    <button className='duration-300 text-light-text text-2xl dark:text-dark-text bg-light-bg hover:bg-light-bg-hover dark:hover:bg-dark-bg-hover dark:bg-dark-bg p-2.5 rounded-full'>
                         <HiMiniBars3BottomRight className='text-2xl' />
                     </button>
                 </>}

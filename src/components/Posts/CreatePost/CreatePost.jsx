@@ -2,8 +2,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import useAuth from '@/Hooks/useAuth';
-import { toast } from 'sonner'
-import imageUpload from '@/utils/imageUpload';
+import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
 import { createPost } from '@/server';
 import { Avatar, Card, Spinner, TextArea } from '@radix-ui/themes';
@@ -19,7 +18,7 @@ const Emoji = dynamic(() => import('../../SliderCus/Emoji'))
 
 // Create Post Button
 const createPostBtn = <>
-    <div className='hover:bg-[#c8c8c9] dark:hover:bg-[#424343] duration-300 cursor-pointer text-start bg-[#dbdbdc] dark:bg-[#2a2929] text-[#65676B] dark:text-[#B0B3B8] py-2 px-3 rounded-xl w-full'>
+    <div className='hover:bg-[#d8d8d9] dark:hover:bg-[#424343] duration-300 cursor-pointer text-start bg-[#e8e8ea] dark:bg-[#2a2929] text-[#65676B] dark:text-[#B0B3B8] py-2 px-3 rounded-xl w-full'>
         <span>Create Post...</span>
     </div>
 </>
@@ -38,24 +37,7 @@ const CreatePost = () => {
 
         setLoading(true)
         try {
-            const imageHost = await imageUpload(image, true);
-            if (imageHost.success) {
-                // New Post 
-                const newPost = {
-                    name: user?.displayName,
-                    email: user?.email,
-                    profilePhoto: user?.photoURL,
-                    postPhoto: imageHost?.data?.display_url,
-                    description: description
-                }
 
-                const req = await createPost(newPost);
-                if (req.success) {
-                    setDescription("")
-                    setImage("")
-                    toast.success("Post created successfully")
-                }
-            }
         } catch (error) {
             toast.error(error.message)
         }

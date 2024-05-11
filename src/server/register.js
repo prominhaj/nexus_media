@@ -5,8 +5,23 @@ import bcrypt from 'bcrypt';
 import { redirect } from 'next/navigation';
 import { fileUploader } from './fileUploader';
 import { resendEmail } from './resendEmail';
+import { SignupFormSchema } from '@/lib/ZodSchemas/UserSchema';
 
 export const createNewUser = async (formData) => {
+    // Validate form fields
+    const validatedFields = SignupFormSchema.safeParse({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password
+    });
+
+    // If any form fields are invalid, return early
+    if (!validatedFields.success) {
+        return {
+            errors: validatedFields.error.flatten().fieldErrors
+        };
+    }
+
     // Connect Db to MongoDB
     await connectDB();
 
