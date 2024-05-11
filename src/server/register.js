@@ -36,7 +36,7 @@ export const createNewUser = async (formData) => {
         const hashedPassword = await bcrypt.hash(formData.password, 10);
 
         // Upload Image
-        const photo = await fileUploader(formData.photo, 'Images/Users');
+        const photo = await fileUploader(formData.photo.get('image'), 'Images/Users');
 
         // Add New User
         const newUser = {

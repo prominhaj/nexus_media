@@ -24,19 +24,15 @@ const RegisterForm = () => {
         }
 
         try {
-            // // Handle photo separately if needed
-            // const photoFile = formData.get("photo");
-            // if (photoFile) {
-            //     const arrayBuffer = await photoFile.arrayBuffer();
-            //     newUser.photo = new Uint8Array(arrayBuffer);
-            // }
-
-
             // Call the server function to create a new user
             const user = await createNewUser(newUser);
             if (user?.errors) {
                 setError(user.errors)
                 return;
+            }
+            else if (user?.error) {
+                toast.error(user.error)
+                return
             }
             else {
                 toast.success('User Created Successfully');
