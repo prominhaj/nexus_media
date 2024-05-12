@@ -30,7 +30,7 @@ const postMenuBtn = <>
 const Post = ({ post, video }) => {
     // Posts
     const { _id, userId, postImage: { photoUrl }, description, reactions, comments, createdAt, user } = post;
-    const { name, email, image: { profileURL }, role } = user[0];
+    const { name, image: { profileURL }, role } = user[0];
 
     return (
         <div className='p-3 rounded-lg shadow-md md:p-5 bg-light-post-bg dark:bg-dark-post-bg'>
