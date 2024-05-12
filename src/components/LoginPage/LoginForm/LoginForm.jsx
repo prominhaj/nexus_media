@@ -21,7 +21,6 @@ const LoginForm = () => {
 
         try {
             const data = await signIn('credentials', {
-                redirect: false,
                 email,
                 password
             });
