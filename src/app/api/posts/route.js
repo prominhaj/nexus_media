@@ -31,7 +31,6 @@ export const GET = async (_req) => {
                     'user.password': 0,
                     'user.gender': 0,
                     'user.birth': 0,
-                    'user.role': 0,
                     'user.createdAt': 0,
                     'user.updatedAt': 0,
                     'user.__v': 0
@@ -39,7 +38,7 @@ export const GET = async (_req) => {
             }
         ]);
 
-        return NextResponse.json({ posts });
+        return NextResponse.json(posts);
     } catch (err) {
         return NextResponse.json({ error: err.message });
     }

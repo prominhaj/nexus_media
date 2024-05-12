@@ -1,9 +1,9 @@
-import { Card } from '@radix-ui/themes';
-import AddStory from '../AddStory/AddStory';
-import StorySlider from '@/components/SliderCus/StorySlider';
 import domain from '@/Domain/domain.config';
+import AddStory from '@/components/Homes/AddStory/AddStory';
+import StorySlider from '@/components/SliderCus/StorySlider';
+import { Card } from '@radix-ui/themes';
 
-const HomeStory = async () => {
+const HomeStoryPage = async () => {
     const req = await fetch(`${domain}/api/stories`, {
         cache: 'no-store',
         next: {
@@ -28,4 +28,4 @@ const HomeStory = async () => {
     );
 };
 
-export default HomeStory;
+export default HomeStoryPage;

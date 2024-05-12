@@ -17,11 +17,8 @@ import moment from 'moment';
 import ShowDescription from './Description/ShowDescription';
 import ShowComment from './ShowComment/ShowComment';
 import Tooltip from '../Tooltip/Tooltip';
-import dynamic from 'next/dynamic';
 import { Avatar } from "@radix-ui/themes";
-
-// Dynamic Import
-const PostAction = dynamic(() => import('../PostAction/PostAction'), { loading: () => <p>Loading...</p>, })
+import PostAction from "../PostAction/PostAction";
 
 // Post Menu Button
 const postMenuBtn = <>
@@ -31,11 +28,9 @@ const postMenuBtn = <>
 </>
 
 const Post = ({ post, video }) => {
-
-    console.log(post);
     // Posts
     const { _id, userId, postImage: { photoUrl }, description, reactions, comments, createdAt, user } = post;
-    const { name, email, image: { profileURL } } = user[0];
+    const { name, email, image: { profileURL }, role } = user[0];
 
     return (
         <div className='p-3 rounded-lg shadow-md md:p-5 bg-light-post-bg dark:bg-dark-post-bg'>
@@ -51,9 +46,9 @@ const Post = ({ post, video }) => {
                                 <span>{name}</span>
                             </Link>
 
-                            {/* TODO?? Verified Badges Only Admin */}
+                            {/*Verified Badges Only Admin */}
 
-                            {/* <VerifiedBadges /> */}
+                            {role === 'admin' && <VerifiedBadges />}
                         </div>
                         <div className='flex items-center gap-[0.625rem] text-light-text dark:text-dark-text font-sans'>
                             <Tooltip
@@ -68,7 +63,7 @@ const Post = ({ post, video }) => {
                 </div>
                 <div>
                     <PopoverCus name={postMenuBtn}>
-                        <div className='flex flex-col gap-2 p-2 '>
+                        <div className='flex flex-col gap-2'>
                             <PostAction icon={<FaBookmark />} title={"Save Post"} text={"Add this to your saved items."} />
                             <PostAction icon={<AiFillCloseSquare />} title={"Hide Post"} text={"See fewer posts like this."} />
                             <PostAction icon={<IoMdPersonAdd />} title={"Add Friend"} text={"Add Friend Request"} />
