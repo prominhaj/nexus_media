@@ -1,4 +1,3 @@
-import { Avatar } from '@nextui-org/react';
 import { IoMdPersonAdd } from "react-icons/io";
 import Link from 'next/link';
 import { BsThreeDots } from "react-icons/bs";
@@ -19,6 +18,7 @@ import ShowDescription from './Description/ShowDescription';
 import ShowComment from './ShowComment/ShowComment';
 import Tooltip from '../Tooltip/Tooltip';
 import dynamic from 'next/dynamic';
+import { Avatar } from "@radix-ui/themes";
 
 // Dynamic Import
 const PostAction = dynamic(() => import('../PostAction/PostAction'), { loading: () => <p>Loading...</p>, })
@@ -32,20 +32,22 @@ const postMenuBtn = <>
 
 const Post = ({ post, video }) => {
 
+    console.log(post);
     // Posts
-    const { _id, name, postPhoto, profilePhoto, description, date, reactions, comments } = post;
+    const { _id, userId, postImage: { photoUrl }, description, reactions, comments, createdAt, user } = post;
+    const { name, email, image: { profileURL } } = user[0];
 
     return (
         <div className='p-3 rounded-lg shadow-md md:p-5 bg-light-post-bg dark:bg-dark-post-bg'>
             {/* Post Header */}
             <header className='flex items-center justify-between'>
                 <div className='flex flex-wrap items-start gap-3'>
-                    <Link href={`/profile/${_id}/posts`}>
-                        <Avatar isBordered radius="full" src={profilePhoto} />
+                    <Link href={`/profile/${userId}/posts`}>
+                        <Avatar radius="full" fallback={name?.slice(0, 1)} src={profileURL} />
                     </Link>
                     <div className='flex flex-col'>
                         <div className='flex items-center flex-wrap gap-[6px]'>
-                            <Link href={"/"} className='block text-[#050505] dark:text-[#E4E6EB] font-medium font-sans'>
+                            <Link href={`/profile/${userId}/posts`} className='block text-[#050505] dark:text-[#E4E6EB] font-medium font-sans'>
                                 <span>{name}</span>
                             </Link>
 
@@ -56,10 +58,10 @@ const Post = ({ post, video }) => {
                         <div className='flex items-center gap-[0.625rem] text-light-text dark:text-dark-text font-sans'>
                             <Tooltip
                                 button={<button className='text-[.75rem] font-medium'>
-                                    {moment(date).startOf('minutes').fromNow()}
+                                    {moment(createdAt).startOf('minutes').fromNow()}
                                 </button>}
                             >
-                                <small>{moment(date).subtract(10, 'days').calendar()}</small>
+                                <small>{moment(createdAt).subtract(10, 'days').calendar()}</small>
                             </Tooltip>
                         </div>
                     </div>
@@ -101,7 +103,7 @@ const Post = ({ post, video }) => {
                         {/* Image */}
                         <div className='flex justify-center bg-[#242526]/10 backdrop-blur-sm overflow-hidden dark:bg-white/10'>
                             <div className='max-w-full relative min-w-full sm:min-w-[35rem] min-h-[10rem] md:min-h-[22rem] max-h-[20rem] sm:max-h-[31.25rem]'>
-                                <Image width={1200} height={1000} className='object-cover w-full h-full border dark:border-gray-700' src={postPhoto} priority alt='Post Image' />
+                                <Image width={1200} height={1000} className='object-cover w-full h-full border dark:border-gray-700' src={photoUrl} priority alt='Post Image' />
                             </div>
                         </div>
                     </>

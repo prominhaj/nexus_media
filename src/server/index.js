@@ -39,13 +39,29 @@ const getPosts = async (limit, skip) => {
 };
 
 // Create a new post
-const createPost = async (newPost) => {
+const createPost = async (formData) => {
     try {
+        // Image Upload
+        const { secure_url, public_id } = await fileUploader(
+            formData.photo.get('image'),
+            'Images/Posts'
+        );
+        // Add the new post
+        const newPost = {
+            userId: formData.userId,
+            description: formData.description,
+            postImage: {
+                photoUrl: secure_url,
+                publicId: public_id
+            }
+        };
+
         await Post.create(newPost);
-        return { success: true };
     } catch (err) {
-        throw new Error(err.message);
+        throw new Error(err);
     }
+
+    return { success: true };
 };
 
 // Post Comment

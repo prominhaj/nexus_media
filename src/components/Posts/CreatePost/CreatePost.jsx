@@ -10,7 +10,7 @@ import { Avatar, Card, Spinner, TextArea } from '@radix-ui/themes';
 // Dynamic Import
 const ModalCus = dynamic(() => import('../../Homes/ModalCus/ModalCus'))
 const UploadFile = dynamic(() => import('@/components/UploadFile/UploadFile'), {
-    loading: () => <p>Loading...</p>,
+    loading: () => <Spinner loading />,
 })
 const SubmitButton = dynamic(() => import('@/components/Global/Button/SubmitButton'))
 const Emoji = dynamic(() => import('../../SliderCus/Emoji'))
@@ -26,7 +26,6 @@ const createPostBtn = <>
 const CreatePost = () => {
     const [image, setImage] = useState(null);
     const [description, setDescription] = useState("");
-    const [loading, setLoading] = useState(false);
     const { user, status } = useAuth();
 
     const handleCreatePost = async () => {
@@ -35,14 +34,26 @@ const CreatePost = () => {
             return toast.error('Please select an image');
         }
 
-        setLoading(true)
+        // FormData
+        const imageData = new FormData();
+        imageData.append("image", image);
+
+        const newPost = {
+            userId: user?.id,
+            photo: imageData,
+            description,
+        }
+
         try {
+            const post = await createPost(newPost)
+            if (post.success) {
+                toast.success("Post created successfully")
+                setImage(null)
+                setDescription("")
+            }
 
         } catch (error) {
             toast.error(error.message)
-        }
-        finally {
-            setLoading(false)
         }
     }
 
@@ -74,7 +85,7 @@ const CreatePost = () => {
                                     <Emoji setDescription={setDescription} />
                                 </div>
                                 <div className='flex justify-end mt-3'>
-                                    <SubmitButton loading={loading} />
+                                    <SubmitButton />
                                 </div>
                             </form>
                         </ModalCus>
