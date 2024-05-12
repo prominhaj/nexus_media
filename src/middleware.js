@@ -1,26 +1,25 @@
 import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
+import { getToken } from 'next-auth/jwt';
 
 // 1. Specify protected and public routes
 const protectedRoutes = ['/'];
 const publicRoutes = ['/login', '/register'];
 
 export default async function middleware(req) {
+    // Token
+    const token = await getToken({ req });
     // 2. Check if the current route is protected or public
     const path = req.nextUrl.pathname;
     const isProtectedRoute = protectedRoutes.includes(path);
     const isPublicRoute = publicRoutes.includes(path);
 
-    // 3. Decrypt the session from the cookie
-    const cookie = cookies().get('next-auth.session-token')?.value;
-
     // 5. Redirect to /login if the user is not authenticated
-    if (isProtectedRoute && !cookie) {
+    if (isProtectedRoute && !token) {
         return NextResponse.redirect(new URL('/login', req.nextUrl));
     }
 
     // 6. Redirect to /dashboard if the user is authenticated
-    if (isPublicRoute && cookie) {
+    if (isPublicRoute && token) {
         return NextResponse.redirect(new URL('/', req.nextUrl));
     }
 
