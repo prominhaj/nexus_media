@@ -8,6 +8,7 @@ import LeftMenuNavigation from "./LeftMenuNavigation";
 import LeftMenuLogout from "./LeftMenuLogout";
 import FramerMotion from "@/components/Global/Motion/FramerMotion";
 import ReloadPageBtn from "./ReloadPageBtn";
+import { Card } from "@radix-ui/themes";
 
 // Left Menu Items
 const leftMenuItems = [
@@ -54,28 +55,29 @@ const leftActionItems = [
 const LeftMenu = () => {
 
     return (
+        <Card variant="surface">
+            <div className="h-screen transition-all duration-300 rounded-lg md:space-y-5">
+                <div className='flex flex-col gap-2 bg-transparent rounded-lg'>
+                    {/* Reload Button */}
+                    <ReloadPageBtn />
 
-        <div className="h-screen transition-all duration-300 rounded-lg bg-light-menu-bg dark:bg-dark-menu-bg md:space-y-5">
-            <div className='flex flex-col gap-2 p-3 bg-transparent rounded-lg md:bg-light-menu-bg md:dark:bg-dark-menu-bg'>
-                {/* Reload Button */}
-                <ReloadPageBtn />
-
-                {
-                    leftMenuItems.map((item, index) =>
-                        <LeftMenuNavigation key={index} item={item} />
-                    )
-                }
-            </div>
-            <hr className="dark:border-t-gray-600 border-t-gray-300" />
-            <div className='flex flex-col gap-2 p-3 bg-transparent rounded-lg md:bg-light-menu-bg md:dark:bg-dark-menu-bg'>
-                {
-                    leftActionItems.map((item, index) =>
-                        <LeftMenuNavigation key={index} item={item} />
-                    )
-                }
-                <LeftMenuLogout />
-            </div>
-        </div >
+                    {
+                        leftMenuItems.map((item, index) =>
+                            <LeftMenuNavigation key={index} item={item} />
+                        )
+                    }
+                </div>
+                <hr className="dark:border-t-gray-600 border-t-gray-300" />
+                <div className='flex flex-col gap-2 bg-transparent rounded-lg'>
+                    {
+                        leftActionItems.map((item, index) =>
+                            <LeftMenuNavigation key={index} item={item} />
+                        )
+                    }
+                    <LeftMenuLogout />
+                </div>
+            </div >
+        </Card>
     );
 };
 

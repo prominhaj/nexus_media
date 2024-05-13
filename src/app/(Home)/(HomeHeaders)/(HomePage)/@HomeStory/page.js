@@ -16,7 +16,7 @@ const HomeStoryPage = async () => {
         <>
             <Card>
                 <div className='flex items-center gap-3'>
-                    <div className='w-[50px]'>
+                    <div>
                         <AddStory />
                     </div>
                     <div className='!w-[94%] pr-3'>

@@ -1,6 +1,6 @@
 import RightMenu from '@/components/Shared/RightMenu/RightMenu';
 
-const layout = ({ children, HomeStory }) => {
+const layout = ({ children }) => {
     return (
         <div className='grid grid-cols-1 xl:grid-cols-4'>
             <div className='xl:col-span-3'>{children}</div>

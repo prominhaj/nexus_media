@@ -8,7 +8,7 @@ const ScrollTop = dynamic(() => import('@/components/Homes/ScrollTop/ScrollTop')
 
 const layout = ({ children }) => {
     return (
-        <div className='bg-right bg-light-body-bg/80 dark:bg-dark-body-bg/80'>
+        <>
             <Header />
             <div className='grid grid-cols-1 gap-3 py-3 sm:py-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-5 lg:gap-6'>
                 <div className='hidden md:block'>
@@ -23,7 +23,7 @@ const layout = ({ children }) => {
             <div>
                 <ScrollTop />
             </div>
-        </div>
+        </>
     );
 };
 

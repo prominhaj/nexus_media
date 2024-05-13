@@ -7,19 +7,9 @@ const getSingleStory = async (storyId) => {
     await connectDB();
     try {
         const story = await Story.findById(storyId).lean();
-        const findUser = await User.findById(story.userId)
-            .select({
-                name: 1,
-                email: 1,
-                image: {
-                    profileURL: 1
-                }
-            })
-            .lean();
+        const user = await User.findById(story.userId).select('name email image.profileURL').lean();
 
-        const singleStory = { ...story, _id: story._id.toString(), ...findUser };
-
-        return singleStory;
+        return { ...story, ...user, _id: story._id.toString() };
     } catch (error) {
         throw new Error(error);
     }

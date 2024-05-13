@@ -40,7 +40,7 @@ const headerModeItems = [
 const Header = () => {
 
     return (
-        <div className='sticky top-0 z-[45] w-full px-3 py-3.5 shadow bg-light-header-bg lg:px-5 dark:bg-dark-header-bg'>
+        <div className='sticky top-0 z-[45] w-full px-3 py-3.5 shadow bg-light-header-bg/80 lg:px-5 dark:bg-dark-header-bg/80'>
             <div className='grid items-center grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 <div>
                     <Link href="/" className='block'>

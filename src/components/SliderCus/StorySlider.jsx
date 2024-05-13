@@ -6,6 +6,7 @@ import 'swiper/css';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { Spinner } from '@radix-ui/themes';
+import Link from 'next/link';
 
 // Dynamic Import
 const StoryModal = dynamic(
@@ -33,11 +34,11 @@ const StorySlider = ({ data }) => {
                         spaceBetween: 10,
                     },
                     280: {
-                        slidesPerView: 5,
+                        slidesPerView: 4,
                         spaceBetween: 10,
                     },
                     350: {
-                        slidesPerView: 6,
+                        slidesPerView: 5,
                         spaceBetween: 10,
                     },
                     500: {
@@ -52,16 +53,33 @@ const StorySlider = ({ data }) => {
                         slidesPerView: 8,
                         spaceBetween: 10,
                     },
-                    1600: {
-                        slidesPerView: 14,
+                    1200: {
+                        slidesPerView: 10,
                         spaceBetween: 10,
+                    },
+                    1600: {
+                        slidesPerView: 12,
+                        spaceBetween: 15,
+                    },
+                    1800: {
+                        slidesPerView: 14,
+                        spaceBetween: 15,
                     },
                 }}
             >
                 {data?.map((item) =>
                 (
-                    <SwiperSlide className='!flex' key={item._id}>
-                        <StoryModal item={item} />
+                    <SwiperSlide className='!flex !items-center !justify-center' key={item._id}>
+                        <Link className='w-[3.5rem] h-[3.5rem]' href={`/stories/${item._id}`}>
+                            <Image
+                                src={item?.storyImage?.photoUrl}
+                                width={50}
+                                height={50}
+                                className='rounded-full object-cover transition-all duration-300 w-full h-full border-[3px] border-blue-400 dark:border-blue-500'
+                                alt="Image"
+                            />
+                        </Link>
+                        {/* <StoryModal item={item} /> */}
                     </SwiperSlide>
                 )
                 )}

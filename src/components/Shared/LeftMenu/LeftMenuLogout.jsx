@@ -5,7 +5,7 @@ const LeftMenuLogout = () => {
 
     return (
         <Logout>
-            <button className='w-full px-3 hover:bg-[#F2F2F2] dark:text-dark-text text-light-text dark:hover:bg-[#343536] rounded-md py-2 text-[1.02rem transition-all duration-300'>
+            <button className='w-full px-3 hover:bg-[#F2F2F2] dark:text-dark-text text-light-text dark:hover:bg-[#2c2c2d] rounded-md py-1.5 text-[1.02rem transition-all duration-300'>
                 <span className="flex items-center gap-2 sm:gap-3">
                     <span className="p-2 rounded-full dark:bg-dark-bg bg-light-bg">
                         <HiArrowRightOnRectangle className="text-2xl" />

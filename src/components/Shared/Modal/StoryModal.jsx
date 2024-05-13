@@ -18,12 +18,13 @@ const StoryModal = ({ item }) => {
     }
 
     const storyButton = <>
-        <div onClick={() => handleSingleStory(item._id)}>
+        <div className='w-[3.5rem] h-[3.5rem]'>
             <Image
+                onClick={() => handleSingleStory(item._id)}
                 src={item?.storyImage?.photoUrl}
                 width={50}
                 height={50}
-                className='rounded-full transition-all duration-300 w-[3.125rem] h-[3.125rem] border-[3px] border-blue-400 dark:border-blue-500'
+                className='rounded-full object-cover transition-all duration-300 w-full h-full border-[3px] border-blue-400 dark:border-blue-500'
                 alt="Image"
             />
         </div>
@@ -66,7 +67,7 @@ const StoryModal = ({ item }) => {
                 {
                     loading ? (
                         <div>
-                            <Skeleton width="450px" height="200px" />
+                            <Skeleton width="100" height="200px" />
                         </div>
                     ) : (
                         <Image src={story?.storyImage?.photoUrl} width={400} loading='lazy' height={400} className='object-cover w-full min-h-[18rem] md:min-h-[20rem] max-h-[20rem] md:max-h-[25rem] transition-all duration-300 rounded-md' alt='Image' />
