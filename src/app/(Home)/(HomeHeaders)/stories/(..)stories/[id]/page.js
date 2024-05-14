@@ -1,14 +1,18 @@
 import Modal from '@/components/Global/Modal/Modal';
+import { getSingleStory } from '@/server/story';
+import StoryDetailsCard from '../../comp/StoryDetailsCard';
+import StoryDetailsLoading from '../../comp/StoryDetailsLoading';
 
-const ModalStoriesDetailsPage = () => {
+const ModalStoriesDetailsPage = async ({ params: { id } }) => {
+    const story = await getSingleStory(id);
+
     return (
         <>
+            <div className='flex items-center justify-center !w-[36rem] text-center transition-colors rounded-md shadow-xl'>
+                <StoryDetailsLoading />
+            </div>
             <Modal>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius autem nam itaque
-                quaerat reiciendis reprehenderit omnis cum neque sed, dolor harum sint aliquam
-                laboriosam magnam vitae ab optio beatae ad facilis accusamus magni rerum. Voluptate
-                officiis, architecto accusantium at minima nulla fugit molestias sit eum pariatur
-                ipsam rem nam eaque?
+                <StoryDetailsCard story={story} />
             </Modal>
         </>
     );

@@ -1,9 +1,7 @@
 'use client';
-
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useRouter } from 'next/navigation';
-import { Card } from '@radix-ui/themes';
 
 export default function Modal({ children }) {
     const router = useRouter();
@@ -25,7 +23,7 @@ export default function Modal({ children }) {
                 </Transition.Child>
 
                 <div className='fixed inset-0 z-10 w-screen overflow-y-auto'>
-                    <div className='flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0'>
+                    <div className='flex items-center justify-center min-h-full p-4 text-center sm:items-center sm:p-0'>
                         <Transition.Child
                             as={Fragment}
                             enter='ease-out duration-300'
@@ -35,10 +33,8 @@ export default function Modal({ children }) {
                             leaveFrom='opacity-100 translate-y-0 sm:scale-100'
                             leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
                         >
-                            <Dialog.Panel className='relative overflow-hidden text-left transition-colors transform sm:w-full sm:max-w-lg'>
-                                <Card>
-                                    {children}
-                                </Card>
+                            <Dialog.Panel className='relative bg-[#FFFFFF] dark:bg-[#18191B] shadow-xl rounded-md p-4 overflow-hidden text-left transition-colors sm:w-full sm:max-w-xl'>
+                                {children}
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>

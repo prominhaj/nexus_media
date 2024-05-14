@@ -8,7 +8,7 @@ const StoryDetailsCard = ({ story }) => {
         <Card size='2'>
             <div className='flex items-center gap-3'>
                 <Avatar
-                    className='object-cover border-2 border-gray-500'
+                    className='object-cover !rounded-full !w-11 !h-11 border-2 border-gray-500'
                     radius='full'
                     src={story?.image?.profileURL}
                     fallback={story?.name?.slice(0, 1)}

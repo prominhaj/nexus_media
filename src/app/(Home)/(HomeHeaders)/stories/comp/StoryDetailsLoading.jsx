@@ -2,7 +2,7 @@ import { Skeleton } from "@radix-ui/themes";
 
 const StoryDetailsLoading = () => {
     return (
-        <>
+        <div>
             <div className='flex items-center gap-3'>
                 <Skeleton className='!rounded-full' width='40px' height='40px' />
                 <div className='flex flex-col gap-2'>
@@ -16,7 +16,7 @@ const StoryDetailsLoading = () => {
             <div className='flex items-center justify-end'>
                 <Skeleton width='70px' height='30px' />
             </div>
-        </>
+        </div>
     );
 };
 
