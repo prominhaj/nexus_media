@@ -1,5 +1,5 @@
 import AddStory from '@/components/Homes/AddStory/AddStory';
-import StoriesCard from '@/components/StoriesPage/StoriesCard/StoriesCard';
+// import StoriesCard from '@/components/StoriesPage/StoriesCard/StoriesCard';
 import { Avatar } from '@nextui-org/react';
 
 const StoriesPage = () => {
@@ -19,9 +19,7 @@ const StoriesPage = () => {
             <div className='w-full py-3'>
                 <AddStory addStory={addStoryBtn} />
             </div>
-            <div className='py-3'>
-                <StoriesCard />
-            </div>
+            <div className='py-3'>{/* <StoriesCard /> */}</div>
         </div>
     );
 };
