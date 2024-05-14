@@ -4,17 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
-import { Spinner } from '@radix-ui/themes';
 import Link from 'next/link';
-
-// Dynamic Import
-const StoryModal = dynamic(
-    () => import('../Shared/Modal/StoryModal'),
-    {
-        loading: () => <Spinner size="1" loading />,
-    }
-)
 
 const StorySlider = ({ data }) => {
 
