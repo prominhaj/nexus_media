@@ -3,6 +3,7 @@
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useRouter } from 'next/navigation';
+import { Card } from '@radix-ui/themes';
 
 export default function Modal({ children }) {
     const router = useRouter();
@@ -20,7 +21,7 @@ export default function Modal({ children }) {
                     leaveFrom='opacity-100'
                     leaveTo='opacity-0'
                 >
-                    <div className='fixed inset-0 transition-opacity bg-gray-500/80' />
+                    <div className='fixed inset-0 transition-opacity bg-[#0009]' />
                 </Transition.Child>
 
                 <div className='fixed inset-0 z-10 w-screen overflow-y-auto'>
@@ -34,8 +35,10 @@ export default function Modal({ children }) {
                             leaveFrom='opacity-100 translate-y-0 sm:scale-100'
                             leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
                         >
-                            <Dialog.Panel className='relative overflow-hidden text-left transition-all transform bg-white shadow-xl rounded-2xl sm:my-8 sm:w-full sm:max-w-lg'>
-                                {children}
+                            <Dialog.Panel className='relative overflow-hidden text-left transition-colors transform sm:w-full sm:max-w-lg'>
+                                <Card>
+                                    {children}
+                                </Card>
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>

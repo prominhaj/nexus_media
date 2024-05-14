@@ -2,7 +2,6 @@ import './globals.css';
 import { Poppins } from 'next/font/google';
 import NextProvider from '@/Providers/NextProvider';
 import ThemeProvider from '../Providers/ThemeContext';
-import ColorProvider from '@/Providers/ColorProvider';
 import { Toaster } from 'sonner';
 import RadixThemeProvider from '@/Providers/RadixThemeProvider';
 import SessionProvider from '@/Providers/SessionProvider';
@@ -23,16 +22,14 @@ export default function RootLayout({ children }) {
         <html lang='en'>
             <body className={`${poppins.className}`}>
                 <NextProvider>
-                    <ColorProvider>
-                        <ThemeProvider>
-                            <SessionProvider>
-                                <RadixThemeProvider>
-                                    {children}
-                                    <Toaster position='top-right' />
-                                </RadixThemeProvider>
-                            </SessionProvider>
-                        </ThemeProvider>
-                    </ColorProvider>
+                    <ThemeProvider>
+                        <SessionProvider>
+                            <RadixThemeProvider>
+                                {children}
+                                <Toaster position='top-right' />
+                            </RadixThemeProvider>
+                        </SessionProvider>
+                    </ThemeProvider>
                 </NextProvider>
             </body>
         </html>

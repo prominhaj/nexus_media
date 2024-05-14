@@ -73,13 +73,12 @@ const StorySlider = ({ data }) => {
                         <Link className='w-[3.5rem] h-[3.5rem]' href={`/stories/${item._id}`}>
                             <Image
                                 src={item?.storyImage?.photoUrl}
-                                width={50}
-                                height={50}
+                                width={100}
+                                height={100}
                                 className='rounded-full object-cover transition-all duration-300 w-full h-full border-[3px] border-blue-400 dark:border-blue-500'
                                 alt="Image"
                             />
                         </Link>
-                        {/* <StoryModal item={item} /> */}
                     </SwiperSlide>
                 )
                 )}
