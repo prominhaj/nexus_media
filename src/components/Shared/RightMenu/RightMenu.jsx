@@ -1,12 +1,12 @@
 import ContactId from '@/components/Homes/ContactId/ContactId';
 import FriendRequestCard from '@/components/Homes/FriendRequest/FriendRequestCard';
+import { Card } from '@radix-ui/themes';
 import Link from 'next/link';
-import React from 'react';
 
 const RightMenu = () => {
     return (
-        <div className='p-5 rounded-lg bg-light-menu-bg dark:bg-dark-menu-bg'>
-            <div>
+        <>
+            <Card size="2">
                 <div className='flex flex-wrap items-center justify-between gap-2 pb-2'>
                     <h2 className='text-sm font-semibold opacity-80'>Friend Request</h2>
                     <Link className='text-blue-600 dark:text-blue-400' href={"/friends"}>See all</Link>
@@ -33,8 +33,8 @@ const RightMenu = () => {
                         <ContactId />
                     </div>
                 </div>
-            </div>
-        </div>
+            </Card>
+        </>
     );
 };
 
